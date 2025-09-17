@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://NokoLAT.github.io/2026_STM32_Document/",
+  "homepage": "https://NOKOLAT.github.io/2026_STM32_Document/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
