@@ -1,19 +1,66 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Login } from '../../context/AuthContext';
 
 export default function LoginPage() {
+
+    const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleLogin() {
+
+        // ログイン認証
+        if (Login({ username, password })) {
+
+            // 成功した場合の処理
+            navigate('/test'); 
+        }
+        else{
+
+            // 失敗した場合の処理
+            alert("ユーザー名またはパスワードが違います");
+        }
+    }
 
     return (
     
         <div>
-            
-            <h1>Login Page</h1>
-            <p>ログインページをここに実装予定</p>
+            <h1>ログインページ</h1>
 
+            <form onSubmit={handleLogin}>
+                <div>
 
-            <h2>テストリンク</h2>
-            <ul>
-                <li><Link to="/test">テストページ</Link></li>
-            </ul>
+                    <label>
+
+                        ユーザー名
+                        
+                        <input
+                            type="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            
+                            style={{ color : 'black' }}
+                        />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        パスワード
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+
+                            style={{ color : 'black' }}
+                        />
+                    </label>
+                </div>
+
+                <button onClick={handleLogin} type="submit" style={{ color: 'black' }}>ログイン</button>
+
+            </form>
         </div>
     );
 
