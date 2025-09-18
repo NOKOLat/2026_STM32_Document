@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute'
 
-import Login from '../LoginPage'
+import Login from '../pages/Login/LoginPage'
 import TestRoute from './documents/TestSectionRoute'
 
 // 各ページへのルーティング設定
