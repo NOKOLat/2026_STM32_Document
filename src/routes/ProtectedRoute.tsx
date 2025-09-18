@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
 
-    // localStorage の "isLoggedIn" フラグをチェチE��
+    // localStorage の "isLoggedIn" フラグをチェック
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
     if (!isLoggedIn) {
