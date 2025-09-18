@@ -1,19 +1,70 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function LoginPage() {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    function handleLogin(event: React.FormEvent) {
+
+        event.preventDefault();
+    }
+
+    function handleGuestLogin() {
+
+
+    }
 
     return (
     
         <div>
+            <h1>ログインページ</h1>
+
+            <form onSubmit={handleLogin}>
+                <div>
+
+                    <label>
+
+                        ユーザー名
+                        
+                        <input
+                            type="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            
+                            style={{ color : 'black' }}
+                        />
+                    </label>
+                </div>
+
+                <div>
+                    <label>
+                        パスワード
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+
+                            style={{ color : 'black' }}
+                        />
+                    </label>
+                </div>
+
+                <button type="submit" style={{ color: 'black' }}>ログイン</button>
+
+            </form>
             
-            <h1>Login Page</h1>
-            <p>ログインページをここに実装予定</p>
-
-
-            <h2>テストリンク</h2>
-            <ul>
-                <li><Link to="/test">テストページ</Link></li>
-            </ul>
+                {/* ゲストログインの仮実装 */}
+                <div style={{ marginTop: 12 }}>
+                    <button
+                        type="button"
+                        onClick={handleGuestLogin}
+                        style={{ color: 'black' }}
+                    >
+                        ゲストログイン
+                    </button>
+                </div>
         </div>
     );
 
