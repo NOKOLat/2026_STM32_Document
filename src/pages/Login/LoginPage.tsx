@@ -8,12 +8,15 @@ export default function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleLogin() {
+    function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+        
+        // フォームの既定の送信（ページリロード）を防ぐ
+        e.preventDefault();
 
         // ログイン認証
         if (Login({ username, password })) {
 
-            // 成功した場合の処理
+            // 成功した場合の処理（クライアント側ルーティング）
             navigate('/test'); 
         }
         else{
@@ -58,7 +61,7 @@ export default function LoginPage() {
                     </label>
                 </div>
 
-                <button onClick={handleLogin} type="submit" style={{ color: 'black' }}>ログイン</button>
+                <button type="submit" style={{ color: 'black' }}>ログイン</button>
 
             </form>
         </div>
