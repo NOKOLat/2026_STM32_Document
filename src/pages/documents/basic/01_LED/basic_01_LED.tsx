@@ -1,4 +1,5 @@
 import FooterPageRoute from '../../../../layouts/FooterPageRoute';
+import ComplateButton from '../../../../layouts/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
@@ -176,10 +177,12 @@ void loop(){
 
                 <p>練習問題のコードが動いたら完了ボタンを押してね</p>
 
+                
+                <ComplateButton currentPage="01" />
 
                 <br />
 
-            <FooterPageRoute prev="/home" next="/home" />
+            <FooterPageRoute prev="/mainpage" next="/basic_02" />
 
             <Footer />
 
