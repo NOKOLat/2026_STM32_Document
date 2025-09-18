@@ -1,19 +1,26 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Login } from '../../context/AuthContext';
 
 export default function LoginPage() {
 
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleLogin(event: React.FormEvent) {
+    function handleLogin() {
 
-        event.preventDefault();
-    }
+        // ログイン認証
+        if (Login({ username, password })) {
 
-    function handleGuestLogin() {
+            // 成功した場合の処理
+            navigate('/test'); 
+        }
+        else{
 
-
+            // 失敗した場合の処理
+            alert("ユーザー名またはパスワードが違います");
+        }
     }
 
     return (
@@ -51,20 +58,9 @@ export default function LoginPage() {
                     </label>
                 </div>
 
-                <button type="submit" style={{ color: 'black' }}>ログイン</button>
+                <button onClick={handleLogin} type="submit" style={{ color: 'black' }}>ログイン</button>
 
             </form>
-            
-                {/* ゲストログインの仮実装 */}
-                <div style={{ marginTop: 12 }}>
-                    <button
-                        type="button"
-                        onClick={handleGuestLogin}
-                        style={{ color: 'black' }}
-                    >
-                        ゲストログイン
-                    </button>
-                </div>
         </div>
     );
 
