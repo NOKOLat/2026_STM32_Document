@@ -1,7 +1,7 @@
 import { Route } from 'react-router-dom';
-import ProtectedRoute from '../ProtectedRoute.tsx';
+import ProtectedRoute from '../ProtectedRoute';
 
-import TestPage from '../../pages/documents/TestPage.tsx';
+import TestPage from '../../pages/documents/TestPage';
 
 export default function TestRoute() {
 

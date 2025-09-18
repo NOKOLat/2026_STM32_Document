@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import ProtectedRoute from './ProtectedRoute'
 
 import Login from '../pages/Login/LoginPage'
 import TestRoute from './documents/TestSectionRoute'
