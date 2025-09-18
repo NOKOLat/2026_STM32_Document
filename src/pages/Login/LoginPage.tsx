@@ -17,7 +17,7 @@ export default function LoginPage() {
         if (Login({ username, password })) {
 
             // 成功した場合の処理（クライアント側ルーティング）
-            navigate('/test'); 
+            navigate('/mainpage'); 
         }
         else{
 

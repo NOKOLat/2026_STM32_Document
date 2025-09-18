@@ -1,0 +1,65 @@
+.linkRow {
+    display: flex;
+    gap: 32px;         /* リンク間の余白 */
+    justify-content: center; /* 中央揃え */
+    margin: 24px 0;
+}
+
+.linkRow a {
+    font-size: 20px;
+    color: #0080ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.linkRow a:hover {
+    color: #0050aa;
+}
+
+.pageLinkBox {
+    display: flex;
+    justify-content: space-between; /* 両端と中央に均等配置 */
+    align-items: center;
+    background-color: #343A46;
+    border-radius: 12px;
+    padding: 18px 32px;
+    margin: 24px 0;
+    min-width: 320px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.pageLinkLabel {
+    font-size: 22px;
+    font-weight: 600;
+    color: #f1f1f1;
+    margin-right: 24px;
+}
+
+.pageLink {
+    font-size: 22px;
+    font-weight: 600;
+    color: #0080ff;
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    flex: 1;                  /* 幅を均等に分配 */
+    text-align: center;       /* テキスト中央揃え */
+}
+
+.pageLink:first-child {
+    text-align: left;         /* 左端のリンクは左揃え */
+}
+
+.pageLink:last-child {
+    text-align: right;        /* 右端のリンクは右揃え */
+}
+
+.pageLink:hover {
+    background: #0080ff;
+    color: #fff;
+}

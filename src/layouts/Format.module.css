@@ -1,0 +1,68 @@
+/* ドキュメント用のフォーマット定義 */
+
+.note {
+    background-color: #343A46;      
+    border-left: 5px solid #343A46; 
+    color: #f1f1f1;                
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.title{
+    border-left: 8px solid #0080ff;
+    padding-left: 10px;
+    font-size: 24px;
+    font-weight: 700; /* 太字にする */
+    margin-top: 48px;
+    margin-bottom: 32px;
+}
+
+/* Table styling for better contrast on dark backgrounds */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.table th,
+.table td {
+    border: 2px solid rgba(255,255,255,0.5); /* 罫線を太くして見やすく */
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.table thead th {
+    background: rgba(255,255,255,0.03);
+    font-weight: 600;
+}
+
+.table tbody tr + tr {
+    border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.note .table {
+    /* note内で使う場合は少し濃くする */
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* details/summary の見出しを強調 */
+.summary {
+    font-size: 20px;
+    font-weight: 600;
+    color: inherit;
+
+}
+
+.details {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px;
+    background-color: rgba(37,41,67); 
+}   

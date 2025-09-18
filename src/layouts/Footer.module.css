@@ -1,0 +1,38 @@
+/* Footer.module.css
+
+  背景や文字サイズなどを設定
+*/
+
+.root {
+
+    width: 100vw; /* ビューポート幅に合わせる（左右を埋める） */
+    position: relative;
+    left: 50%; 
+    right: 50%; 
+    margin-left: -50vw; /* 左側をビューポート端まで伸ばす */
+
+    max-height: 300px;  /* 最大高さを設定 */
+    background: #0d1117; /* 背景色を設定 */
+}
+
+.container {
+
+    max-width: 1280px; /* 最大幅に合わせる */
+    margin: 0 auto;
+    padding: 0 20px; /* コンテンツの左右スペース */
+    box-sizing: border-box;
+}
+
+/* タイトル */
+.title {
+
+    margin-top: 8px;
+    font-size: 5rem; 
+}
+
+/* 説明文 */
+.description {
+
+    margin: 0 0 6px 0;
+    text-align: center; /* 中央寄せにする */
+}
