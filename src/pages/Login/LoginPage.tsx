@@ -7,12 +7,12 @@ export default function LoginPage() {
         <div>
             
             <h1>Login Page</h1>
-            <p>ログインページをここに実装予定</p>
+            <p>ログインペ�Eジをここに実裁E��宁E/p>
 
 
-            <h2>テストリンク</h2>
+            <h2>チE��トリンク</h2>
             <ul>
-                <li><Link to="/test">テストページ</Link></li>
+                <li><Link to="/test">チE��ト�Eージ</Link></li>
             </ul>
         </div>
     );
