@@ -3,13 +3,15 @@ import type { ReactNode } from "react";
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
 
-    // localStorage の "isLoggedIn" フラグをチェチE��
+    // localStorage の "isLoggedIn" フラグをチェチE��
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
     if (!isLoggedIn) {
 
-        alert("ログインが忁E��です、E);
-        return <Navigate to="/" replace />; // ログインペ�Eジへ
+        // ログインしていなければルートへリダイレクト
+        // alert は任意でデバッグ用に残しています。
+        // alert("ログインしてください");
+        return <Navigate to="/" replace />; // ログインページへ
     }
 
     return children;
