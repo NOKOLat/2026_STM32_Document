@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute'
 
 import Login from '../LoginPage'
-import TestPage from '../pages/Documents/TestPage'
-
+import TestRoute from './documents/TestSectionRoute'
 
 // 各ページへのルーティング設定
 // ProtectedRoute でログイントークンが切れている場合はログインページにリダイレクトする
+// セクションごとにRouteコンポーネントをまとめた関数を呼び出す形にする
 export default function AppRoutes() {
 
     return (
@@ -15,16 +15,7 @@ export default function AppRoutes() {
         {/* LoginPage */}
         <Route path="/" element={<Login />} />
 
-
-        {/* DocumentPages */}
-        <Route
-            path="/test"
-            element={
-            <ProtectedRoute>
-                <TestPage />
-            </ProtectedRoute>
-            }
-        />
+        {TestRoute()}
 
         </Routes>
     )
