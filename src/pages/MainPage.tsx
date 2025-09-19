@@ -1,4 +1,4 @@
-import PageLinkButton from "../layouts/PageLinkButton"
+import PageLinkButton from "../components/PageLinkButton"
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 

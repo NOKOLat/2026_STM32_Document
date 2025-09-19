@@ -1,9 +1,9 @@
-import FooterPageRoute from '../../../../layouts/FooterPageRoute';
-import ComplateButton from '../../../../layouts/ComplateButton';
+import FooterPageRoute from '../../../../components/FooterPageRoute';
+import ComplateButton from '../../../../components/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
-import CppCodeRender from '../../../../layouts/CppCodeRender';
+import CppCodeRender from '../../../../components/CppCodeRender';
 
 // 画像データ
 import pinImage from './Pin.png';
