@@ -30,8 +30,8 @@ export async function Login({ username, password }: { username: string; password
             // resultが"true"なら成功
             if(data.result === "true") {
 
-                // Todo:トークンの保存に変更したい
-                localStorage.setItem("isLoggedIn", "true");
+                // 返送されてきたトークンを保存
+                localStorage.setItem("token", data.token);
             
                 return true;
             }
@@ -39,7 +39,7 @@ export async function Login({ username, password }: { username: string; password
             // resultが"false"なら失敗
             else {
 
-                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("token");
                 console.error("Login failed:", data.message);
                 return false;
             }
@@ -83,8 +83,7 @@ export async function RegisterAccount({ username, password }: { username: string
             // resultが"true"なら成功
             if(data.result === "true") {
 
-                // Todo:トークンの保存に変更したい
-                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("token", data.token);
 
                 return true;
             }
@@ -117,10 +116,48 @@ export function Logout() {
     return true;
 }
 
-// トークンの有効性チェック
-export function isTokenValid() {
+// トークンの有効性チェック(true:有効, false:無効)
+export async function isTokenValid() {
+
 
     // バックエンドへの問い合わせ
+    try {
+        const response = await fetch("https://2026stm32document.aoi256jp.workers.dev/", {
 
-    return true;
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", 
+            },
+            // jsonファイルの中身
+            body: JSON.stringify({
+                action: "verify_token",
+                token: localStorage.getItem("token"),
+            }),
+        });
+
+        // レスポンスが返ってきた時の処理
+        if (!response.ok) {
+            // サーバが 500 等のエラーを返した場合
+            console.error("verify_token request failed with status:", response.status);
+            return false;
+        }
+
+        // レスポンスからデータを取得
+        const data = await response.json();
+
+        // resultが"true"なら成功
+        if (data.result === "true") {
+            return true;
+        }
+
+        // resultが"false"なら失敗
+        alert("セッションの有効期限が切れました。再度ログインしてください。");
+        return false;
+    }
+
+    // ネットワークエラーなどで通信に失敗した場合
+    catch (error) {
+        console.error("Token verification failed:", error);
+        return false;
+    }
 }
