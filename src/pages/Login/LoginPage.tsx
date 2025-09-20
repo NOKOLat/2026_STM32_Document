@@ -8,13 +8,15 @@ export default function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    function handleLogin(e: React.FormEvent<HTMLFormElement>) {
-        
+    async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+            
         // フォームの既定の送信（ページリロード）を防ぐ
         e.preventDefault();
 
         // ログイン認証
-        if (Login({ username, password })) {
+        const login_result = await Login({ username, password });
+        
+        if (login_result) {
 
             // 成功した場合の処理（クライアント側ルーティング）
             navigate('/mainpage'); 
