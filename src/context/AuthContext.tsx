@@ -6,15 +6,6 @@
 
 export async function Login({ username, password }: { username: string; password: string }){
 
-    // 仮の認証ロジック
-    // if (username === 'user' && password === 'password') {
-
-    //     // 認証成功時の処理
-    //     localStorage.setItem("isLoggedIn", "true");
-    //     return true;
-    // }
-
-
     // バックエンドへの問い合わせ
     try {
         const response = await fetch("https://2026stm32document.aoi256jp.workers.dev/", {
@@ -39,10 +30,13 @@ export async function Login({ username, password }: { username: string; password
             // resultが"true"なら成功
             if(data.result === "true") {
 
+                // Todo:トークンの保存に変更したい
                 localStorage.setItem("isLoggedIn", "true");
             
                 return true;
             }
+
+            // resultが"false"なら失敗
             else {
 
                 localStorage.removeItem("isLoggedIn");
@@ -51,6 +45,8 @@ export async function Login({ username, password }: { username: string; password
             }
         }
     } 
+
+    // ネットワークエラーなどで通信に失敗した場合
     catch (error) {
         
         console.error("Login failed:", error);
@@ -59,6 +55,60 @@ export async function Login({ username, password }: { username: string; password
     return false;
 }
 
+export async function RegisterAccount({ username, password }: { username: string; password: string }){
+
+
+    // バックエンドへの問い合わせ
+    try {
+        const response = await fetch("https://2026stm32document.aoi256jp.workers.dev/", {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", 
+            },
+            // jsonファイルの中身
+            body: JSON.stringify({
+                action: "register",
+                username: username,
+                password: password,
+            }),
+        });
+
+        // レスポンスが返ってきた時の処理
+        if (response.ok) {
+
+            // レスポンスからデータを取得
+            const data = await response.json();
+
+            // resultが"true"なら成功
+            if(data.result === "true") {
+
+                // Todo:トークンの保存に変更したい
+                localStorage.setItem("isLoggedIn", "true");
+
+                return true;
+            }
+
+            // resultが"false"なら失敗
+            else {
+
+                localStorage.removeItem("isLoggedIn");
+                console.error("Registration failed:", data.message);
+                return false;
+            }
+        }
+    }
+
+    // ネットワークエラーなどで通信に失敗した場合
+    catch (error) {
+
+        console.error("Registration failed:", error);
+    }
+
+    return false;
+}
+
+// トークンの有効期限を強制的に終了させる
 export function Logout() {
 
     // ログアウト処理
@@ -67,9 +117,9 @@ export function Logout() {
     return true;
 }
 
+// トークンの有効性チェック
 export function isTokenValid() {
 
-    // トークンの有効性チェック
     // バックエンドへの問い合わせ
 
     return true;

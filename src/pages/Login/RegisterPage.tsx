@@ -1,8 +1,8 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Login } from '../../context/AuthContext';
+import { RegisterAccount } from '../../context/AuthContext';
 
-export default function LoginPage() {
+export default function RegisterPage() {
 
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
@@ -13,25 +13,26 @@ export default function LoginPage() {
         // フォームの既定の送信（ページリロード）を防ぐ
         e.preventDefault();
 
-        // ログイン認証
-        const login_result = await Login({ username, password });
-        
-        if (login_result) {
+        // アカウント登録
+        const register_result = await RegisterAccount({ username, password });
 
-            // 成功した場合の処理（クライアント側ルーティング）
-            navigate('/mainpage'); 
+        if (register_result) {
+
+            // 成功した場合の処理
+            alert("アカウントが作成されました。");
+            navigate('/'); 
         }
         else{
 
             // 失敗した場合の処理
-            alert("ユーザー名またはパスワードが違います");
+            alert("エラーが発生しました。別のユーザー名を試すか、時間をおいて再度お試しください。");
         }
     }
 
     return (
     
         <div>
-            <h1>ログインページ</h1>
+            <h1>アカウント作成ページ</h1>
 
             <form onSubmit={handleLogin}>
                 <div>
@@ -63,13 +64,9 @@ export default function LoginPage() {
                     </label>
                 </div>
 
-                <button type="submit" style={{ color: 'black' }}>ログイン</button>
-            </form>
+                <button type="submit" style={{ color: 'black' }}>アカウント作成</button>
 
-            {/* アカウント作成ページへのリンク */}
-            <p>
-                アカウントをお持ちでない方は、<Link to="/register">こちら</Link>から作成できます。
-            </p>
+            </form>
         </div>
     );
 }
