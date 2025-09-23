@@ -1,9 +1,26 @@
+import { useEffect, useState } from 'react';
 import PageLinkButton from "../components/mainpage/PageLinkButton"
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import MainPageSection from '../components/mainpage/MainPageSection';
+import { GetProgress } from '../context/ManageProgress';
 
 export default function MainPage() {
+    const [ready, setReady] = useState(false);
+
+    useEffect(() => {
+        let mounted = true;
+        (async () => {
+            try {
+                await GetProgress();
+            } finally {
+                if (mounted) setReady(true);
+            }
+        })();
+        return () => { mounted = false; };
+    }, []);
+
+    if (!ready) return null; // 進捗取得が終わるまで表示しない（最小実装）
 
     return (
 
@@ -13,6 +30,7 @@ export default function MainPage() {
 
                 <Header type="" number="" title="メインページ" />
 
+                
                 <MainPageSection title="Step 1 開発環境を用意しよう" section_number={1} page_count={4}>
 
                     <p>ファイルの自動生成や書き込みを行ってくれるSTM32CubeIDEと実行中に情報を受け取るためのTeraTermというアプリをインストールします</p>
@@ -26,6 +44,7 @@ export default function MainPage() {
                     <PageLinkButton section={1} number={4} link="/basic_01" title="LEDをつけてみよう" />
 
                 </MainPageSection>
+                
 
                 <MainPageSection title="Step 2 PCと通信してみよう" section_number={2} page_count={4}>
 
@@ -42,6 +61,7 @@ export default function MainPage() {
                     <PageLinkButton section={2} number={4} link="/mainpage" title="便利なprintfを使いこなそう" />
 
                 </MainPageSection>
+                
 
                 <MainPageSection title="Step 3 外部の入力を受け取ってみよう" section_number={3} page_count={4}>
 
@@ -58,6 +78,7 @@ export default function MainPage() {
                     <PageLinkButton section={3} number={4} link="/mainpage" title="赤外線を読んでみよう" />
 
                 </MainPageSection>
+                
         
                 <Footer />
 

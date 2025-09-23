@@ -21,7 +21,7 @@ export default function PageLinkButton({section, number, link, title}: {section:
                 num = val;
             }
 
-            const bit = (num >> number - 1) & 1;
+            const bit = (num >> (number - 1)) & 1;
             setChecked(bit === 1);
         } catch (e) {
             setChecked(false);
@@ -31,6 +31,18 @@ export default function PageLinkButton({section, number, link, title}: {section:
     useEffect(function effect() {
 
         readCheckedFromStorage();
+
+        // カスタムイベントで進捗が更新されたときに再読み込みする
+        const handler = (_e: Event) => {
+            // イベントが来たら最新の localStorage を読み込む
+            readCheckedFromStorage();
+        };
+
+        window.addEventListener('progressUpdated', handler as EventListener);
+
+        return () => {
+            window.removeEventListener('progressUpdated', handler as EventListener);
+        };
 
     }, [section, number]);
 

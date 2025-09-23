@@ -19,6 +19,11 @@ export default function LoginPage() {
         if (login_result) {
 
             // 成功した場合の処理（クライアント側ルーティング）
+
+            // ユーザー名を保存
+            localStorage.setItem('username', username);
+
+            // メインページへ遷移
             navigate('/mainpage'); 
         }
         else{

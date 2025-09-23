@@ -5,12 +5,12 @@
 
 import styles from './ComplateButton.module.css';
 
-export default function PageButton({currentPage }: {currentPage: string }) {
+export default function PageButton({section, page_number }: {section: string, page_number: number }) {
 
 
     function handleClick() {
 
-        let message = `Page${currentPage}の結果を送信します。\n終了まで5秒程度お待ちください。`;
+        let message = `Page${page_number}の結果を送信します。\n終了まで5秒程度お待ちください。`;
         alert(message);
     }
 
@@ -34,7 +34,7 @@ export default function PageButton({currentPage }: {currentPage: string }) {
             <div>
                 <br />
                 <button className={styles.button} onClick={handleClick}>
-                    Page{currentPage}の終了報告を送信
+                    終了報告を送信
                 </button>
 
             </div>
