@@ -9,6 +9,6 @@
 
 .sectionActive {
     /* ハイライト色: 任意で調整してください */
-    background-color: rgba(60,120,200,0.12);
+    background-color:#3ecf8e31;
     border-color: rgba(60,120,200,0.3);
 }

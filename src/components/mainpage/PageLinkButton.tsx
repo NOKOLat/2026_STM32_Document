@@ -21,7 +21,7 @@ export default function PageLinkButton({section, number, link, title}: {section:
                 num = val;
             }
 
-            const bit = (num >> number) & 1;
+            const bit = (num >> number - 1) & 1;
             setChecked(bit === 1);
         } catch (e) {
             setChecked(false);
