@@ -32,6 +32,9 @@ export async function Login({ username, password }: { username: string; password
 
                 // 返送されてきたトークンを保存
                 localStorage.setItem("token", data.token);
+
+                // ログインフラグを立てる
+                localStorage.setItem("isLoggedIn", "true");
             
                 return true;
             }
