@@ -74,7 +74,13 @@ function ProtectedRoute({ children }: { children: ReactNode }) {
     if (loading) return <div>Loading...</div>;
 
     // 未認証ならリダイレクト
-    if (!isAuthed) return <Navigate to="/" replace />;
+    if (!isAuthed){
+
+        // ログインフラグをリセット
+        localStorage.removeItem("isLoggedIn");
+
+        return <Navigate to="/" replace />;
+    }
 
     return <>{children}</>;
 }

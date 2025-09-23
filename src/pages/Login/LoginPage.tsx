@@ -38,47 +38,43 @@ export default function LoginPage() {
     }
 
     return (
-    
-        <div>
-            <h1>ログインページ</h1>
+        <div className="login-page">
+            <div className="login-card">
+                <h1>ログイン</h1>
 
-            <form onSubmit={handleLogin}>
-                <div>
+                <form className="login-form" onSubmit={handleLogin}>
+                    <div className="login-field">
+                        <label>
+                            ユーザー名
+                            <input
+                                className="login-input"
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </label>
+                    </div>
 
-                    <label>
+                    <div className="login-field">
+                        <label>
+                            パスワード
+                            <input
+                                className="login-input"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </label>
+                    </div>
 
-                        ユーザー名
-                        
-                        <input
-                            type="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            
-                            style={{ color : 'black' }}
-                        />
-                    </label>
-                </div>
+                    <button className="login-button" type="submit">ログイン</button>
+                </form>
 
-                <div>
-                    <label>
-                        パスワード
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-
-                            style={{ color : 'black' }}
-                        />
-                    </label>
-                </div>
-
-                <button type="submit" style={{ color: 'black' }}>ログイン</button>
-            </form>
-
-            {/* アカウント作成ページへのリンク */}
-            <p>
-                アカウントをお持ちでない方は、<Link to="/register">こちら</Link>から作成できます。
-            </p>
+                {/* アカウント作成ページへのリンク */}
+                <p>
+                    アカウントをお持ちでない方は、<Link to="/register">こちら</Link>から作成できます。
+                </p>
+            </div>
         </div>
     );
 }
