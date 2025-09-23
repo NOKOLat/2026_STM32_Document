@@ -1,0 +1,72 @@
+.button {
+	width: 25%;
+	background-color: #343A46;
+	color: #fff;
+	border: none;
+	padding: 12px 0;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 20px;
+	transition: background 0.2s;
+	display: block;
+	margin: 20px auto;
+	font-weight: bold;
+}
+
+.button:hover {
+	background-color: #388e3c;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 12px;
+	width: 100%;
+	padding: 10px;
+}
+
+.checkbox {
+	width: 20px;
+	height: 20px;
+	cursor: default;
+
+	accent-color: #3ecf8e;
+	pointer-events: none; /* 見た目はそのままでクリックを無効化 */
+}
+
+.container {
+	width: 100%;
+	max-width: 800px;
+	margin: 12px auto;
+	padding: 6px;
+}
+
+.spacer {
+	flex: 1 1 auto;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	/*background: #222532; /* dark card */
+	background-color: #343A46;
+	border-radius: 10px;
+	padding: 12px 16px;
+	text-decoration: none;
+	box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.item:hover {
+	filter: brightness(1.03);
+}
+
+.title {
+	color: #fff;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.button { display: none; }

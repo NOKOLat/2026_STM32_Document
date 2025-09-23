@@ -26,7 +26,6 @@ export default function PageButton({currentPage }: {currentPage: string }) {
 
             </div>
         );
-
     }
     // ログインしている場合
     else{
