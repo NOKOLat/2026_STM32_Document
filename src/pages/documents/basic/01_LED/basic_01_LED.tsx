@@ -177,8 +177,8 @@ void loop(){
 
                 <p>練習問題のコードが動いたら完了ボタンを押してね</p>
 
-                
-                <ComplateButton currentPage="01" />
+
+                <ComplateButton page_number={1} section={2} />
 
                 <br />
 

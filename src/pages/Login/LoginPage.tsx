@@ -1,6 +1,7 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Login } from '../../context/AuthContext';
+import { GetProgress } from '../../context/ManageProgress';
 
 export default function LoginPage() {
 
@@ -22,6 +23,9 @@ export default function LoginPage() {
 
             // ユーザー名を保存
             localStorage.setItem('username', username);
+
+            // 進捗を取得
+            await GetProgress();
 
             // メインページへ遷移
             navigate('/mainpage'); 
