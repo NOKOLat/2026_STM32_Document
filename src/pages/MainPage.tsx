@@ -1,26 +1,9 @@
-import { useEffect, useState } from 'react';
 import PageLinkButton from "../components/mainpage/PageLinkButton"
 import Header from '../layouts/Header';
 import Footer from '../layouts/Footer';
 import MainPageSection from '../components/mainpage/MainPageSection';
-import { GetProgress } from '../context/ManageProgress';
 
 export default function MainPage() {
-    const [ready, setReady] = useState(false);
-
-    useEffect(() => {
-        let mounted = true;
-        (async () => {
-            try {
-                await GetProgress();
-            } finally {
-                if (mounted) setReady(true);
-            }
-        })();
-        return () => { mounted = false; };
-    }, []);
-
-    if (!ready) return null; // 進捗取得が終わるまで表示しない（最小実装）
 
     return (
 
@@ -28,20 +11,20 @@ export default function MainPage() {
 
             <section>
 
-                <Header type="" number="" title="メインページ" />
+                <Header section="" title="メインページ" />
 
                 
                 <MainPageSection title="Step 1 開発環境を用意しよう" section_number={1} page_count={4}>
 
                     <p>ファイルの自動生成や書き込みを行ってくれるSTM32CubeIDEと実行中に情報を受け取るためのTeraTermというアプリをインストールします</p>
 
-                    <PageLinkButton section={1} number={1} link="/mainpage" title="講座の進め方" />
+                    <PageLinkButton section={1} number={1} link="/Step1_01_introduction" title="講座の進め方" />
 
-                    <PageLinkButton section={1} number={2} link="/mainpage" title="必要なソフトをインストールしよう" />
+                    <PageLinkButton section={1} number={2} link="/Step1_02_install" title="必要なソフトをインストールしよう" />
 
-                    <PageLinkButton section={1} number={3} link="/mainpage" title="プロジェクトを作成しよう" />
+                    <PageLinkButton section={1} number={3} link="/Step1_03_makeproject" title="プロジェクトを作成しよう" />
 
-                    <PageLinkButton section={1} number={4} link="/basic_01" title="LEDをつけてみよう" />
+                    <PageLinkButton section={1} number={4} link="/Step1_04_led" title="LEDをつけてみよう" />
 
                 </MainPageSection>
                 
@@ -52,13 +35,13 @@ export default function MainPage() {
 
                     <p>ここではUART通信という最も簡単な方法を実際の例を見ながら習得しましょう!</p>
 
-                    <PageLinkButton section={2} number={1} link="/basic_02" title="PCにデータを送ってみよう" />
+                    <PageLinkButton section={2} number={1} link="/Step2_01_UartSend" title="PCにデータを送ってみよう" />
 
-                    <PageLinkButton section={2} number={2} link="/basic_03" title="PCからデータを受け取ってみよう" />
+                    <PageLinkButton section={2} number={2} link="/Step2_02_UartReceive" title="PCからデータを受け取ってみよう" />
 
-                    <PageLinkButton section={2} number={3} link="/mainpage" title="データの取りこぼしをなくすには" />
+                    <PageLinkButton section={2} number={3} link="/Step2_03_UartReceiveIT" title="データの取りこぼしをなくすには" />
 
-                    <PageLinkButton section={2} number={4} link="/mainpage" title="便利なprintfを使いこなそう" />
+                    <PageLinkButton section={2} number={4} link="/Step2_04_Printf" title="便利なprintfを使いこなそう" />
 
                 </MainPageSection>
                 

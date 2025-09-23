@@ -3,6 +3,9 @@ import { Routes, Route } from 'react-router-dom'
 import Login from '../pages/Login/LoginPage'
 import RegisterPage from '../pages/Login/RegisterPage'
 import TestRoute from './documents/TestSectionRoute'
+import Section1Routes from './documents/Section1'
+import Section2Routes from './documents/Section2'
+
 
 // 各ページへのルーティング設定
 // ProtectedRoute でログイントークンが切れている場合はログインページにリダイレクトする
@@ -19,6 +22,10 @@ export default function AppRoutes() {
         <Route path="/register" element={<RegisterPage />} />
 
         {TestRoute()}
+
+        {Section1Routes()}
+
+        {Section2Routes()}
 
         </Routes>
     )

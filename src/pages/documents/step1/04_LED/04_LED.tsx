@@ -13,7 +13,7 @@ export default function Basic01() {
     return (
 
         <div>
-            <Header type="基礎編" number="01" title="LEDをつけてみよう" />
+            <Header section="Step1 開発環境を用意しよう"title="LEDをつけてみよう" />
 
             <div className={style.title}>今回やること</div>
 
@@ -178,11 +178,11 @@ void loop(){
                 <p>練習問題のコードが動いたら完了ボタンを押してね</p>
 
 
-                <ComplateButton page_number={1} section={2} />
+                <ComplateButton section={1} page_number={4}/>
 
                 <br />
 
-            <FooterPageRoute prev="/mainpage" next="/basic_02" />
+            <FooterPageRoute prev="/Step1_03_makeproject" next="/Step2_01_UartSend" />
 
             <Footer />
 
