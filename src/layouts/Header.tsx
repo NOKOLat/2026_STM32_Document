@@ -4,7 +4,7 @@
 
 import styles from './Header.module.css';
 
-export default function Header({ type, number, title }: { type: string, number: string, title: string }) {
+export default function Header({ section, title }: { section: string, title: string }) {
     return (
         <div className={styles.root}>
 
@@ -12,7 +12,7 @@ export default function Header({ type, number, title }: { type: string, number: 
 
                 <br />
 
-                <p className={styles.description}>STM32講座 {type} {number}</p>
+                <p className={styles.description}>STM32講座&nbsp;  {section}</p>
 
                 <h2 className={styles.title}>{title}</h2>
 

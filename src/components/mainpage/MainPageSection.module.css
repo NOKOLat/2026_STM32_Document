@@ -1,0 +1,14 @@
+.sectionblock {
+
+    margin: 20px 0;
+    padding: 20px 100px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 5px;
+    background-color: rgba(37,41,67); 
+}
+
+.sectionActive {
+    /* ハイライト色: 任意で調整してください */
+    background-color:#3ecf8e31;
+    border-color: rgba(60,120,200,0.3);
+}

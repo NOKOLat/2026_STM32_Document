@@ -1,9 +1,9 @@
-import FooterPageRoute from '../../../../components/FooterPageRoute';
-import ComplateButton from '../../../../components/ComplateButton';
+import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
+import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
-import CppCodeRender from '../../../../components/CppCodeRender';
+import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
 // 画像データ
 import pinImage from './Pin.png';
@@ -13,7 +13,7 @@ export default function Basic01() {
     return (
 
         <div>
-            <Header type="基礎編" number="01" title="LEDをつけてみよう" />
+            <Header section="Step1 開発環境を用意しよう"title="LEDをつけてみよう" />
 
             <div className={style.title}>今回やること</div>
 
@@ -177,12 +177,12 @@ void loop(){
 
                 <p>練習問題のコードが動いたら完了ボタンを押してね</p>
 
-                
-                <ComplateButton currentPage="01" />
+
+                <ComplateButton section={1} page_number={4}/>
 
                 <br />
 
-            <FooterPageRoute prev="/mainpage" next="/basic_02" />
+            <FooterPageRoute prev="/Step1_03_makeproject" next="/Step2_01_UartSend" />
 
             <Footer />
 

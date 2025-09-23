@@ -11,7 +11,7 @@ export default function CppCodeRender({ code }: {code: string }) {
             language="cpp"
             style={vscDarkPlus}
             customStyle={{
-                background: '#343A46',
+                background: '#1e1e1e',
                 borderRadius: '8px',
                 padding: '12px'
             }}
