@@ -20,7 +20,7 @@ export default function Step2_04_Printf() {
 
             <br />
 
-            <FooterPageRoute prev="/Step2_03_UartReceiveIT" next="/mainpage" />
+            <FooterPageRoute prev="/Step2_03_UartReceiveIT" next="/Step3_01_SignalAndAutodrop" />
 
             <Footer />
 
