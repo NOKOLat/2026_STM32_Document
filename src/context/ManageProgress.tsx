@@ -15,7 +15,6 @@ export async function UpDateProgress(section: number, page_number: number) {
         return null;
     }
 
-    // サーバーに進捗更新を依頼する（バックエンドが update_progress をサポートしている場合）
     try {
         const response = await fetch(API_URL, {
             method: "POST",
@@ -60,14 +59,12 @@ export async function UpDateProgress(section: number, page_number: number) {
             return data.data;
         }
 
-        // 最低限ローカルに保存しておく
         const local = { section, page_number };
-        localStorage.setItem("progress_local", JSON.stringify(local));
         return local;
-    } catch (error) {
+    } 
+    catch (error) {
+        
         console.error("UpDateProgress failed:", error);
-        const local = { section, page_number };
-        localStorage.setItem("progress_local", JSON.stringify(local));
         return null;
     }
 }
