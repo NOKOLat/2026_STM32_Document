@@ -12,12 +12,12 @@ export default function Header({ section, title }: { section: string, title: str
 
                 <br />
 
-                <p className={styles.description}>STM32講座&nbsp;  {section}</p>
+                <p className={styles.description}>{section}</p>
 
                 <h2 className={styles.title}>{title}</h2>
 
                 <br />
-
+                
             </div>
         </div>
     );
