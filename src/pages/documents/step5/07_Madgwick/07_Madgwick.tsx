@@ -3,14 +3,14 @@ import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
-export default function Step6_03_SetPins() {
+export default function Step5_07_Madgwick() {
     return (
         <div>
-            <Header section="Step6 センサーのライブラリを自作してみよう" title="ピンを設定できるようにしよう" />
+            <Header section="Step5 センサーを使って角度を測ってみよう" title="Madgwickフィルター" />
             <p>本文はここに書いてね</p>
-            <ComplateButton section={6} page_number={3} />
+            <ComplateButton section={5} page_number={7} />
             <br />
-            <FooterPageRoute prev="/Step6_02_IMU_Library" next="/Step6_04_I2C_SPI_1" />
+            <FooterPageRoute prev="/Step5_06_Complementary" next="/Step6_01_AboutLibrary" />
             <Footer />
         </div>
     );

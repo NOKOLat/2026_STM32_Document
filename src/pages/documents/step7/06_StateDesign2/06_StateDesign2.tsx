@@ -3,14 +3,14 @@ import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
-export default function Step5_00_SPI() {
+export default function Step7_06_StateDesign2() {
     return (
         <div>
-            <Header section="Step5 センサーを使って角度を測ってみよう" title="SPI通信について" />
+            <Header section="Step7 プログラムの設計を学ぼう" title="状態遷移の設計(2)" />
             <p>本文はここに書いてね</p>
-            <ComplateButton section={5} page_number={0} />
+            <ComplateButton section={7} page_number={6} />
             <br />
-            <FooterPageRoute prev="/Step4_04_FusionTwoSensors" next="/Step5_01_GetAccel" />
+            <FooterPageRoute prev="/Step7_05_StateDesign1" next="/mainpage" />
             <Footer />
         </div>
     );

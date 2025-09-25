@@ -15,7 +15,6 @@ export async function UpDateProgress(section: number, page_number: number) {
         return null;
     }
 
-    // サーバーに進捗更新を依頼する（バックエンドが update_progress をサポートしている場合）
     try {
         const response = await fetch(API_URL, {
             method: "POST",
@@ -49,25 +48,18 @@ export async function UpDateProgress(section: number, page_number: number) {
             } catch (e) {
                 console.error("Failed to save individual progress keys:", e);
             }
-                // カスタムイベントで更新を通知（ページ内のコンポーネントが反応できるようにする）
-                try {
-                    window.dispatchEvent(new CustomEvent('progressUpdated', { detail: data.data }));
-                } catch (e) {
-                    // 非ブラウザ環境や例外は無視
-                }
+            
             // 互換性のため、まとめた progress も保存しておく
             localStorage.setItem("progress", JSON.stringify(data.data));
             return data.data;
         }
 
-        // 最低限ローカルに保存しておく
         const local = { section, page_number };
-        localStorage.setItem("progress_local", JSON.stringify(local));
         return local;
-    } catch (error) {
+    } 
+    catch (error) {
+        
         console.error("UpDateProgress failed:", error);
-        const local = { section, page_number };
-        localStorage.setItem("progress_local", JSON.stringify(local));
         return null;
     }
 }

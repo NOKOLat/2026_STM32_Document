@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import Login from '../pages/Login/LoginPage'
 import RegisterPage from '../pages/Login/RegisterPage'
+import NotFound from '../pages/NotFound/NotFound'
 import TestRoute from './documents/TestSectionRoute'
 import Section1Routes from './documents/Section1'
 import Section2Routes from './documents/Section2'
@@ -41,6 +42,9 @@ export default function AppRoutes() {
         {Section6Routes()}
 
         {Section7Routes()}
+
+    {/* catch-all 404 route */}
+    <Route path="*" element={<NotFound />} />
 
         </Routes>
     )

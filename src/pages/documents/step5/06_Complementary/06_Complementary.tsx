@@ -3,14 +3,14 @@ import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
-export default function Step7_03_MagicNumberEnum() {
+export default function Step5_06_Complementary() {
     return (
         <div>
-            <Header section="Step7 プログラムの設計を学ぼう" title="マジックナンバーのenum class化" />
+            <Header section="Step5 センサーを使って角度を測ってみよう" title="相補フィルター" />
             <p>本文はここに書いてね</p>
-            <ComplateButton section={7} page_number={3} />
+            <ComplateButton section={5} page_number={6} />
             <br />
-            <FooterPageRoute prev="/Step7_02_FunctionAndSplit" next="/Step7_04_StateDesign1" />
+            <FooterPageRoute prev="/Step5_05_AngleFromGyro" next="/Step5_07_Madgwick" />
             <Footer />
         </div>
     );

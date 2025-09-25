@@ -3,14 +3,14 @@ import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
-export default function Step7_04_StateDesign1() {
+export default function Step6_02_AboutClass() {
     return (
         <div>
-            <Header section="Step7 プログラムの設計を学ぼう" title="状態遷移の設計(1)" />
+            <Header section="Step6 センサーのライブラリを自作してみよう" title="クラスとは" />
             <p>本文はここに書いてね</p>
-            <ComplateButton section={7} page_number={4} />
+            <ComplateButton section={6} page_number={2} />
             <br />
-            <FooterPageRoute prev="/Step7_03_MagicNumberEnum" next="/Step7_05_StateDesign2" />
+            <FooterPageRoute prev="/Step6_01_AboutLibrary" next="/Step6_03_IMU_Library" />
             <Footer />
         </div>
     );

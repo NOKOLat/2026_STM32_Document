@@ -3,14 +3,14 @@ import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
-export default function Step6_05_I2C_SPI_2() {
+export default function Step7_03_FunctionAndSplit() {
     return (
         <div>
-            <Header section="Step6 センサーのライブラリを自作してみよう" title="I2C/SPI両対応なコードを書こう(2)" />
+            <Header section="Step7 プログラムの設計を学ぼう" title="関数化とファイルの分割" />
             <p>本文はここに書いてね</p>
-            <ComplateButton section={6} page_number={5} />
+            <ComplateButton section={7} page_number={3} />
             <br />
-            <FooterPageRoute prev="/Step6_04_I2C_SPI_1" next="/Step6_06_BM1422AGMV" />
+            <FooterPageRoute prev="/Step7_02_NamingAndNamespace" next="/Step7_04_MagicNumberEnum" />
             <Footer />
         </div>
     );

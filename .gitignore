@@ -26,3 +26,4 @@ dist-ssr
 ignore
 scripts
 refactor
+/backend/

@@ -82,43 +82,43 @@ export default function MainPage() {
 
                     <p>機体が傾きすぎると墜落することになるので、水平に保つために角度を知る必要がある</p>
 
-                    <PageLinkButton section={5} number={1} link="/Step5_00_SPI" title="SPI通信について" />
+                    <PageLinkButton section={5} number={1} link="/Step5_01_GetAccel" title="SPI通信について" />
 
-                    <PageLinkButton section={5} number={2} link="/Step5_01_GetAccel" title="加速度データの取得" />
+                    <PageLinkButton section={5} number={2} link="/Step5_02_AngleFromAccel" title="加速度データの取得" />
 
-                    <PageLinkButton section={5} number={3} link="/Step5_02_AngleFromAccel" title="加速度のベクトルから角度を計算" />
+                    <PageLinkButton section={5} number={3} link="/Step5_03_AngleFromAccel" title="加速度のベクトルから角度を計算" />
 
-                    <PageLinkButton section={5} number={4} link="/Step5_03_GetGyro" title="角速度データの取得" />
+                    <PageLinkButton section={5} number={4} link="/Step5_04_AngleFromGyro" title="角速度データの取得" />
 
-                    <PageLinkButton section={5} number={5} link="/Step5_04_AngleFromGyro" title="角速度の積分から角度を計算" />
+                    <PageLinkButton section={5} number={5} link="/Step5_05_AngleFromGyro" title="角速度の積分から角度を計算" />
 
-                    <PageLinkButton section={5} number={6} link="/Step5_05_Complementary" title="相補フィルター" />
+                    <PageLinkButton section={5} number={6} link="/Step5_06_Complementary" title="相補フィルター" />
 
-                    <PageLinkButton section={5} number={7} link="/Step5_06_Madgwick" title="Madgwickフィルター" />
+                    <PageLinkButton section={5} number={7} link="/Step5_07_Madgwick" title="Madgwickフィルター" />
 
                 </MainPageSection>
 
                 <MainPageSection title="Step 6 センサーのライブラリを自作してみよう" section_number={6} page_count={8}>
 
-                    <PageLinkButton section={6} number={1} link="/Step6_00_AboutLibrary" title="ライブラリとは" />
-                    <PageLinkButton section={6} number={2} link="/Step6_01_AboutClass" title="クラスとは" />
-                    <PageLinkButton section={6} number={3} link="/Step6_02_IMU_Library" title="IMUのライブラリを書いてみよう" />
-                    <PageLinkButton section={6} number={4} link="/Step6_03_SetPins" title="ピンを設定できるようにしよう" />
-                    <PageLinkButton section={6} number={5} link="/Step6_04_I2C_SPI_1" title="I2C/SPI両対応なコードを書こう(1)" />
-                    <PageLinkButton section={6} number={6} link="/Step6_05_I2C_SPI_2" title="I2C/SPI両対応なコードを書こう(2)" />
-                    <PageLinkButton section={6} number={7} link="/Step6_06_BM1422AGMV" title="BM1422AGMVのライブラリ（演習問題）" />
-                    <PageLinkButton section={6} number={8} link="/Step6_07_ICM42688P" title="ICM42688Pのライブラリを書く（演習問題）" />
+                    <PageLinkButton section={6} number={1} link="/Step6_01_AboutClass" title="ライブラリとは" />
+                    <PageLinkButton section={6} number={2} link="/Step6_02_AboutClass" title="クラスとは" />
+                    <PageLinkButton section={6} number={3} link="/Step6_03_IMU_Library" title="IMUのライブラリを書いてみよう" />
+                    <PageLinkButton section={6} number={4} link="/Step6_04_I2C_SPI_1" title="ピンを設定できるようにしよう" />
+                    <PageLinkButton section={6} number={5} link="/Step6_05_I2C_SPI_1" title="I2C/SPI両対応なコードを書こう(1)" />
+                    <PageLinkButton section={6} number={6} link="/Step6_06_BM1422AGMV" title="I2C/SPI両対応なコードを書こう(2)" />
+                    <PageLinkButton section={6} number={7} link="/Step6_07_BM1422AGMV" title="BM1422AGMVのライブラリ（演習問題）" />
+                    <PageLinkButton section={6} number={8} link="/Step6_08_ICM42688P" title="ICM42688Pのライブラリを書く（演習問題）" />
 
                 </MainPageSection>
 
                 <MainPageSection title="Step 7 プログラムの設計を学ぼう" section_number={7} page_count={6}>
 
-                    <PageLinkButton section={7} number={1} link="/Step7_00_ImportanceOfDesign" title="設計の重要性" />
-                    <PageLinkButton section={7} number={2} link="/Step7_01_NamingAndNamespace" title="命名規則と名前空間" />
-                    <PageLinkButton section={7} number={3} link="/Step7_02_FunctionAndSplit" title="関数化とファイルの分割" />
-                    <PageLinkButton section={7} number={4} link="/Step7_03_MagicNumberEnum" title="マジックナンバーのenum class化" />
-                    <PageLinkButton section={7} number={5} link="/Step7_04_StateDesign1" title="状態遷移の設計(1)" />
-                    <PageLinkButton section={7} number={6} link="/Step7_05_StateDesign2" title="状態遷移の設計(2)" />
+                    <PageLinkButton section={7} number={1} link="/Step7_01_ImportanceOfDesign" title="設計の重要性" />
+                    <PageLinkButton section={7} number={2} link="/Step7_02_FunctionAndSplit" title="命名規則と名前空間" />
+                    <PageLinkButton section={7} number={3} link="/Step7_03_FunctionAndSplit" title="関数化とファイルの分割" />
+                    <PageLinkButton section={7} number={4} link="/Step7_04_MagicNumberEnum" title="マジックナンバーのenum class化" />
+                    <PageLinkButton section={7} number={5} link="/Step7_05_StateDesign1" title="状態遷移の設計(1)" />
+                    <PageLinkButton section={7} number={6} link="/Step7_06_StateDesign2" title="状態遷移の設計(2)" />
 
                 </MainPageSection>
                 

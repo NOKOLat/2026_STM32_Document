@@ -3,14 +3,14 @@ import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
-export default function Step7_00_ImportanceOfDesign() {
+export default function Step5_05_AngleFromGyro() {
     return (
         <div>
-            <Header section="Step7 プログラムの設計を学ぼう" title="設計の重要性" />
+            <Header section="Step5 センサーを使って角度を測ってみよう" title="角速度の積分から角度を計算" />
             <p>本文はここに書いてね</p>
-            <ComplateButton section={7} page_number={0} />
+            <ComplateButton section={5} page_number={5} />
             <br />
-            <FooterPageRoute prev="/Step6_07_ICM42688P" next="/Step7_01_NamingAndNamespace" />
+            <FooterPageRoute prev="/Step5_04_GetGyro" next="/Step5_06_Complementary" />
             <Footer />
         </div>
     );
