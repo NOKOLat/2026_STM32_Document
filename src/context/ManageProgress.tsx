@@ -48,12 +48,7 @@ export async function UpDateProgress(section: number, page_number: number) {
             } catch (e) {
                 console.error("Failed to save individual progress keys:", e);
             }
-                // カスタムイベントで更新を通知（ページ内のコンポーネントが反応できるようにする）
-                try {
-                    window.dispatchEvent(new CustomEvent('progressUpdated', { detail: data.data }));
-                } catch (e) {
-                    // 非ブラウザ環境や例外は無視
-                }
+            
             // 互換性のため、まとめた progress も保存しておく
             localStorage.setItem("progress", JSON.stringify(data.data));
             return data.data;
