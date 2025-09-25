@@ -10,7 +10,7 @@
   left: 50%; 
   right: 50%; 
   margin-left: -50vw; /* 左側をビューポート端まで伸ばす */
-  max-height: 160px;  /* 最大高さを設定 */
+  max-height: 120px;  /* 最大高さを設定 */
 }
 
 .container {
@@ -24,19 +24,6 @@
 .title {
 
   margin-top: 8px;
-  font-size: 48px; 
-}
-
-/* 説明文 */
-.description {
-
-  margin: 0 0 6px 0;
-  font-size: 24px;
-  text-align: left;
-}
-
-.username{
-
-  font-size: 20px;  
-  text-align: right;
+  margin-left: 24px;
+  font-size: 44px; 
 }

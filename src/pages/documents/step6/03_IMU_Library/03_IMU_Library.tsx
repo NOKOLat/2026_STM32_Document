@@ -2,11 +2,13 @@ import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
+import Topbar from '../../../../layouts/Topbar';
 
 export default function Step6_03_IMU_Library() {
     return (
         <div>
-            <Header section="Step6 センサーのライブラリを自作してみよう" title="IMUのライブラリを使ってみよう" />
+            <Topbar pageTitle="Step6: IMUのライブラリを使ってみよう" />
+            <Header page_count="3. " title="IMUのライブラリを使ってみよう" />
             <p>本文はここに書いてね</p>
             <ComplateButton section={6} page_number={3} />
             <br />

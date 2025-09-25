@@ -2,11 +2,13 @@ import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
+import Topbar from '../../../../layouts/Topbar';
 
 export default function Step7_06_StateDesign2() {
     return (
         <div>
-            <Header section="Step7 プログラムの設計を学ぼう" title="状態遷移の設計(2)" />
+            <Topbar pageTitle='Step7: 重要な設計' />
+            <Header page_count="6. " title="～" />
             <p>本文はここに書いてね</p>
             <ComplateButton section={7} page_number={6} />
             <br />

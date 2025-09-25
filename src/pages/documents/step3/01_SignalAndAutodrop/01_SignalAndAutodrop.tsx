@@ -2,12 +2,14 @@ import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
+import Topbar from '../../../../layouts/Topbar';
 
 export default function Step3_01_SignalAndAutodrop() {
 
     return (
         <div>
-            <Header section="Step3 操縦装置（プロポ）を使ってコントロールしよう" title="信号の流れと自動投下の話" />
+            <Topbar pageTitle="Step3: 信号の流れと自動投下の話" />
+            <Header page_count="1. " title="信号の流れと自動投下の話" />
 
             <p>本文はここに書いてね</p>
 

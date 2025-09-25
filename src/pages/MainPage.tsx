@@ -1,5 +1,5 @@
 import PageLinkButton from "../components/mainpage/PageLinkButton"
-import Header from '../layouts/Header';
+import Topbar from "../layouts/Topbar";
 import Footer from '../layouts/Footer';
 import MainPageSection from '../components/mainpage/MainPageSection';
 
@@ -11,8 +11,7 @@ export default function MainPage() {
 
             <section>
 
-                <Header section="" title="メインページ" />
-
+                <Topbar pageTitle='メインページ' />
                 
                 <MainPageSection title="Step 1 開発環境を用意しよう" section_number={1} page_count={4}>
 

@@ -1,12 +1,14 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
+import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
 export default function Step6_02_AboutClass() {
     return (
         <div>
-            <Header section="Step6 センサーのライブラリを自作してみよう" title="クラスとは" />
+            <Topbar pageTitle='Step6: クラスの例' />
+            <Header page_count="2. " title="クラスの例" />
             <p>本文はここに書いてね</p>
             <ComplateButton section={6} page_number={2} />
             <br />
