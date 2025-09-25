@@ -15,15 +15,13 @@
 
 .container {
   max-width: 1280px; /* 最大幅に合わせる */
-  margin: 0 auto;
   padding: 0 20px; /* コンテンツの左右スペース */
   box-sizing: border-box;
 }
 
 /* タイトル */
 .title {
-
   margin-top: 8px;
-  margin-left: 24px;
+  margin-left: 50px;
   font-size: 44px; 
 }

@@ -4,7 +4,6 @@ import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
-import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
 export default function Step1_Introduction() {
 
