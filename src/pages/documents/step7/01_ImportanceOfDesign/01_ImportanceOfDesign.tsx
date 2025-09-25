@@ -10,7 +10,7 @@ export default function Step7_01_ImportanceOfDesign() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={7} page_number={1} />
             <br />
-            <FooterPageRoute prev="/Step6_08_ICM42688P" next="/Step7_02_NamingAndNamespace" />
+            <FooterPageRoute prev="/Step6_08_ICM42688P" next="/Step7_02_FunctionAndSplit" />
             <Footer />
         </div>
     );

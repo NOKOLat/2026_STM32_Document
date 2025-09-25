@@ -10,7 +10,7 @@ export default function Step6_02_AboutClass() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={6} page_number={2} />
             <br />
-            <FooterPageRoute prev="/Step6_01_AboutLibrary" next="/Step6_03_IMU_Library" />
+            <FooterPageRoute prev="/Step6_01_AboutClass" next="/Step6_03_IMU_Library" />
             <Footer />
         </div>
     );

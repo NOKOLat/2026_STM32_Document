@@ -10,7 +10,7 @@ export default function Step6_05_I2C_SPI_1() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={6} page_number={5} />
             <br />
-            <FooterPageRoute prev="/Step6_04_SetPins" next="/Step6_06_I2C_SPI_2" />
+            <FooterPageRoute prev="/Step6_04_I2C_SPI_1" next="/Step6_06_BM1422AGMV" />
             <Footer />
         </div>
     );

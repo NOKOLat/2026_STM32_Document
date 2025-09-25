@@ -10,7 +10,7 @@ export default function Step5_05_AngleFromGyro() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={5} page_number={5} />
             <br />
-            <FooterPageRoute prev="/Step5_04_GetGyro" next="/Step5_06_Complementary" />
+            <FooterPageRoute prev="/Step5_04_AngleFromGyro" next="/Step5_06_Complementary" />
             <Footer />
         </div>
     );

@@ -10,7 +10,7 @@ export default function Step7_02_FunctionAndSplit() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={7} page_number={2} />
             <br />
-            <FooterPageRoute prev="/Step7_01_NamingAndNamespace" next="/Step7_03_MagicNumberEnum" />
+            <FooterPageRoute prev="/Step7_01_ImportanceOfDesign" next="/Step7_03_FunctionAndSplit" />
             <Footer />
         </div>
     );

@@ -10,7 +10,7 @@ export default function Step5_02_AngleFromAccel() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={5} page_number={2} />
             <br />
-            <FooterPageRoute prev="/Step5_01_GetAccel" next="/Step5_03_GetGyro" />
+            <FooterPageRoute prev="/Step5_01_GetAccel" next="/Step5_03_AngleFromAccel" />
             <Footer />
         </div>
     );
