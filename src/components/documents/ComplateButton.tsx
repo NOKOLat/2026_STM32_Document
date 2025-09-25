@@ -4,7 +4,7 @@
 // ログインしていない場合は、ボタンを押せないようにする
 
 import styles from './ComplateButton.module.css';
-import { UpDateProgress } from '../../context/ManageProgress';
+import { UpDateProgress, GetProgress } from '../../context/ManageProgress';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,6 +35,11 @@ export default function PageButton({section, page_number }: {section: number, pa
             
             // ローディング終了とオーバーレイ非表示
             setLoading(false);
+
+            // 進捗を取得
+            await GetProgress();
+
+
             navigate('/mainpage');
             hideOverlay();
 
