@@ -10,7 +10,7 @@ export default function Step5_07_Madgwick() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={5} page_number={7} />
             <br />
-            <FooterPageRoute prev="/Step5_06_Complementary" next="/Step6_01_AboutLibrary" />
+            <FooterPageRoute prev="/Step5_06_Complementary" next="/Step6_01_AboutClass" />
             <Footer />
         </div>
     );

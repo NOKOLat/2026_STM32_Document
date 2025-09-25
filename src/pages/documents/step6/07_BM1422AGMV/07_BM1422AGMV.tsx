@@ -10,7 +10,7 @@ export default function Step6_07_BM1422AGMV() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={6} page_number={7} />
             <br />
-            <FooterPageRoute prev="/Step6_06_I2C_SPI_2" next="/Step6_08_ICM42688P" />
+            <FooterPageRoute prev="/Step6_06_BM1422AGMV" next="/Step6_08_ICM42688P" />
             <Footer />
         </div>
     );

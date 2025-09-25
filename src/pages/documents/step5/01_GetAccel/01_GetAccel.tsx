@@ -10,7 +10,7 @@ export default function Step5_01_GetAccel() {
             <p>本文はここに書いてね</p>
             <ComplateButton section={5} page_number={1} />
             <br />
-            <FooterPageRoute prev="/Step5_00_SPI" next="/Step5_02_AngleFromAccel" />
+            <FooterPageRoute prev="/Step4_04_FusionTwoSensors" next="/Step5_02_AngleFromAccel" />
             <Footer />
         </div>
     );
