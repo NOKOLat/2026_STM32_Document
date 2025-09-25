@@ -150,6 +150,7 @@ export async function isTokenValid() {
 
         // resultが"true"なら成功
         if (data.result === "true") {
+
             return true;
         }
 
@@ -163,4 +164,6 @@ export async function isTokenValid() {
         console.error("Token verification failed:", error);
         return false;
     }
+
+    return false;
 }

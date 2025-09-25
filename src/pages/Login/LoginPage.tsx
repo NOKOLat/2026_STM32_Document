@@ -1,13 +1,16 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Login } from '../../context/AuthContext';
 import { GetProgress } from '../../context/ManageProgress';
+import { isTokenValid } from '../../context/AuthContext';
 
 export default function LoginPage() {
 
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+
 
     async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
             
@@ -36,6 +39,30 @@ export default function LoginPage() {
             alert("ユーザー名またはパスワードが違います");
         }
     }
+
+    // ページを開いたときにトークンの有効性をチェックする
+    useEffect(() => {
+        let mounted = true;
+
+        async function checkTokenAndRedirect() {
+            try {
+                const valid = await isTokenValid();
+
+                if (mounted && valid) {
+                    // 進捗を取得してからメインページへ遷移
+                    await GetProgress();
+                    navigate('/mainpage');
+                }
+            }
+            catch (err) {
+                console.error('Token check failed on mount:', err);
+            }
+        }
+
+        checkTokenAndRedirect();
+
+        return () => { mounted = false; };
+    }, [navigate]);
 
     return (
         <div className="login-page">
