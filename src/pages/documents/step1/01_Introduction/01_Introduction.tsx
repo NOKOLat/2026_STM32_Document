@@ -1,5 +1,6 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
+import Topbar from '../../../../layouts/Topbar';   
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 //import style from '../../../../layouts/Format.module.css';
@@ -11,7 +12,9 @@ export default function Step1_Introduction() {
 
         <div>
 
-            <Header section="Step1 開発環境を用意しよう" title="講座の進め方" />
+            <Topbar pageTitle='Step1: 開発環境を用意しよう' />
+
+            <Header section="" title="講座の進め方" />
 
             <p>本文はここに書いてね</p>
 

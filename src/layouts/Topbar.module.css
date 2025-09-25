@@ -1,0 +1,117 @@
+.root {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    background: #0d1117;
+    color: #c9d1d9;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ffffff;
+    letter-spacing: 0.4px;
+    padding-right: 8px;
+    white-space: nowrap;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #ffffff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none; /* 中央タイトルが他の要素の操作を邪魔しないように */
+}
+
+.center {
+    flex: 1 1 auto;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.iconLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #c9d1d9;
+    opacity: 0.9;
+}
+
+.iconImg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.userButton {
+
+    background: transparent;
+    color: #c9d1d9;
+    font-weight: 520;
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.userButton:hover {
+    background: rgba(0, 255, 0, 0.5);
+}
+
+.logout {
+
+    background: transparent;
+    color: #c9d1d9;
+    font-weight: 520;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.logout:hover {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.bugButton {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.bugButton:hover {
+    background: #ff4757;
+}

@@ -10,9 +10,7 @@
   left: 50%; 
   right: 50%; 
   margin-left: -50vw; /* 左側をビューポート端まで伸ばす */
-
   max-height: 160px;  /* 最大高さを設定 */
-  background: #0d1117; /* 背景色を設定 */
 }
 
 .container {
