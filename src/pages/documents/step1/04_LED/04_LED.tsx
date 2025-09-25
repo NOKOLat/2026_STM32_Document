@@ -1,5 +1,6 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
+import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
@@ -13,11 +14,15 @@ export default function Basic01() {
     return (
 
         <div>
-            <Header section="Step1 開発環境を用意しよう"title="LEDをつけてみよう" />
+            <Topbar pageTitle='Step1: 開発環境を用意しよう' />
+            <Header page_count="4. " title="LEDをつけてみよう" />
+
+            <p>長い準備お疲れ様！</p>
+            <p>実際の流れを説明するために、LEDをつける最も簡単なコードを書いてみよう</p>
 
             <div className={style.title}>今回やること</div>
 
-                <p>今回は、STM32の基板に付いているLEDを点灯させてみよう</p>
+                <p>STM32の基板に付いているLEDを点灯させてみよう</p>
 
                 <p>今回の内容は以下の通り</p>
 
@@ -56,6 +61,11 @@ export default function Basic01() {
 
             <div className={style.title}>3. プログラム</div>
 
+                <p>STM32では難しい内部処理をまとめた、便利な関数（HALライブラリ）が用意されている</p>
+                <p>ここでは、そのライブラリの使い方を紹介する</p>
+
+                <br />
+
                 <h3>1. LEDをつけるための関数</h3>
                 <p>今回はLEDに与える電圧を設定することで、LEDをつけている</p>
                 <p>そこで、電圧を変更する関数について説明する</p>
@@ -78,17 +88,17 @@ export default function Basic01() {
                         <tbody>
                             <tr>
                                 <th>GPIOx</th>
-                                <td>uint32_t</td>
+                                <td>uint32_t（32桁の符号なし整数）</td>
                                 <td>GPIOの種類(xはGPIOの種類)</td>
                             </tr>
                             <tr>
                                 <th>GPIO_PIN_y</th>
-                                <td>uint32_t</td>
+                                <td>uint32_t（32桁の符号なし整数）</td>
                                 <td>ピンの種類（yはピン番号）</td>
                             </tr>
                             <tr>
                                 <th>GPIO_PIN_SET</th>
-                                <td>GPIO_PinState</td>
+                                <td>GPIO_PinState(ライブラリで定義)</td>
                                 <td>SET: 3.3v RESET: 0.0v</td>
                             </tr>
                         </tbody>
@@ -109,10 +119,10 @@ export default function Basic01() {
 
                 <br />
 
-                <h3>3. 待機する関数</h3>
+                <h3>2. 待機する関数</h3>
                 <p>タイミングを調整するために、一定時間待機する関数を使う</p>
 
-                <CppCodeRender code={`HAL_Delay(Time)`} />
+                <CppCodeRender code={`HAL_Delay(time)`} />
                 <div className={style.note}>
                     <h3>この関数の引数</h3>
                     <table className={style.table}>
@@ -125,7 +135,7 @@ export default function Basic01() {
                         </thead>
                         <tbody>
                             <tr>
-                                <th>Time</th>
+                                <th>time</th>
                                 <th>uint32_t</th>
                                 <th>待機時間（単位はミリ秒）</th>
                             </tr>
@@ -168,7 +178,7 @@ void loop(){
 
             <div className={style.title}>5. 練習問題</div>
 
-                <p>LEDを0.1秒と1秒間隔で点滅させるプログラムを作成してみよう</p>
+                <p>LEDを0.1秒と1秒間隔で点滅させるプログラムをそれぞれ作成してみよう</p>
 
                 <p>HAL_Delay()をうまく使って時間を調整しよう</p>
 
@@ -176,6 +186,8 @@ void loop(){
             <div className={style.title}>6. おわりに</div>
 
                 <p>練習問題のコードが動いたら完了ボタンを押してね</p>
+
+                <p>今回は点滅の速度が変わったことを確認しよう</p>
 
 
                 <ComplateButton section={1} page_number={4}/>

@@ -1,0 +1,138 @@
+.root {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    background: #0d1117;
+    color: #c9d1d9;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    overflow-x: auto; /* 狭い時はトップバー単体で横スクロール可能に */
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* 左 中央 右 の3カラム */
+    column-gap: 12px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 24px;
+    color: #ffffff;
+    letter-spacing: 0.4px;
+    padding-right: 8px;
+    white-space: nowrap;
+}
+
+.brandButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Link の下線を消す */
+    background: transparent;
+    color: #ffffff;
+    font-weight: 700;
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.brandButton:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #ffffff;
+    /* 中央列に配置し、絶対配置は使わない（重なり防止） */
+    position: static;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.center {
+    display: flex;
+    justify-content: center; /* 中央カラム内で中央寄せ */
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.iconLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #c9d1d9;
+    opacity: 0.9;
+}
+
+.iconImg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.userButton {
+
+    background: transparent;
+    color: white;
+    font-weight: 520;
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.userButton:hover {
+    background: rgba(0, 255, 0, 0.5);
+}
+
+.logout {
+
+    background: transparent;
+    color: white;
+    font-weight: 520;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.logout:hover {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.bugButton {
+
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.bugButton:hover {
+    background: #4a4886;
+}

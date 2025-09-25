@@ -10,35 +10,18 @@
   left: 50%; 
   right: 50%; 
   margin-left: -50vw; /* 左側をビューポート端まで伸ばす */
-
-  max-height: 160px;  /* 最大高さを設定 */
-  background: #0d1117; /* 背景色を設定 */
+  max-height: 120px;  /* 最大高さを設定 */
 }
 
 .container {
   max-width: 1280px; /* 最大幅に合わせる */
-  margin: 0 auto;
   padding: 0 20px; /* コンテンツの左右スペース */
   box-sizing: border-box;
 }
 
 /* タイトル */
 .title {
-
   margin-top: 8px;
-  font-size: 48px; 
-}
-
-/* 説明文 */
-.description {
-
-  margin: 0 0 6px 0;
-  font-size: 24px;
-  text-align: left;
-}
-
-.username{
-
-  font-size: 20px;  
-  text-align: right;
+  margin-left: 50px;
+  font-size: 44px; 
 }

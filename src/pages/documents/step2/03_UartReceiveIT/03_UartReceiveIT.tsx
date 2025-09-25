@@ -1,5 +1,6 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
+import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 //import style from '../../../../layouts/Format.module.css';
@@ -11,7 +12,8 @@ export default function Step2_03_UartReceiveIT() {
 
         <div>
 
-            <Header section="Step2 PCと通信してみよう" title="データの取りこぼしをなくそう" />
+            <Topbar pageTitle='Step2: PCと通信してみよう' />
+            <Header page_count="3. " title="データの取りこぼしをなくそう" />
 
             <p>本文はここに書いてね</p>
 

@@ -1,12 +1,14 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
+import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
 export default function Step7_02_FunctionAndSplit() {
     return (
         <div>
-            <Header section="Step7 プログラムの設計を学ぼう" title="関数化とファイルの分割" />
+            <Topbar pageTitle='Step7: 関数化とファイルの分割' />
+            <Header page_count="2. " title="関数化とファイルの分割" />
             <p>本文はここに書いてね</p>
             <ComplateButton section={7} page_number={2} />
             <br />

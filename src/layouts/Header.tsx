@@ -4,7 +4,8 @@
 
 import styles from './Header.module.css';
 
-export default function Header({ section, title }: { section: string, title: string }) {
+export default function Header({ page_count, title }: { page_count: string, title: string }) {
+
     return (
         <div className={styles.root}>
 
@@ -12,9 +13,7 @@ export default function Header({ section, title }: { section: string, title: str
 
                 <br />
 
-                <p className={styles.description}>{section}</p>
-
-                <h2 className={styles.title}>{title}</h2>
+                <h2 className={styles.title}> {page_count}{title}</h2>
 
                 <br />
                 

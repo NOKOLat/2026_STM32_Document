@@ -1,12 +1,14 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
 import ComplateButton from '../../../../components/documents/ComplateButton';
+import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 
 export default function Step7_01_ImportanceOfDesign() {
     return (
         <div>
-            <Header section="Step7 プログラムの設計を学ぼう" title="設計の重要性" />
+            <Topbar pageTitle='Step7: 設計の重要性' />
+            <Header page_count="1. " title="設計の重要性" />
             <p>本文はここに書いてね</p>
             <ComplateButton section={7} page_number={1} />
             <br />
