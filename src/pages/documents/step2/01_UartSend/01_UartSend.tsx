@@ -117,7 +117,6 @@ export default function Step2_01_UartSend() {
 
                 <CppCodeRender code={`#include "wrapper.hpp"
 #include "usart.h"
-#include "string"
 
 void init(){ 
 

@@ -97,8 +97,6 @@ export default function Step2_02_UartReceive() {
 
                 <CppCodeRender code={`#include "wrapper.hpp"
 #include "usart.h"
-#include "string"
-
 
 void init(){ 
 
