@@ -56,6 +56,10 @@ export default function Step2_01_UartSend() {
 
                 <p>PC以外との通信では、設定をして通信速度を変えることもある（Step3でやります）</p>
 
+                <figure>
+                    <img src={Pin_image} alt="STM32: PA2, PA3 に接続された UART のピン配置" width="75%"/>
+                </figure>
+
             
             <div className={style.title}>3. 回路の作成</div>
 
