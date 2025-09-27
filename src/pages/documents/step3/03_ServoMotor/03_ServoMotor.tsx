@@ -6,7 +6,7 @@ import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
 import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
-import ch1_image from './ch1.png';
+import ch1_image from './CH1.png';
 import circuit_image from './Circuit.png';
 import pin_image from './Pin.png';
 
