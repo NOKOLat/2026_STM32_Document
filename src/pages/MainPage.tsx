@@ -45,13 +45,11 @@ export default function MainPage() {
                 </MainPageSection>
                 
 
-                <MainPageSection title="Step 3 操縦装置（プロポ）を使ってコントロールしよう" section_number={3} page_count={5}>
-
-                    <p>飛行機やマルチコプターを飛ばすときに使うプロポの情報を受け取ってみよう</p>
+                <MainPageSection title="Step 3 自動投下装置を作ってみよう" section_number={3} page_count={5}>
 
                     <p>実際に大会で重要になる"自動投下装置"を作成してみよう</p>
 
-                    <PageLinkButton section={3} number={1} link="/Step3_01_SignalAndAutodrop" title="信号の流れと自動投下の話" />
+                    <PageLinkButton section={3} number={1} link="/Step3_01_SignalAndAutodrop" title="自動投下装置とは" />
 
                     <PageLinkButton section={3} number={2} link="/Step3_02_SBUSRead" title="SBUSの読み取り" />
 
