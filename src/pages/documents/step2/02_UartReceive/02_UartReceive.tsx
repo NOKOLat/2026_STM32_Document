@@ -6,6 +6,8 @@ import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
 import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
+import teraterm_image from './TeraTerm.png';
+
 export default function Step2_02_UartReceive() {
 
     return (
@@ -126,6 +128,10 @@ void loop(){
                 <p>前回と同様にシリアルポートを開いたら、設定(S)から端末(T)を選択し、"ローカルエコー"にチェックを入れよう</p>
             
                 <p>これで、TeraTermの画面に自分が入力した文字が表示され、STM32に送信することができる</p>
+
+                <figure>
+                    <img src={teraterm_image} alt="TeraTermの設定画面" width="75%"/>
+                </figure>
 
                 <details className={style.note}>
                 
