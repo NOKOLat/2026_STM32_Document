@@ -4,7 +4,8 @@ import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
 import style from '../../../../layouts/Format.module.css';
-import CppCodeRender from '../../../../components/documents/CppCodeRender';
+
+import sensor_reg_image from './sensor_reg.png';
 
 export default function Step4_01_SensorCommunication() {
     return (
@@ -23,68 +24,234 @@ export default function Step4_01_SensorCommunication() {
 
                 <div className={style.note}>
                     <ol>
-                        <li>センサーとの通信</li>
+                        <li>センサーとの通信方法</li>
                         <li>レジスタとは</li>
+                        <li>書き込みの例</li>
+                        <li>読み取りの例</li>
+                        <li>おわりに</li>
                     </ol>
                 </div>
 
-            <div className={style.title}>1. 自動投下装置の要件</div>
+            <div className={style.title}>1. センサーの通信方法</div>
 
-                <p>今回の自動投下装置は以下のような要件を満たして設計してほしい</p>
+                <p>センサーとの通信では、UARTに加えてI2CやSPIといった通信方式を使うこともある</p>
 
-                <p>ほかの機能については考えなくていいので、いつも通り書いてみよう</p>
+                <p>Step4では、I2C通信というものを使ってセンサーとデータをやり取りしてみます</p>
 
-                <div className={style.note}>
-                    <ol>
-                        <li>CH5を手動での投下、CH6を自動投下モードの切り替えに割り当てる</li>
-                        <li>常時手動投下は実装でき、プロポのスイッチを判定してサーボモーターを開閉する</li>
-                        <li>自動投下モードが入っているときは、赤外線を検知したときに物を投下する</li>
-                        <li>赤外線の閾値はadc_valueなどの変数で容易に調整できるようにする</li>
-                    </ol>
-                </div>
+                <p>詳しい関数は次のページで紹介します</p>
 
-            <div className={style.title}>2. 回路のヒント</div>
+            <div className={style.title}>2. レジスタとは</div>
 
-                <p>ここまでの講座で使った回路を組み合わせてみよう</p>
+                <p>センサーには内部に設定や結果を保存するレジスタと呼ばれる場所がある</p>
 
-                <p>ピンが被らないように設定したので、同じピンで同じ設定で実装することができる</p>
+                <p>簡単にいうと棚の中に決められた設定やデータが入っているようなものである</p>
 
-            <div className={style.title}>3. コードのヒント</div>
+                <p>ユーザーは、その棚の中のデータを書き換えたり読み取ったりすることでセンサーを使う</p>
 
-                <p>ここまでの講座で使ったコードを組み合わせてみよう</p>
+                <p>それぞれのレジスタには8桁の0/1が保存されていて、それぞれの数字に役割が振られている</p>
 
-                <p>まずSBUSのコードを書いて空の"void loop()"にADCの読み取り・サーボモーターの開閉判定・PWMの出力を追加すると書きやすいかもしれない</p>
+                <figure>
+                    <img src={sensor_reg_image} alt="Sensor Register" />
+                </figure>
 
-                <p>複数の条件をまとめて書きたいときは、このようにかける</p>
+            
+                <div className={style.title}>3. 書き込みの例</div>
 
-                <CppCodeRender code={`if (condition1 && condition2) {
+                <p>設定を書き込むためには、どのレジスタにどのような値を書き込むかを確認する必要がある</p>
 
-    // 条件1と条件2が両方とも真のときに実行される
-}`} />
+                <p>基本的にはセンサーのデータシートを見るとよいが、今回の講座では中身をわかりやすくまとめたものを用意するので安心してね</p>
 
-            <div className={style.title}>4. 実際にテストしてみよう</div>
-
-                <p>実際に投下装置を動かしてみて、うまく動くか確認してみよう</p>
+                <p>実際の書き込みの例を書いてみたので、軽くイメージをつかんでおいてね</p>
 
                 <div className={style.note}>
 
-                    <h3>確認してほしい条件</h3>
-                    <ol>
-                        <li>CH5を操作して手動投下ができるか確認する</li>
-                        <li>CH6を操作して自動投下モードに切り替える</li>
-                        <li>赤外線をあてて、サーボが動くか確認する</li>
-                        <li>自動投下モードでも手動でサーボが動くか確認する（赤外線を検知しているときは自動開くので例外）</li>
-                        <li>近くに蛍光灯があっても誤作動しないか確認する（太陽は強すぎるので、気にしなくていいよ）</li>
-                    </ol>
+                    <h3>実際のレジスタ例(1: 電源設定)</h3>
+
+                    <p>0/1しかないので基本的に2進数8桁(0~255の値)で書き込みや読み取りを行うことができる</p>
+
+                    <p>実際に2つのbitを操作して、電源設定を切り替える例を紹介する</p>
+
+                    <br />
+
+                    <div style={{marginTop:12, marginBottom:12}}>
+                        <div style={{fontWeight:600, marginBottom:6}}>8ビットレジスタの例（左: bit7 / 右: bit0）</div>
+                        <div style={{overflowX:'auto'}}>
+                            <table style={{borderCollapse:'collapse', minWidth:360}}>
+                                <thead>
+                                    <tr>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit7</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit6</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit5</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit4</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit3</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit2</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit1</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit0</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <br />
+
+                    <h3> ビットの役割例</h3>
+                    
+                    <p>bit0: 全体の電源設定</p>
+
+                    <p>bit5: 測定用の電力供給</p>
+
+                    <br />
+
+                    <h3> 電源ON (bit0を1にする)</h3>
+
+                    <p>00000001 (10進数で1)を書き込む</p>
+
+                    <div style={{marginTop:12, marginBottom:12}}>
+                        <div style={{fontWeight:600, marginBottom:6}}>8ビットレジスタの例（左: bit7 / 右: bit0）</div>
+                        <div style={{overflowX:'auto'}}>
+                            <table style={{borderCollapse:'collapse', minWidth:360}}>
+                                <thead>
+                                    <tr>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit7</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit6</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit5</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit4</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit3</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit2</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit1</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit0</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <br />
+                    <h3> 電源ONにして、測定用の電力供給をする (bit0とbit5を1にする)</h3>
+
+                    <p>00100001 (10進数で33)を書き込む</p>
+
+                    <div style={{marginTop:12, marginBottom:12}}>
+                        <div style={{fontWeight:600, marginBottom:6}}>8ビットレジスタの例（左: bit7 / 右: bit0）</div>
+                        <div style={{overflowX:'auto'}}>
+                            <table style={{borderCollapse:'collapse', minWidth:360}}>
+                                <thead>
+                                    <tr>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit7</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit6</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit5</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit4</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit3</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit2</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit1</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit0</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+
+
+            <div className={style.title}>4. 読み取りの例</div>
+
+                <p>基本的な考え方は書き込みと同様で、今度はセンサー側がセットしてくれた値を読み取ればよい</p>
+
+                <div className={style.note}>
+
+                    <h3>実際のレジスタ例(4: X軸のデータ)</h3>
+
+                    <p>センサーがセットしてくれた値を読み取る例を紹介する</p>
+
+                    <br />
+
+                    <p>この場合は2進数で11001011であるため、10進数に直すと203である</p>
+
+                    <p>基本的に整数値しか示せないため、203という値に特定の値をかけると測定したい物理量（加速度など）にすることができる</p>
+
+                    <div style={{marginTop:12, marginBottom:12}}>
+                        <div style={{fontWeight:600, marginBottom:6}}>センサーデータの読み取り</div>
+                        <div style={{overflowX:'auto'}}>
+                            <table style={{borderCollapse:'collapse', minWidth:360}}>
+                                <thead>
+                                    <tr>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit7</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit6</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit5</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit4</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit3</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit2</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit1</th>
+                                        <th style={{border:'1px solid #888', padding:'6px 10px'}}>bit0</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center'}}>0</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                        <td style={{border:'1px solid #888', padding:'8px 12px', textAlign:'center', backgroundColor:'#3ecf8ea2'}}>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
 
             <div className={style.title}>5. おわりに</div>
 
-                <p>すべての条件を達成したらボタンを押してね</p>
+                <p>今回はセンサーとの通信方法とレジスタについて紹介しました</p>
 
+                <p>新しい概念で理解が難しいかもしれませんが、センサーを触ってると勝手に理解できるのでそんなに気にせず次に進んでみよう</p>
+
+                <p>一通り読んだらボタンを押してね</p>
 
 
             <ComplateButton section={4} page_number={1} />
+
             <br />
             <FooterPageRoute prev="/Step3_05_AutodropDesign" next="/Step4_02_Ultrasonic" />
             <Footer />
