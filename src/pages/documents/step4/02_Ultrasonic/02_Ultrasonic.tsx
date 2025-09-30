@@ -183,6 +183,8 @@ export default function Step4_02_Ultrasonic() {
 
             <p>使用するレジスタのみをデータシートから抜粋したものを紹介する</p>
 
+            <p>0xは16進数という意味である。コードにそのまま書くことができる</p>
+
             <p>また、今回のセンサーのアドレスは224である</p>
 
                 <div className={style.note}>
@@ -201,7 +203,7 @@ export default function Step4_02_Ultrasonic() {
                             <tr>
                                 <th>測定モード設定</th>
                                 <th>0x00</th>
-                                <th>0</th>
+                                <th>0x00</th>
                                 <th>測定モードの設定 / 0x51: mmモード 0x52: μsモード</th>
                             </tr>
                             <tr>
