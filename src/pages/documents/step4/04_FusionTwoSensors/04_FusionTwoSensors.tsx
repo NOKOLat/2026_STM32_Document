@@ -9,7 +9,7 @@ export default function Step4_04_FusionTwoSensors() {
         <div>
             <Topbar pageTitle='Step4: センサーを使って距離を測ってみよう' />
             <Header page_count="4. " title="2つのセンサーを使って正確な距離を測ろう" />
-            <p>本文はここに書いてね</p>
+            <p>いい感じのセンサーが見つかっていないので飛ばします</p>
             <ComplateButton section={4} page_number={4} />
             <br />
             <FooterPageRoute prev="/Step4_03_ToF" next="/Step5_01_GetAccel" />

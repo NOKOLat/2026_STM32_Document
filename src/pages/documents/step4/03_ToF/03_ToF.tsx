@@ -9,7 +9,11 @@ export default function Step4_03_ToF() {
         <div>
             <Topbar pageTitle='Step4: センサーを使って距離を測ってみよう' />
             <Header page_count="3. " title="ToFセンサーで距離を測ってみよう" />
-            <p>本文はここに書いてね</p>
+
+
+            <p>いい感じのセンサーが見つかっていないので飛ばします</p>
+
+
             <ComplateButton section={4} page_number={3} />
             <br />
             <FooterPageRoute prev="/Step4_02_Ultrasonic" next="/Step4_04_FusionTwoSensors" />
