@@ -79,11 +79,11 @@ export default function MainPage() {
 
                     <p>機体が傾きすぎると墜落することになるので、水平に保つために角度を知る必要がある</p>
 
-                    <PageLinkButton section={5} number={1} link="/Step5_01_GetAccel" title="SPI通信について" />
+                    <PageLinkButton section={5} number={1} link="/Step5_01_GetAccel" title="加速度データを読んでみよう" />
 
-                    <PageLinkButton section={5} number={2} link="/Step5_02_AngleFromAccel" title="加速度データの取得" />
+                    <PageLinkButton section={5} number={2} link="/Step5_02_AngleFromAccel" title="加速度から角度を計算してみよう" />
 
-                    <PageLinkButton section={5} number={3} link="/Step5_03_AngleFromAccel" title="加速度のベクトルから角度を計算" />
+                    <PageLinkButton section={5} number={3} link="/Step5_03_AngleFromAccel" title="キャリブレーションをして精度をあげてみよう" />
 
                     <PageLinkButton section={5} number={4} link="/Step5_04_AngleFromGyro" title="角速度データの取得" />
 
