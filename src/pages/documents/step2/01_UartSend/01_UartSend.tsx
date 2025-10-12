@@ -115,7 +115,7 @@ export default function Step2_01_UartSend() {
                     </table>
                 </div>
 
-            <div className={style.title}>4. サンプルコード</div>
+            <div className={style.title}>5. サンプルコード</div>
 
             <p>終了の合図になる"\n"を表示できないため￥nで表記しています</p>
 
@@ -132,7 +132,7 @@ void loop(){
 
 }`}></CppCodeRender>
             
-            <div className={style.title}>5. TeraTermでの受信</div>
+            <div className={style.title}>6. TeraTermでの受信</div>
 
                 <p>STM32から送信した文字をPCで受け取ってみよう</p>
 
@@ -158,14 +158,14 @@ void loop(){
                 </details>
 
 
-            <div className={style.title}>6. 練習問題</div>
+            <div className={style.title}>7. 練習問題</div>
 
                 <p>新しい配列"message"を作成し、好きな文字列を送信してみよう</p>
 
                 <p>"\n"を含めた文字数を数えて送信してみよう</p>
 
 
-            <div className={style.title}>7. おわりに</div>
+            <div className={style.title}>8. おわりに</div>
 
                 <p>自分が作成した文字列を受信できたら完了ボタンを押してね</p>
 
