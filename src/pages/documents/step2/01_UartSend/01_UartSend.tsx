@@ -142,20 +142,22 @@ void loop(){
                     <img src={TeraTerm_image} alt="TeraTermの設定画面" />
                 </figure>
                 
-                <details className={style.note}>
-                
-                    <summary>文字化けや改行がおかしいときは</summary>
+                <div className={style.details}>
+                    <details className={style.summary}>
+                    
+                        <summary>文字化けや改行がおかしいときは</summary>
 
-                    <br />
-                    <ul>
-                        <li><strong> 文字化けしてしまったとき</strong></li>
-                        <p>設定(S)からシリアルポート(E)を選択し、スピードを115200にしよう</p>
+                        <br />
+                        <ul>
+                            <li><strong> 文字化けしてしまったとき</strong></li>
+                            <p>設定(S)からシリアルポート(E)を選択し、スピードを115200にしよう</p>
 
-                        <li><strong> 改行がおかしいときは</strong></li>
-                        <p>設定(S)から端末(T)を選択し、受信の改行コードをLFにしよう</p>
+                            <li><strong> 改行がおかしいときは</strong></li>
+                            <p>設定(S)から端末(T)を選択し、受信の改行コードをLFにしよう</p>
 
-                    </ul>
-                </details>
+                        </ul>
+                    </details>
+                </div>
 
 
             <div className={style.title}>7. 練習問題</div>
