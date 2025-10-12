@@ -115,7 +115,7 @@ export default function Step2_01_UartSend() {
                     </table>
                 </div>
 
-            <div className={style.title}>4. サンプルコード</div>
+            <div className={style.title}>5. サンプルコード</div>
 
             <p>終了の合図になる"\n"を表示できないため￥nで表記しています</p>
 
@@ -132,7 +132,7 @@ void loop(){
 
 }`}></CppCodeRender>
             
-            <div className={style.title}>5. TeraTermでの受信</div>
+            <div className={style.title}>6. TeraTermでの受信</div>
 
                 <p>STM32から送信した文字をPCで受け取ってみよう</p>
 
@@ -142,30 +142,32 @@ void loop(){
                     <img src={TeraTerm_image} alt="TeraTermの設定画面" />
                 </figure>
                 
-                <details className={style.note}>
-                
-                    <summary>文字化けや改行がおかしいときは</summary>
+                <div className={style.details}>
+                    <details className={style.summary}>
+                    
+                        <summary>文字化けや改行がおかしいときは</summary>
 
-                    <br />
-                    <ul>
-                        <li><strong> 文字化けしてしまったとき</strong></li>
-                        <p>設定(S)からシリアルポート(E)を選択し、スピードを115200にしよう</p>
+                        <br />
+                        <ul>
+                            <li><strong> 文字化けしてしまったとき</strong></li>
+                            <p>設定(S)からシリアルポート(E)を選択し、スピードを115200にしよう</p>
 
-                        <li><strong> 改行がおかしいときは</strong></li>
-                        <p>設定(S)から端末(T)を選択し、受信の改行コードをLFにしよう</p>
+                            <li><strong> 改行がおかしいときは</strong></li>
+                            <p>設定(S)から端末(T)を選択し、受信の改行コードをLFにしよう</p>
 
-                    </ul>
-                </details>
+                        </ul>
+                    </details>
+                </div>
 
 
-            <div className={style.title}>6. 練習問題</div>
+            <div className={style.title}>7. 練習問題</div>
 
                 <p>新しい配列"message"を作成し、好きな文字列を送信してみよう</p>
 
                 <p>"\n"を含めた文字数を数えて送信してみよう</p>
 
 
-            <div className={style.title}>7. おわりに</div>
+            <div className={style.title}>8. おわりに</div>
 
                 <p>自分が作成した文字列を受信できたら完了ボタンを押してね</p>
 

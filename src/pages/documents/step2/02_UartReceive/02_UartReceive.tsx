@@ -132,10 +132,10 @@ void loop(){
                 <figure>
                     <img src={teraterm_image} alt="TeraTermの設定画面" width="75%"/>
                 </figure>
-
-                <details className={style.note}>
                 
-                    <summary>文字が返ってくるときと、返ってこない来ないときがある？</summary>
+                <details className={style.details}>
+                
+                    <summary className={style.summary}>受信が安定しないときは</summary>
 
                     <br />
 
