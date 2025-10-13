@@ -52,6 +52,9 @@ export default function LoginPage() {
                 if (mounted && valid) {
                     // 進捗を取得してからメインページへ遷移
                     await GetProgress();
+
+                    // ログインフラグの更新
+                    localStorage.setItem('isLoggedIn', 'true');
                     navigate('/mainpage');
                 }
             }
