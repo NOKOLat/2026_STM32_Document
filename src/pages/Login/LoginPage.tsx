@@ -26,6 +26,7 @@ export default function LoginPage() {
 
             // ユーザー名を保存
             localStorage.setItem('username', username);
+            localStorage.setItem('isLoggedIn', 'true');
 
             // 進捗を取得
             await GetProgress();
