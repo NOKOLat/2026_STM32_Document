@@ -6,8 +6,8 @@ import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
 import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
-import pin_1_image from './Pin_1.png';
-import pin_2_image from './Pin_2.png';
+import pin_1_image from './pin_1.png';
+import pin_2_image from './pin_2.png';
 
 export default function Step4_03_ToF() {
     return (
