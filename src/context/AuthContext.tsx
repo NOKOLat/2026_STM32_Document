@@ -2,8 +2,6 @@
 // AuthContext.tsx
 // 認証機能の実装
 
-// 正式実装では、バックエンドへの通信とToken管理を行う
-
 export async function Login({ username, password }: { username: string; password: string }){
 
     // バックエンドへの問い合わせ
@@ -115,6 +113,7 @@ export function Logout() {
 
     // ログアウト処理
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("token");
 
     return true;
 }
