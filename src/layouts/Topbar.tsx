@@ -19,8 +19,6 @@ export default function Topbar({ pageTitle = "" }: { pageTitle: string }) {
 
     const handleLogout = () => {
         Logout();
-        // 移動先はログインページに変更している箇所があるため、ルートへ
-        window.location.href = '/';
     };
 
     return (

@@ -1,6 +1,7 @@
 
 // AuthContext.tsx
 // 認証機能の実装
+import { Navigate } from 'react-router-dom';
 
 export async function Login({ username, password }: { username: string; password: string }){
 
@@ -114,7 +115,7 @@ export function Logout() {
     // ログアウト処理
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("token");
-
+    window.location.reload();
     return true;
 }
 
