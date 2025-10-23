@@ -1,7 +1,6 @@
 
 // AuthContext.tsx
 // 認証機能の実装
-import { Navigate } from 'react-router-dom';
 
 export async function Login({ username, password }: { username: string; password: string }){
 
