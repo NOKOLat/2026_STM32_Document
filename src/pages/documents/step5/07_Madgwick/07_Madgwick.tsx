@@ -9,6 +9,7 @@ import CppCodeRender from '../../../../components/documents/CppCodeRender';
 export default function Step5_07_Madgwick() {
     return (
         <div>
+
             <Topbar pageTitle="Step5: Madgwickフィルター" />
             <Header page_count="7. " title="Madgwickフィルター" />
 
@@ -45,9 +46,9 @@ export default function Step5_07_Madgwick() {
 
             <div className={style.title}>3. Madgwickフィルターライブラリ構成</div>
 
-                <p>相補フィルターのコードは以下のようになる</p>
-                <CppCodeRender code={`
-#include "MadgwickAHRS.h"
+                <p>Madgwickフィルターを使ったコードは、このように書く</p>
+
+                <CppCodeRender code={`#include "MadgwickAHRS.h"
 
 Madgwick madgwick;
 
@@ -55,28 +56,26 @@ void setup() {
 
     madgwick.begin(100); // サンプリング周波数を設定
 }
+
+void loop() {  
     
-`}></CppCodeRender>
+    float raw_accel[3]; // 加速度センサーの値
+    float raw_gyro[3];  // 角速度センサーの値
+    float angle[3]; // 角度を格納する配列
+
+    madgwick.updateIMU(raw_accel[0], raw_accel[1], raw_accel[2], raw_gyro[0], raw_gyro[1], raw_gyro[2]); // 角速度と加速度を渡す
+    float angle[0] = madgwick.getRoll();  // ロール角を取得
+    float angle[1] = madgwick.getPitch(); // ピッチ角を取得
+    float angle[2] = madgwick.getYaw();   // ヨー角を取得
+}`}></CppCodeRender>
+
             <div className={style.title}>4. 実際にコードを書いてみよう</div>
 
-                <p>前回のコードに追記して、相補フィルターを実装してみよう</p>
-                <p>加速度から求めた角度と、角速度から積分で求めた角度を組み合わせて最終的な角度を求めてみよう</p>
+                <p>紹介したコードと、imuからデータを取得するコードを使ってmadgwickフィルターにデータを入れてみよう</p>
 
-            <div className={style.title}>5. 加速度のノルムを使って改善してみよう</div>
+            <div className={style.title}>5. おわりに</div>
 
-                <p>相補フィルターを使ってみても、思いっきりセンサーを振って大きな角速度をかけると誤差が大きくなってしまうことがある</p>
-
-                <p>0.02という係数であっても、加速度の影響が大きいため重力以外の加速度が無視できないためである</p>
-
-                <p>そのため、加速度のノルムが9.8±1.0の範囲内にある場合のみ、加速度を0.02の係数をつけていれるようにして、</p>
-
-                <p>それ以外の場合は加速度の影響を無視して、角速度から求めた角度のみを使うようにしてみよう</p>
-
-            <div className={style.title}>6. おわりに</div>
-
-                <p>相補フィルターを使って、加速度と角速度のデータをうまく組み合わせることで、より正確な角度推定が可能になることがわかった</p>
-
-                <p>z軸方向が正確に戻らないのは6軸imuの限界の部分があるので、あんまり気にしないようにしよう</p>
+                <p>Madgwickフィルターを使って、さらに正確な角度を求めることができたら成功!</p>
                 
             <ComplateButton section={5} page_number={7} />
             <br />
