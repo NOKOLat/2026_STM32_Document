@@ -4,6 +4,7 @@ import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
 import style from '../../../../layouts/Format.module.css';
+import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
 export default function Step5_03_AngleFromAccel() {
     return (
@@ -12,9 +13,11 @@ export default function Step5_03_AngleFromAccel() {
             <Header page_count="3. " title="キャリブレーションをして精度をあげてみよう" />
 
 
-            <p>前回のコードでは、最初から少し角度がずれていたり大きく動かしたときに値がめちゃくちゃになったりした</p>
+            <p>実際にセンサーのデータを読んでみると、水平においているはずなのに[0,0,1024]ではなく、ずれた値が出てくることがある</p>
 
-            <p>この問題を解決するために、キャリブレーションを行ってセンサーの誤差を補正しよう</p>
+            <p>これは、センサーの仕様であり、初期値のずれを補正する必要である</p>
+
+            <p>今回はずれを修正するためのキャリブレーションをやってみよう</p>
 
             <div className={style.title}>今回やること</div>
 
@@ -24,44 +27,90 @@ export default function Step5_03_AngleFromAccel() {
 
                 <div className={style.note}>
                     <ol>
-                        <li>最初の角度が0度ではない理由について</li>
-                        <li>急に動かすと角度の値が跳ねる理由について</li>
-                        <li>キャリブレーションについて</li>
+                        <li>キャリブレーションとは</li>
                         <li>実際にコードを書いてみよう</li>
                         <li>おわりに</li>
                     </ol>
                 </div>
 
-            <div className={style.title}>1. 最初の角度が0度ではない理由について</div>
-
+            <div className={style.title}>1. キャリブレーションとは</div>
             
-                <p>センサーは変化をかなり正確に捉えることができるが、初期値がずれていることが多い</p>
+                <p>キャリブレーションとは、センサーの初期値のずれを補正することである</p>
 
-                <p>この初期値のずれをキャリブレーションによって補正する必要がある</p>
+                <p>今回は、もっとも簡単な静的なキャリブレーションを行ってみる</p>
 
-                <p>やり方は簡単で初期値が0, 0, 1024という値になるように余計な値を引いてあげるだけである</p>
+                <p>値のずれを単純に引き算するだけなので、計算も簡単である</p>
 
-                <p>実際には、1000回センサーデータを取った平均値を計算し、その値が0,0,1024になるように補正する</p>
+                <div className={style.note}>
 
-                <p>これは静的なキャリブレーションであり、初期値を正確にすることや、ゆっくり動く環境に対して有効である</p>
+                    <h3>キャリブレーションのイメージ</h3>
 
-            <div className={style.title}>2. 急に動かすと角度の値が跳ねる理由について</div>
+                    <p>表のように、本来の値（ここでは水平に置いている状況）からのずれをoffsetとして引くことで正確な値を求めることができる</p>
 
-                <p>今回の角度は、重力加速度の分力の計算を利用している</p>
+                    <table className={style.table}>
+                        <thead>
+                            <tr>
+                                <th>名前</th>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>z</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>キャリブレーション前</th>
+                                <th>37</th>
+                                <th>42</th>
+                                <th>1051</th>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>正しい値</th>
+                                <th>0</th>
+                                <th>0</th>
+                                <th>1024</th>
+                            </tr>
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <th>offsetとして引く値</th>
+                                <th>37</th>
+                                <th>42</th>
+                                <th>27</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <p>しかし、急に動かすと重力加速度に加えて動かしたことによる加速度が働くため計算が成立しなくなってしまう</p>
+            <div className={style.title}>2. 実際にコードを書いてみよう</div>
 
-                <p>実際に使われるアルゴリズムでは、移動による加速度がないときだけ重力加速度の分力を利用して角度を計算することが多い</p>
+                <p>前回のコードにキャリブレーションのコードを追加してみよう</p>
 
-                <p>移動による加速度がかかっているときは、角速度センサーの積分値を主に使用して角度を計算することになる</p>
+                <p>キャリブレーション自体は、1000回の値の平均値をとる作業のみでいいので、下のコードを参考にしてね</p>
 
-            <div className={style.title}>3. 実際にコードを書いてみよう</div>
+                <p>offsetの変数に実際のデータから引く値を入れて、実際のデータ取得コードも更新しよう</p>
+
+                <CppCodeRender code={`// キャリブレーションコード
+uint32_t accel_sum[3] = {};
+uint32_t gyro_sum[3] = {};
+uint16_t accel_offset[3] = {};
+uint16_t gyro_offset[3] = {};
+
+for (uint16_t i = 0; i < 1000; i++) {
+
+    // データを取得して、accel_sum, gyro_sumに加算する
+
+}
+
+    // データの合計から平均値を求めて、オフセットを計算する
+`}></CppCodeRender>
 
                 <p>前回のコードにキャリブレーションをするコードを追加してみよう</p>
 
                 <p>これも実行前に1回やればいい処理なので、電源設定の次の処理として書いておこう!</p>
 
-            <div className={style.title}>4. おわりに</div>
+            <div className={style.title}>3. おわりに</div>
             
                 <p>初期値が前よりも0に近くなったらキャリブレーション成功</p>
 
