@@ -43,8 +43,8 @@ export default function AppRoutes() {
 
         {Section7Routes()}
 
-    {/* catch-all 404 route */}
-    <Route path="*" element={<NotFound />} />
+        {/* catch-all 404 route - must be last! */}
+        <Route path="*" element={<NotFound />} />
 
         </Routes>
     )

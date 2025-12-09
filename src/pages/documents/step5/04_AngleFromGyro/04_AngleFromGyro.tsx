@@ -4,7 +4,6 @@ import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
-import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
 export default function Step5_04_AngleFromGyro() {
     return (
@@ -14,7 +13,9 @@ export default function Step5_04_AngleFromGyro() {
 
             <p>前回までの講座で、加速度からの角度計算だけでは不十分なことがわかった</p>
 
-            <p>そこで、今回は角速度センサーの値を取得して角速度の積分から角度を得る方法を学んでみよう</p>
+            <p>そこで、角速度のデータを用いて角速度の積分から角度を得る方法を学んでみよう</p>
+
+            <p></p>
 
             <div className={style.title}>今回やること</div>
 
@@ -32,62 +33,93 @@ export default function Step5_04_AngleFromGyro() {
                     </ol>
                 </div>
 
-            <div className={style.title}>1. UARTとは</div>
+            <div className={style.title}>1. セットアップをしよう</div>
 
-            <div className={style.title}>2. UARTにピンを割り当てる</div>
-            
-            <div className={style.title}>3. 回路の作成</div>
-            
-            <div className={style.title}>4. UARTを送信する関数</div>
+                <p>同じセンサーからデータが取れるかつ、データのレジスタが違うだけで取り扱いもほとんど同じなので、そのまま使うことができる</p>
 
-
-                <h3>1. UARTでデータを送信する関数</h3>
-
-                <CppCodeRender code={`HAL_UART_Transmit(&huartx, Data, Len, Time);`}></CppCodeRender>
+            <div className={style.title}>2. 使用するレジスタ</div>
 
                 <div className={style.note}>
+
+                    <h3>このセンサーのレジスタ</h3>
+
+                    <p>今回は加速度データに関係するレジスタをピックアップして掲載してみました</p>
+
                     <table className={style.table}>
                         <thead>
                             <tr>
-                                <th>引数名</th>
-                                <th>変数型</th>
+                                <th>レジスタ名</th>
+                                <th>アドレス</th>
+                                <th>初期値</th>
                                 <th>内容</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th>&amp;huartx</th>
-                                <td>UART_HandleTypeDef*</td>
-                                <td>UARTのポインタ（xはUARTの番号）</td>
+                                <th>WIA（通信チェック）</th>
+                                <th>0x72</th>
+                                <th>0xE9(233)</th>
+                                <th>定数が返ってくる。通信チェックに利用</th>
                             </tr>
                             <tr>
-                                <th>Data</th>
-                                <td>uint8_t*</td>
-                                <td>送信するデータのポインタ</td>
+                                <th>電源設定</th>
+                                <th>0x10</th>
+                                <th>0x00</th>
+                                <th>0x0fを書き込むことで測定開始（連続測定モード）</th>
                             </tr>
                             <tr>
-                                <th>Len</th>
-                                <td>uint16_t</td>
-                                <td>送信するデータ長</td>
+                                <th>データ（下位の桁）</th>
+                                <th>0x06</th>
+                                <th>0x00</th>
+                                <th>x軸の加速度データの下位8桁</th>
                             </tr>
                             <tr>
-                                <th>Time</th>
-                                <td>uint32_t</td>
-                                <td>最大実行時間（超えたら処理を諦める）</td>
+                                <th>データ（上位の桁）</th>
+                                <th>0x07</th>
+                                <th>0x00</th>
+                                <th>x軸の加速度データの上位8桁</th>
+                            </tr>
+                            <tr>
+                                <th>データ（下位の桁）</th>
+                                <th>0x08</th>
+                                <th>0x00</th>
+                                <th>y軸の加速度データの下位8桁</th>
+                            </tr>
+                            <tr>
+                                <th>データ（上位の桁）</th>
+                                <th>0x09</th>
+                                <th>0x00</th>
+                                <th>y軸の加速度データの上位8桁</th>
+                            </tr>
+                            <tr>
+                                <th>データ（下位の桁）</th>
+                                <th>0x0A</th>
+                                <th>0x00</th>
+                                <th>z軸の加速度データの下位8桁</th>
+                            </tr>
+                            <tr>
+                                <th>データ（上位の桁）</th>
+                                <th>0x0B</th>
+                                <th>0x00</th>
+                                <th>z軸の加速度データの上位8桁</th>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-            <div className={style.title}>4. サンプルコード</div>
+            <div className={style.title}>3. コードを書いてみよう</div>
 
-                <CppCodeRender code={`#include "wrapper.hpp"`}></CppCodeRender>
+                <p>ここまでのコードを用いて、角速度データの取得とキャリブレーションのコードを書いてみよう</p>
+
+                <p>初期設定では、角速度のデータは32768で250deg/sを表現しているので、センサーから得たデータを32768で割って250をかけることで角速度(deg/s)を求めよう</p>
+
+                <p>角速度のデータの初期値は[0, 0, 0]になるようにキャリブレーションしよう</p>
             
-            <div className={style.title}>5. TeraTermでの受信</div>
+            <div className={style.title}>4. おわりに</div>
 
-            <div className={style.title}>6. 練習問題</div>
+                <p>回転の速度をセンサーで読めたり、何もしてないときに値がほぼ0になっていたら成功!</p>
 
-            <div className={style.title}>7. おわりに</div>
+                <p>思いっきりセンサーを回すと250に近い値が、ゆっくり回すと2桁くらいの値が出るかも</p>
 
             <ComplateButton section={5} page_number={4} />
             <br />
