@@ -5,6 +5,8 @@ import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
 import style from '../../../../layouts/Format.module.css';
 import CppCodeRender from '../../../../components/documents/CppCodeRender';
+import madgwick_1 from '../../../../pages/documents/step5/07_Madgwick/madgwick_1.png';
+import madgwick_2 from '../../../../pages/documents/step5/07_Madgwick/madgwick_2.png';
 
 export default function Step5_07_Madgwick() {
     return (
@@ -42,17 +44,31 @@ export default function Step5_07_Madgwick() {
 
                 <p>以下のリンクからダウンロードしておこう</p>
 
-                <p><a href="link"></a></p>
+                <p><a href="https://github.com/arduino-libraries/MadgwickAHRS">Madgwickフィルターのライブラリ</a></p>
+
+                <p>ダウンロードは写真のボタンからzipファイルで行う</p>
+
+                <p>ダウンロードしたzipファイルを解凍し、2枚目の写真のファイルをSTM32CubeIDEにコピーしよう</p>
+
+                <p>.hppはincフォルダ、.cppはsrcフォルダにコピーする</p>
+
+                <img src={madgwick_1} alt="Madgwickフィルターのダウンロード" />
+
+                <br />
+
+                <img src={madgwick_2} alt="必要ファイルの取り出し" />
 
             <div className={style.title}>3. Madgwickフィルターライブラリ構成</div>
 
                 <p>Madgwickフィルターを使ったコードは、このように書く</p>
 
+                <p>知らない構文があるかもしれないが、次の講座で説明するのであまり気にせずコピペしよう</p>
+
                 <CppCodeRender code={`#include "MadgwickAHRS.h"
 
 Madgwick madgwick;
 
-void setup() {
+void init() {
 
     madgwick.begin(100); // サンプリング周波数を設定
 }
@@ -71,7 +87,7 @@ void loop() {
 
             <div className={style.title}>4. 実際にコードを書いてみよう</div>
 
-                <p>紹介したコードと、imuからデータを取得するコードを使ってmadgwickフィルターにデータを入れてみよう</p>
+                <p>紹介したコードと、imuからデータを取得するコードを使ってmadgwickフィルターで角度を計算してみよう</p>
 
             <div className={style.title}>5. おわりに</div>
 
