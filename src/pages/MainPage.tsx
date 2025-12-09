@@ -77,7 +77,7 @@ export default function MainPage() {
 
                 <MainPageSection title="Step 6 センサーのライブラリを自作してみよう" section_number={6} page_count={8}>
 
-                    <PageLinkButton section={6} number={1} link="/Step6_01_AboutClass" title="ライブラリとは" />
+                    <PageLinkButton section={6} number={1} link="/Step6_01_AboutClass" title="構造体でデータをまとめてみよう" />
                     <PageLinkButton section={6} number={2} link="/Step6_02_AboutClass" title="クラスとは" />
                     <PageLinkButton section={6} number={3} link="/Step6_03_IMU_Library" title="IMUのライブラリを書いてみよう" />
                     <PageLinkButton section={6} number={4} link="/Step6_04_I2C_SPI_1" title="ピンを設定できるようにしよう" />
