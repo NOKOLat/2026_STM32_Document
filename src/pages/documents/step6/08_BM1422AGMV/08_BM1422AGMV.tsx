@@ -101,7 +101,7 @@ void BM1422AGMV::begin() {
 
             <ComplateButton section={6} page_number={8} />
             <br />
-            <FooterPageRoute prev="/Step6_07_switch_i2c_spi" next="/Step7_01_ImportanceOfDesign" />
+            <FooterPageRoute prev="/Step6_07_switch_i2c_spi" next="/mainpage" />
             <Footer />
         </div>
     );

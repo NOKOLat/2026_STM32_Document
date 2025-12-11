@@ -207,7 +207,7 @@ HAL_Delay(100);
 
             <ComplateButton section={5} page_number={1} />
             <br />
-            <FooterPageRoute prev="/Step4_04_FusionTwoSensors" next="/Step5_02_AngleFromAccel" />
+            <FooterPageRoute prev="/Step4_03_ToF" next="/Step5_02_AngleFromAccel" />
             <Footer />
         </div>
     );

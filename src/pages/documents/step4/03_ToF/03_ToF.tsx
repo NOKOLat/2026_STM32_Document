@@ -229,7 +229,7 @@ void loop(){
 
                 <ComplateButton section={4} page_number={3} />
             <br />
-            <FooterPageRoute prev="/Step4_02_Ultrasonic" next="/Step4_04_FusionTwoSensors" />
+            <FooterPageRoute prev="/Step4_02_Ultrasonic" next="/Step5_01_GetAccel" />
             <Footer />
         </div>
     );
