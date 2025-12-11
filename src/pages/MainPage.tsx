@@ -84,7 +84,7 @@ export default function MainPage() {
                     <PageLinkButton section={6} number={5} link="/Step6_05_Improve_Library_2" title="センサー設定に対応しよう" />
                     <PageLinkButton section={6} number={6} link="/Step6_06_EnumClass" title="Enum Classを使ってみよう" />
                     <PageLinkButton section={6} number={7} link="/Step6_07_switch_i2c_spi" title="I2CとSPIを切り替えできるようにしよう" />
-                    <PageLinkButton section={6} number={8} link="/Step6_08_ICM42688P" title="ICM42688Pのライブラリを書く（演習問題）" />
+                    <PageLinkButton section={6} number={8} link="/Step6_08_BM1422AGMV" title="BM1422AGMVのライブラリを作ろう" />
 
                 </MainPageSection>
 
