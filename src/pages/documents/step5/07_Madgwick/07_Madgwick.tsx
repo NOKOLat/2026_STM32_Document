@@ -95,7 +95,7 @@ void loop() {
                 
             <ComplateButton section={5} page_number={7} />
             <br />
-            <FooterPageRoute prev="/Step5_06_Complementary" next="/Step6_01_AboutClass" />
+            <FooterPageRoute prev="/Step5_06_Complementary" next="/Step6_01_AboutStruct" />
             <Footer />
         </div>
     );
