@@ -87,19 +87,7 @@ export default function MainPage() {
                     <PageLinkButton section={6} number={8} link="/Step6_08_BM1422AGMV" title="BM1422AGMVのライブラリを作ろう" />
 
                 </MainPageSection>
-
-                <MainPageSection title="Step 7 プログラムの設計を学ぼう" section_number={7} page_count={6}>
-
-                    <PageLinkButton section={7} number={1} link="/Step7_01_ImportanceOfDesign" title="設計の重要性" />
-                    <PageLinkButton section={7} number={2} link="/Step7_02_FunctionAndSplit" title="命名規則と名前空間" />
-                    <PageLinkButton section={7} number={3} link="/Step7_03_FunctionAndSplit" title="関数化とファイルの分割" />
-                    <PageLinkButton section={7} number={4} link="/Step7_04_MagicNumberEnum" title="マジックナンバーのenum class化" />
-                    <PageLinkButton section={7} number={5} link="/Step7_05_StateDesign1" title="状態遷移の設計(1)" />
-                    <PageLinkButton section={7} number={6} link="/Step7_06_StateDesign2" title="状態遷移の設計(2)" />
-
-                </MainPageSection>
                 
-        
                 <Footer />
 
             </section>
