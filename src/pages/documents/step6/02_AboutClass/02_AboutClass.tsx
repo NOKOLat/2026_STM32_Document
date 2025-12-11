@@ -33,6 +33,8 @@ export default function Step6_02_AboutClass() {
 
                 <p>C++にはクラスという機能があり、変数と関数をまとめて1つの変数型として扱うことができる</p>
 
+                <p>このとき、クラスの中の変数をメンバー変数、関数をメンバー関数と呼ぶこともある</p>
+
                 <p>イメージとしては、センサーデータの変数とセンサーデータの単位換算を行う関数をまとめるということができる</p>
 
                 <p>ここでは、加速度データの値を取得したときに行った、8桁のデータ→16桁のデータ→加速度データへの変換処理をまとめてみた</p>
@@ -167,7 +169,7 @@ imu1.getAccelData(accel); `}></CppCodeRender>
 
             <ComplateButton section={6} page_number={2} />
             <br />
-            <FooterPageRoute prev="/Step6_01_AboutClass" next="/Step6_03_IMU_Library" />
+            <FooterPageRoute prev="/Step6_01_AboutStruct" next="/Step6_03_IMU_Library" />
             <Footer />
         </div>
     );

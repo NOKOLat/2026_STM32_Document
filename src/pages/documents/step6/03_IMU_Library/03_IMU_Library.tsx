@@ -139,7 +139,7 @@ void loop(){
 
             <ComplateButton section={6} page_number={3} />
             <br />
-            <FooterPageRoute prev="/Step6_02_AboutClass" next="/Step6_04_I2C_SPI_1" />
+            <FooterPageRoute prev="/Step6_02_AboutClass" next="/Step6_04_Improve_Library_1" />
             <Footer />
         </div>
     );

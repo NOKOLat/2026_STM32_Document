@@ -6,7 +6,7 @@ import Footer from '../../../../layouts/Footer';
 import style from '../../../../layouts/Format.module.css';
 import CppCodeRender from '../../../../components/documents/CppCodeRender';
 
-export default function Step6_01_AboutClass() {
+export default function Step6_01_AboutStruct() {
     return (
         <div>
             <Topbar pageTitle='Step6: センサーをライブラリを自作してみよう' />

@@ -77,13 +77,13 @@ export default function MainPage() {
 
                 <MainPageSection title="Step 6 センサーのライブラリを自作してみよう" section_number={6} page_count={8}>
 
-                    <PageLinkButton section={6} number={1} link="/Step6_01_AboutClass" title="構造体でデータをまとめてみよう" />
+                    <PageLinkButton section={6} number={1} link="/Step6_01_AboutStruct" title="構造体でデータをまとめてみよう" />
                     <PageLinkButton section={6} number={2} link="/Step6_02_AboutClass" title="クラスとは" />
                     <PageLinkButton section={6} number={3} link="/Step6_03_IMU_Library" title="IMUのライブラリを書いてみよう" />
-                    <PageLinkButton section={6} number={4} link="/Step6_04_I2C_SPI_1" title="ピンを設定できるようにしよう" />
-                    <PageLinkButton section={6} number={5} link="/Step6_05_I2C_SPI_1" title="I2C/SPI両対応なコードを書こう(1)" />
-                    <PageLinkButton section={6} number={6} link="/Step6_06_BM1422AGMV" title="I2C/SPI両対応なコードを書こう(2)" />
-                    <PageLinkButton section={6} number={7} link="/Step6_07_BM1422AGMV" title="BM1422AGMVのライブラリ（演習問題）" />
+                    <PageLinkButton section={6} number={4} link="/Step6_04_Improve_Library_1" title="ライブラリを改良してみよう" />
+                    <PageLinkButton section={6} number={5} link="/Step6_05_Improve_Library_2" title="センサー設定に対応しよう" />
+                    <PageLinkButton section={6} number={6} link="/Step6_06_EnumClass" title="Enum Classを使ってみよう" />
+                    <PageLinkButton section={6} number={7} link="/Step6_07_switch_i2c_spi" title="I2CとSPIを切り替えできるようにしよう" />
                     <PageLinkButton section={6} number={8} link="/Step6_08_ICM42688P" title="ICM42688Pのライブラリを書く（演習問題）" />
 
                 </MainPageSection>
