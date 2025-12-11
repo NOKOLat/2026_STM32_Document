@@ -9,7 +9,7 @@ import CppCodeRender from '../../../../components/documents/CppCodeRender';
 export default function Step6_01_AboutStruct() {
     return (
         <div>
-            <Topbar pageTitle='Step6: センサーをライブラリを自作してみよう' />
+            <Topbar pageTitle='Step6: センサーライブラリを自作してみよう' />
             <Header page_count="1. " title="構造体とは" />
 
             <p>ここからは、プログラムを作成する上で重要な"クラス"という概念を紹介する</p>

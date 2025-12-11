@@ -9,7 +9,7 @@ import CppCodeRender from '../../../../components/documents/CppCodeRender';
 export default function Step6_02_AboutClass() {
     return (
         <div>
-            <Topbar pageTitle='Step6: センサーをライブラリを自作してみよう' />
+            <Topbar pageTitle='Step6: センサーライブラリを自作してみよう' />
             <Header page_count="2. " title="クラスとは" />
             
 

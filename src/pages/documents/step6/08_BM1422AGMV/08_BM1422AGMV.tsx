@@ -40,7 +40,7 @@ export default function Step6_08_BM1422AGMV() {
                 <p>また、10ページから詳細なレジスタの中身が書いてあるので、ここも読んでみよう</p>
 
 
-                <a href="https://akizukidenshi.com/goodsaffix/BM1422AGMV.pdf" target="_blank" rel="noopener noreferrer"></a>
+                <a href="https://akizukidenshi.com/goodsaffix/BM1422AGMV.pdf" target="_blank" rel="noopener noreferrer">BM1422AGMVのデータシート</a>
 
             <div className={style.title}>3. ヘッダーファイルを書いてみよう</div>
 
@@ -67,7 +67,7 @@ public:
 private:
 
     HAL_I2C_HandleTypeDef* hi2c;
-    uint8_t i2c_address = 0001110 << 1;
+    uint8_t i2c_address = 0b0001110 << 1;
 };
 #endif // BM1422AGMV_H`}></CppCodeRender>
 
@@ -81,7 +81,7 @@ private:
 
                 <CppCodeRender code={`#include "BM1422AGMV.hpp"
 
-BM1422AGMV::BM1422AGMV(HAL_I2C_HandleTypeDef* hi2c_ptr) {
+BM1422AGMV::BM1422AGMV(HAL_I2C_HandleTypeDef* hi2c) {
 
     // コンストラクタ
 }

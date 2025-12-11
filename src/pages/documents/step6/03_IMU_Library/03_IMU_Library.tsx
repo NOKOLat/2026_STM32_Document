@@ -9,7 +9,7 @@ import CppCodeRender from '../../../../components/documents/CppCodeRender';
 export default function Step6_03_IMU_Library() {
     return (
         <div>
-            <Topbar pageTitle="Step6: センサーをライブラリを自作してみよう" />
+            <Topbar pageTitle="Step6: センサーライブラリを自作してみよう" />
             <Header page_count="3. " title="IMUのライブラリを書いてみよう" />
             <p>前回までで、基本的なクラスの書き方や利点を知ることができた</p>
 
