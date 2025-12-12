@@ -2,6 +2,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import Login from '../pages/Login/LoginPage'
 import RegisterPage from '../pages/Login/RegisterPage'
+import MyPage from '../pages/mypage'
+import BugReport from '../pages/BugReport/BugReport'
 import NotFound from '../pages/NotFound/NotFound'
 import TestRoute from './documents/TestSectionRoute'
 import Section1Routes from './documents/Section1'
@@ -26,6 +28,12 @@ export default function AppRoutes() {
 
         {/*account register page */}
         <Route path="/register" element={<RegisterPage />} />
+
+        {/* MyPage */}
+        <Route path="/mypage" element={<MyPage />} />
+
+        {/* BugReport */}
+        <Route path="/report-bug" element={<BugReport />} />
 
         {TestRoute()}
 

@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #343A46;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+}
+
+.svgContainer {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg {
+  transform: rotate(-90deg);
+}
+
+.circle {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.backgroundCircle {
+  stroke: #e0e0e0;
+}
+
+.progressCircle {
+  stroke: #4caf50;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+}
+
+.textContainer {
+  text-align: center;
+}
+
+.label {
+  font-size: 14px;
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.percentage {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f1f1f1;
+  margin-top: 4px;
+}
+
+.progressText {
+  font-size: 12px;
+  color: #a0a9b8;
+  margin-top: 4px;
+}

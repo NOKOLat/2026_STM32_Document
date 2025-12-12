@@ -25,6 +25,11 @@ export default function Step1_Introduction() {
 
             <p><strong>後半の内容は特に難しいので、区切りのいいところまで進めてほかの製作を体験するのもよい選択肢だと思います！</strong></p>
 
+            <div className={style.title}>新歓講座での目標</div>
+
+                <p>新歓時期にすべてを終わらせるのはとても難しいので、Step3までのクリアを目標にしてみよう</p>
+
+                <p>進捗はメインページのほかに、自分のユーザー名を押すと飛べるマイページでもチェックできます</p>
 
             <div className={style.title}>講座の流れ</div>
 

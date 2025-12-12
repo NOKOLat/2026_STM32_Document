@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Topbar.module.css';
 import { Logout } from '../context/AuthContext';
 import githubMark from '../assets/github-mark-white.png';
@@ -7,6 +7,7 @@ import githubMark from '../assets/github-mark-white.png';
 export default function Topbar({ pageTitle = "" }: { pageTitle: string }) {
 
     const [username, setUsername] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         try {
@@ -19,6 +20,11 @@ export default function Topbar({ pageTitle = "" }: { pageTitle: string }) {
 
     const handleLogout = () => {
         Logout();
+        navigate('/');
+    };
+
+    const handleMyPageClick = () => {
+        navigate('/mypage');
     };
 
     return (
@@ -49,11 +55,11 @@ export default function Topbar({ pageTitle = "" }: { pageTitle: string }) {
                         <img src={githubMark} alt="GitHub" className={styles.iconImg} />
                     </a>
 
-                    <button className={styles.bugButton} onClick={() => { window.location.href = '/report-bug'; }}>
+                    <button className={styles.bugButton} onClick={() => { navigate('/report-bug'); }}>
                         バグ報告
                     </button>
 
-                    <button className={styles.userButton} onClick={() => { window.location.href = '/profile'; }}>
+                    <button className={styles.userButton} onClick={handleMyPageClick}>
                         {username ?? 'ゲスト'} さん
                     </button>
 
