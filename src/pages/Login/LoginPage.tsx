@@ -2,7 +2,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Login } from '../../context/AuthContext';
 import { GetProgress } from '../../context/ManageProgress';
-import { isTokenValid } from '../../context/AuthContext';
 
 export default function LoginPage() {
 
@@ -47,14 +46,11 @@ export default function LoginPage() {
 
         async function checkTokenAndRedirect() {
             try {
-                const valid = await isTokenValid();
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-                if (mounted && valid) {
+                if (mounted && isLoggedIn) {
                     // 進捗を取得してからメインページへ遷移
                     await GetProgress();
-
-                    // ログインフラグの更新
-                    localStorage.setItem('isLoggedIn', 'true');
                     navigate('/mainpage');
                 }
             }

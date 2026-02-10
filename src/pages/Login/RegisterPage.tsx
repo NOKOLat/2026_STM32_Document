@@ -9,13 +9,25 @@ export default function RegisterPage() {
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [discordId, setDiscordId] = useState('');
+    const [error, setError] = useState('');
 
-    async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+    async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
         // フォームの既定の送信（ページリロード）を防ぐ
         e.preventDefault();
+        setError('');
+
+        if (!discordId) {
+            setError('Discord ID は必須です');
+            return;
+        }
 
         // アカウント登録
-        const register_result = await RegisterAccount({ username, password });
+        const register_result = await RegisterAccount({
+            username,
+            password,
+            discord_id: discordId
+        });
 
         if (register_result) {
             // 成功した場合の処理
@@ -23,7 +35,7 @@ export default function RegisterPage() {
             navigate('/');
         } else {
             // 失敗した場合の処理
-            alert('エラーが発生しました。別のユーザー名を試すか、時間をおいて再度お試しください。');
+            setError('登録に失敗しました。Discord IDが既に使用されていないか確認してください。');
         }
     }
 
@@ -32,7 +44,9 @@ export default function RegisterPage() {
             <div className="login-card">
                 <h1>アカウント登録</h1>
 
-                <form className="login-form" onSubmit={handleLogin}>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+
+                <form className="login-form" onSubmit={handleRegister}>
                     <div className="login-field">
                         <label>
                             ユーザー名
@@ -41,6 +55,7 @@ export default function RegisterPage() {
                                 type="text"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                                required
                             />
                         </label>
                     </div>
@@ -53,6 +68,21 @@ export default function RegisterPage() {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </label>
+                    </div>
+
+                    <div className="login-field">
+                        <label>
+                            Discord ID（必須）
+                            <input
+                                className="login-input"
+                                type="text"
+                                placeholder="例: user#1234"
+                                value={discordId}
+                                onChange={(e) => setDiscordId(e.target.value)}
+                                required
                             />
                         </label>
                     </div>
@@ -60,7 +90,7 @@ export default function RegisterPage() {
                     <button className="login-button" type="submit">アカウント作成</button>
                 </form>
 
-                {/* アカウント作成ページへのリンク */}
+                {/* ログインページへのリンク */}
                 <p>
                     アカウントをお持ちの方は、<Link to="/">こちら</Link>からログインできます。
                 </p>

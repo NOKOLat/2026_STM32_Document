@@ -22,6 +22,7 @@ const SECTION_LENGTHS = [
   { id: 4, name: 'Section 4', max: 3 },
   { id: 5, name: 'Section 5', max: 7 },
   { id: 6, name: 'Section 6', max: 8 },
+  { id: 7, name: 'Section 7', max: 6 },
 ];
 
 // ビット列から1の個数をカウントする関数
@@ -38,16 +39,26 @@ export default function MyPage() {
   const [progressData, setProgressData] = useState<ProgressData>({});
 
   useEffect(() => {
-    // localStorage から progress データを取得
-    const savedProgress = localStorage.getItem('progress');
-    if (savedProgress) {
-      try {
-        const data = JSON.parse(savedProgress);
-        setProgressData(data);
-      } catch (error) {
-        console.error('Failed to parse progress data:', error);
+    // localStorage から section1-7 のデータを読み込む
+    const loadProgress = () => {
+      const data: ProgressData = {};
+      for (let i = 1; i <= 7; i++) {
+        const sectionData = localStorage.getItem(`section${i}`);
+        if (sectionData) {
+          data[`section${i}`] = parseInt(sectionData, 10);
+        }
       }
-    }
+      setProgressData(data);
+    };
+
+    loadProgress();
+
+    // progressUpdated イベントをリッスンして更新
+    window.addEventListener('progressUpdated', loadProgress);
+
+    return () => {
+      window.removeEventListener('progressUpdated', loadProgress);
+    };
   }, []);
 
   const getProgressValue = (sectionId: number): number => {

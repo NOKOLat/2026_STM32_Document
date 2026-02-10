@@ -1,88 +1,64 @@
-import { Navigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import type { ReactNode } from "react";
-import { isTokenValid } from "../context/AuthContext";
+import { Navigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
+  // 検証中フラグと認証結果
+  const [loading, setLoading] = useState(true);
+  const [isAuthed, setIsAuthed] = useState(false);
+  const location = useLocation();
 
-    // 検証中フラグと認証結果
-    const [loading, setLoading] = useState(true);
-    const [isAuthed, setIsAuthed] = useState(false);
-    const location = useLocation();
+  useEffect(() => {
+    let mounted = true;
 
-    function effect() {
+    async function verify() {
+      try {
+        const accessToken = localStorage.getItem('accessToken');
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-        let mounted = true;
-
-        async function verify() {
-
-            try {
-                const token = localStorage.getItem("token");
-
-                // token がなければ未認証
-                if (!token) {
-
-                    if (mounted) {
-
-                        setIsAuthed(false);
-                        setLoading(false);
-                    }
-                    return;
-                }
-
-                // isTokenValid は AuthContext 側で localStorage を参照する実装になっているため
-                // 引数を渡さず呼び出す（Promise を返すので await する）
-                const valid = await isTokenValid();
-
-                if (mounted) {
-
-                    setIsAuthed(Boolean(valid));
-                }
-
-            } 
-            catch (err) {
-
-                console.error("Token verification error:", err);
-                
-                if (mounted) {
-
-                    setIsAuthed(false);
-                }
-            } 
-            finally {
-
-                if (mounted) {
-
-                    setLoading(false);
-                }
-            }
+        // accessToken と isLoggedIn フラグが両方ある場合のみ認証済みとする
+        if (!accessToken || !isLoggedIn) {
+          if (mounted) {
+            setIsAuthed(false);
+            setLoading(false);
+          }
+          return;
         }
 
-        verify();
-
-        function cleanup() {
-
-            mounted = false; // アンマウント後の state 更新を防ぐ
+        // 認証済み
+        if (mounted) {
+          setIsAuthed(true);
         }
+      } catch (err) {
+        console.error('Token verification error:', err);
 
-        return cleanup;
+        if (mounted) {
+          setIsAuthed(false);
+        }
+      } finally {
+        if (mounted) {
+          setLoading(false);
+        }
+      }
     }
 
-    useEffect(effect, [location.pathname]);
+    verify();
 
-    // 検証中はローディング UI を表示（ここはプロジェクトのデザインに合わせて変更）
-    if (loading) return <div>Loading...</div>;
+    return () => {
+      mounted = false; // アンマウント後の state 更新を防ぐ
+    };
+  }, [location.pathname]);
 
-    // 未認証ならリダイレクト
-    if (!isAuthed){
+  // 検証中はローディング UI を表示
+  if (loading) return <div>Loading...</div>;
 
-        // ログインフラグをリセット
-        localStorage.removeItem("isLoggedIn");
+  // 未認証ならリダイレクト
+  if (!isAuthed) {
+    localStorage.removeItem('isLoggedIn');
+    return <Navigate to="/" replace />;
+  }
 
-        return <Navigate to="/" replace />;
-    }
-
-    return <>{children}</>;
+  return <>{children}</>;
 }
 
 export default ProtectedRoute;
