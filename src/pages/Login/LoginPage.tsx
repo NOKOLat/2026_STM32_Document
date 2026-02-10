@@ -49,9 +49,13 @@ export default function LoginPage() {
                 const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
                 if (mounted && isLoggedIn) {
-                    // 進捗を取得してからメインページへ遷移
-                    await GetProgress();
+                    // すぐにメインページへ遷移
                     navigate('/mainpage');
+
+                    // 進捗データは背景で取得（待機しない）
+                    GetProgress().catch((err) => {
+                        console.error('Background progress fetch failed:', err);
+                    });
                 }
             }
             catch (err) {
