@@ -85,6 +85,10 @@ export default function Sidebar() {
         }, 100);
     };
 
+    const handleScrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     const sections = [
         { number: 1, label: 'Step 1' },
         { number: 2, label: 'Step 2' },
@@ -161,6 +165,16 @@ export default function Sidebar() {
                 <div className={styles.navSection}>
                     <h3 className={styles.sectionTitle}>メニュー</h3>
                     <ul className={styles.navList}>
+                        <li>
+                            <button
+                                className={styles.navButton}
+                                onClick={handleScrollToTop}
+                                title="ページトップへ"
+                            >
+                                {isOpen && <span className={styles.label}>トップへ</span>}
+                                <span className={styles.icon}>⬆️</span>
+                            </button>
+                        </li>
                         <li>
                             <button
                                 className={styles.navButton}
