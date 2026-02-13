@@ -68,3 +68,14 @@ Link {
 
     font-size: 24px;
 }
+
+/* AppLayout内のページコンポーネント内のTopbarを非表示 */
+/* すべてのroot（Topbar）を一度非表示にしてから、app-topbar-wrapper内のものを再表示 */
+main div[class*="root"] {
+    display: none !important;
+}
+
+/* app-topbar-wrapper内のTopbarは表示する */
+.app-topbar-wrapper div[class*="root"] {
+    display: block !important;
+}
