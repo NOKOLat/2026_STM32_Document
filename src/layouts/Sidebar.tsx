@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '../context/SidebarContext';
 import { Logout } from '../context/AuthContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import {
   calculateCompletedLessons,
   getTotalLessonCount,
@@ -40,22 +40,19 @@ export default function Sidebar() {
         };
     }, []);
 
-    // 新歓講座（Step 1-3）の進捗
-    const getShinkantosaProgress = (): { completed: number; total: number } => {
+    // 新歓講座（Step 1-3）の進捗（メモ化）
+    const shinkantosaProgress = useMemo(() => {
         const completed = calculateCompletedLessons(progressData, 1, BEGINNER_COURSE_SECTIONS);
         const total = getTotalLessonCount(BEGINNER_COURSE_SECTIONS);
         return { completed, total };
-    };
+    }, [progressData]);
 
-    // 全体の進捗
-    const getTotalProgress = (): { completed: number; total: number } => {
+    // 全体の進捗（メモ化）
+    const totalProgress = useMemo(() => {
         const completed = calculateCompletedLessons(progressData, 1, ACTIVE_SECTIONS);
         const total = getTotalLessonCount(ACTIVE_SECTIONS);
         return { completed, total };
-    };
-
-    const shinkantosaProgress = getShinkantosaProgress();
-    const totalProgress = getTotalProgress();
+    }, [progressData]);
 
     const handleLogout = () => {
         Logout();

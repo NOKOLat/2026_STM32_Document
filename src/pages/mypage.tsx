@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import Topbar from '../layouts/Topbar';
 import Footer from '../layouts/Footer';
 import ProgressBar from '../components/ProgressBar';
@@ -44,23 +44,24 @@ export default function MyPage() {
     };
   }, []);
 
-  const getProgressValue = (sectionId: number): number => {
+  // セクション単位の完了レッスン数を取得（メモ化）
+  const getProgressValue = useCallback((sectionId: number): number => {
     return countCompletedLessons(progressData, sectionId);
-  };
+  }, [progressData]);
 
-  // 全体の進捗を計算
-  const getTotalProgress = (): { current: number; max: number } => {
+  // 全体の進捗を計算（メモ化）
+  const totalProgress = useMemo(() => {
     const current = calculateCompletedLessons(progressData, 1, ACTIVE_SECTIONS);
     const max = getTotalLessonCount(ACTIVE_SECTIONS);
     return { current, max };
-  };
+  }, [progressData]);
 
-  // Step3までの進捗を計算
-  const getStep3Progress = (): { current: number; max: number } => {
+  // Step3までの進捗を計算（メモ化）
+  const step3Progress = useMemo(() => {
     const current = calculateCompletedLessons(progressData, 1, BEGINNER_COURSE_SECTIONS);
     const max = getTotalLessonCount(BEGINNER_COURSE_SECTIONS);
     return { current, max };
-  };
+  }, [progressData]);
 
   return (
     <div>
@@ -74,27 +75,17 @@ export default function MyPage() {
 
         <p>新歓講座としてはStep3までのクリアを目標にしてみよう</p>
 
-        {(() => {
-          const step3Progress = getStep3Progress();
-          return (
-            <ProgressBar
-              current={step3Progress.current}
-              max={step3Progress.max}
-              label="STM32講座進捗（新歓講座）"
-            />
-          );
-        })()}
+        <ProgressBar
+          current={step3Progress.current}
+          max={step3Progress.max}
+          label="STM32講座進捗（新歓講座）"
+        />
 
-        {(() => {
-          const totalProgress = getTotalProgress();
-          return (
-            <ProgressBar
-              current={totalProgress.current}
-              max={totalProgress.max}
-              label="全体進捗"
-            />
-          );
-        })()}
+        <ProgressBar
+          current={totalProgress.current}
+          max={totalProgress.max}
+          label="全体進捗"
+        />
 
         <div className={style.progressGrid}>
           {SECTIONS.slice(0, ACTIVE_SECTIONS).map((section) => (
