@@ -2,6 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '../context/SidebarContext';
 import { Logout } from '../context/AuthContext';
 import { useEffect, useState } from 'react';
+import {
+  calculateCompletedLessons,
+  getTotalLessonCount,
+  BEGINNER_COURSE_SECTIONS,
+  ACTIVE_SECTIONS
+} from '../utils';
 import styles from './Sidebar.module.css';
 
 interface ProgressData {
@@ -33,33 +39,18 @@ export default function Sidebar() {
         };
     }, []);
 
-    const countCompletedLessons = (bitmask: number): number => {
-        let count = 0;
-        while (bitmask > 0) {
-            count += bitmask & 1;
-            bitmask >>= 1;
-        }
-        return count;
-    };
-
     // 新歓講座（Step 1-3）の進捗
     const getShinkantosaProgress = (): { completed: number; total: number } => {
-        let completed = 0;
-        const lessonCounts = [4, 4, 5]; // Step 1, 2, 3のレッスン数
-        for (let i = 1; i <= 3; i++) {
-            completed += countCompletedLessons(progressData[`section${i}`] || 0);
-        }
-        return { completed, total: lessonCounts.reduce((a, b) => a + b, 0) };
+        const completed = calculateCompletedLessons(progressData, 1, BEGINNER_COURSE_SECTIONS);
+        const total = getTotalLessonCount(BEGINNER_COURSE_SECTIONS);
+        return { completed, total };
     };
 
     // 全体の進捗
     const getTotalProgress = (): { completed: number; total: number } => {
-        let completed = 0;
-        const lessonCounts = [4, 4, 5, 3, 7, 8]; // 全Stepのレッスン数
-        for (let i = 1; i <= 6; i++) {
-            completed += countCompletedLessons(progressData[`section${i}`] || 0);
-        }
-        return { completed, total: lessonCounts.reduce((a, b) => a + b, 0) };
+        const completed = calculateCompletedLessons(progressData, 1, ACTIVE_SECTIONS);
+        const total = getTotalLessonCount(ACTIVE_SECTIONS);
+        return { completed, total };
     };
 
     const shinkantosaProgress = getShinkantosaProgress();

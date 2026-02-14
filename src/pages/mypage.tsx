@@ -3,6 +3,14 @@ import Topbar from '../layouts/Topbar';
 import Footer from '../layouts/Footer';
 import ProgressBar from '../components/ProgressBar';
 import ProgressCircle from '../components/ProgressCircle';
+import {
+  SECTIONS,
+  countCompletedLessons,
+  ACTIVE_SECTIONS,
+  calculateCompletedLessons,
+  getTotalLessonCount,
+  BEGINNER_COURSE_SECTIONS
+} from '../utils';
 import style from './mypage.module.css';
 
 interface ProgressData {
@@ -14,25 +22,6 @@ interface ProgressData {
   section6?: number;
   [key: string]: number | undefined;
 }
-
-const SECTION_LENGTHS = [
-  { id: 1, name: 'Section 1', max: 4 },
-  { id: 2, name: 'Section 2', max: 4 },
-  { id: 3, name: 'Section 3', max: 5 },
-  { id: 4, name: 'Section 4', max: 3 },
-  { id: 5, name: 'Section 5', max: 7 },
-  { id: 6, name: 'Section 6', max: 8 },
-];
-
-// ビット列から1の個数をカウントする関数
-const countCompletedLessons = (bitmask: number): number => {
-  let count = 0;
-  while (bitmask > 0) {
-    count += bitmask & 1;
-    bitmask >>= 1;
-  }
-  return count;
-};
 
 export default function MyPage() {
   const [progressData, setProgressData] = useState<ProgressData>({});
@@ -61,36 +50,22 @@ export default function MyPage() {
   }, []);
 
   const getProgressValue = (sectionId: number): number => {
-    const key = `section${sectionId}`;
-    const bitmask = progressData[key] || 0;
-    // ビット列から完了した講座の数をカウント
+    const bitmask = progressData[`section${sectionId}`] || 0;
     return countCompletedLessons(bitmask);
   };
 
   // 全体の進捗を計算
   const getTotalProgress = (): { current: number; max: number } => {
-    let totalCurrent = 0;
-    let totalMax = 0;
-
-    SECTION_LENGTHS.forEach((section) => {
-      totalCurrent += getProgressValue(section.id);
-      totalMax += section.max;
-    });
-
-    return { current: totalCurrent, max: totalMax };
+    const current = calculateCompletedLessons(progressData, 1, ACTIVE_SECTIONS);
+    const max = getTotalLessonCount(ACTIVE_SECTIONS);
+    return { current, max };
   };
 
   // Step3までの進捗を計算
   const getStep3Progress = (): { current: number; max: number } => {
-    let totalCurrent = 0;
-    let totalMax = 0;
-
-    SECTION_LENGTHS.slice(0, 3).forEach((section) => {
-      totalCurrent += getProgressValue(section.id);
-      totalMax += section.max;
-    });
-
-    return { current: totalCurrent, max: totalMax };
+    const current = calculateCompletedLessons(progressData, 1, BEGINNER_COURSE_SECTIONS);
+    const max = getTotalLessonCount(BEGINNER_COURSE_SECTIONS);
+    return { current, max };
   };
 
   return (
@@ -128,12 +103,12 @@ export default function MyPage() {
         })()}
 
         <div className={style.progressGrid}>
-          {SECTION_LENGTHS.map((section) => (
+          {SECTIONS.slice(0, ACTIVE_SECTIONS).map((section) => (
             <ProgressCircle
               key={section.id}
               label={section.name}
               current={getProgressValue(section.id)}
-              max={section.max}
+              max={section.lessonCount}
             />
           ))}
         </div>
