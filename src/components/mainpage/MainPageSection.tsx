@@ -13,6 +13,9 @@ export default function MainPageSection({title, section_number, page_count, chil
 			return;
 		}
 
+		const sectionNum = section_number;
+		const pageCount = page_count;
+
 		function checkCompletion() {
 			try {
 				const raw = localStorage.getItem('progressData');
@@ -25,8 +28,8 @@ export default function MainPageSection({title, section_number, page_count, chil
 
 				// このセクションの全レッスンIDを生成
 				const requiredLessonIds: string[] = [];
-				for (let page = 1; page <= page_count; page++) {
-					const lesson_id = getLessonId(section_number, page);
+				for (let page = 1; page <= pageCount; page++) {
+					const lesson_id = getLessonId(sectionNum, page);
 					if (lesson_id) {
 						requiredLessonIds.push(lesson_id);
 					}
