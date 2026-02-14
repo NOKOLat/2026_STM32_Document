@@ -180,8 +180,8 @@
 
 /* モバイル対応 */
 @media (max-width: 768px) {
-    .sidebar {
-        width: 60px !important;
+    .sidebar.closed {
+        width: 60px;
     }
 
     .sidebar.open {
