@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -102,7 +102,7 @@ enum class GyroODR : uint8_t {
 
                 <p>enum classの値をつかってwrapper.cppをより見やすくできたらボタンを押してね</p>
 
-            <ComplateButton section={6} page_number={6} />
+            <CompleteButton section={6} page_number={6} />
             <br />
             <FooterPageRoute prev="/Step6_05_Improve_Library_2" next="/Step6_07_switch_i2c_spi" />
             <Footer />

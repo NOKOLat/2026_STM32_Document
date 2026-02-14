@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -121,7 +121,7 @@ export default function Step5_04_AngleFromGyro() {
 
                 <p>思いっきりセンサーを回すと250に近い値が、ゆっくり回すと2桁くらいの値が出るかも</p>
 
-            <ComplateButton section={5} page_number={4} />
+            <CompleteButton section={5} page_number={4} />
             <br />
             <FooterPageRoute prev="/Step5_03_AngleFromAccel" next="/Step5_05_AngleFromGyro" />
             <Footer />

@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -168,7 +168,7 @@ void SBUS_decode(uint8_t* raw_data, uint16_t* channel_data){
 
                 <p>LEDを無事に操作できるようになったらボタンを教えてね</p>
 
-            <ComplateButton section={3} page_number={2} />
+            <CompleteButton section={3} page_number={2} />
             <br />
             <FooterPageRoute prev="/Step3_01_SignalAndAutodrop" next="/Step3_03_ServoMotor" />
                 <Footer />

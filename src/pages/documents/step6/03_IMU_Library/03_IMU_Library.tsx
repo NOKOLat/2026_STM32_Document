@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -137,7 +137,7 @@ void loop(){
 
                 <p>今回クラスを書いたことで、次回の自分やほかのセンサーを使いたい人が楽をできるようになった</p>
 
-            <ComplateButton section={6} page_number={3} />
+            <CompleteButton section={6} page_number={3} />
             <br />
             <FooterPageRoute prev="/Step6_02_AboutClass" next="/Step6_04_Improve_Library_1" />
             <Footer />

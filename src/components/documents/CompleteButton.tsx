@@ -1,8 +1,8 @@
-// src/components/documents/ComplateButton.tsx
+// src/components/documents/CompleteButton.tsx
 // 各ページの終了ボタンのコンポーネント
 // 進捗更新API をここで実装
 
-import styles from './ComplateButton.module.css';
+import styles from './CompleteButton.module.css';
 import { UpDateProgress, GetProgress, isLessonCompleted } from '../../context/ManageProgress';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

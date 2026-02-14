@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -271,7 +271,7 @@ void loop(){
             
 
 
-            <ComplateButton section={3} page_number={3} />
+            <CompleteButton section={3} page_number={3} />
             <br />
             <FooterPageRoute prev="/Step3_02_SBUSRead" next="/Step3_04_Infrared" />
             <Footer />

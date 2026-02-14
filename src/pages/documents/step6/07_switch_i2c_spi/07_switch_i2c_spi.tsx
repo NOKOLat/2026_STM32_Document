@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -118,7 +118,7 @@ export default function Step6_07_switch_i2c_spi() {
 
                 <p>このようにしておくことで、ユーザーがとっても楽になるので頑張って実装しよう</p>
 
-            <ComplateButton section={6} page_number={7} />
+            <CompleteButton section={6} page_number={7} />
             <br />
             <FooterPageRoute prev="/Step6_06_EnumClass" next="/Step6_08_BM1422AGMV" />
             <Footer />

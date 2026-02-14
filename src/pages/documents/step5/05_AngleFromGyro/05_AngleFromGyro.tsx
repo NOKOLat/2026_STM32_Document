@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -78,7 +78,7 @@ angle[2] += gyro_z * dt; // z軸の角度を更新
                 <p>思いっきり振り回したり、何回も回すとめちゃくちゃな値になってしまうが、（次の講座で説明）</p>
                 <p>ゆっくり回してそれなりに正しい値が出たら成功</p>
 
-            <ComplateButton section={5} page_number={5} />
+            <CompleteButton section={5} page_number={5} />
             <br />
             <FooterPageRoute prev="/Step5_04_AngleFromGyro" next="/Step5_06_Complementary" />
             <Footer />

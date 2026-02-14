@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -91,7 +91,7 @@ angle[2] = alpha * gyro_angle[2] + (1 - alpha) * accel_angle[2];
 
                 <p>z軸方向が正確に戻らないのは6軸imuの限界の部分があるので、あんまり気にしないようにしよう</p>
                 
-            <ComplateButton section={5} page_number={6} />
+            <CompleteButton section={5} page_number={6} />
             <br />
             <FooterPageRoute prev="/Step5_05_AngleFromGyro" next="/Step5_07_Madgwick" />
             <Footer />

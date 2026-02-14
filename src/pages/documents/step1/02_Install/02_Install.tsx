@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -82,7 +82,7 @@ export default function Step1_Install() {
 
                 <p>それでは、進捗報告ボタンを押して次のステップに進みましょう</p>
 
-                <ComplateButton section={1} page_number={2} />
+                <CompleteButton section={1} page_number={2} />
 
             <br />
 

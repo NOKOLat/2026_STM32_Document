@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Topbar from './Topbar';
 
-const pageTitle: { [key: string]: string } = {
+const pageTitle: Record<string, string> = {
     '/mainpage': 'メインページ',
     '/mypage': 'マイページ',
     '/report-bug': 'バグ報告',

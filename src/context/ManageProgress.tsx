@@ -5,7 +5,6 @@
 
 import { RefreshToken } from './AuthContext';
 import { getLessonId } from '../utils/progressUtils';
-import { SECTIONS } from '../utils/constants';
 
 const COURSE_API_URL = 'https://stm32document.s241507v.workers.dev';
 
@@ -62,65 +61,6 @@ export async function UpDateProgress(
     return false;
   }
 }
-
-/**
- * 旧形式（section1-6のビットマスク）から新形式への移行
- * 既にprogressDataが存在する場合は何もしない
- */
-function migrateLegacyProgressData(): void {
-  const existingData = localStorage.getItem('progressData');
-  if (existingData) {
-    console.log('Migration skipped: progressData already exists');
-    return;
-  }
-
-  console.log('Starting legacy data migration...');
-
-  const legacyData: Array<{
-    lesson_id: string;
-    is_completed: number;
-    completed_at: null;
-  }> = [];
-
-  // section1-6のビットマスクを読み取り
-  for (let section = 1; section <= 6; section++) {
-    const key = `section${section}`;
-    const raw = localStorage.getItem(key);
-
-    if (!raw) continue;
-
-    const bitmask = parseInt(raw, 10);
-    if (isNaN(bitmask)) continue;
-
-    // ビットマスクを展開
-    const sectionConfig = SECTIONS[section - 1];
-    for (let page = 1; page <= sectionConfig.lessonCount; page++) {
-      const isCompleted = (bitmask >> (page - 1)) & 1;
-      if (isCompleted) {
-        const lesson_id = getLessonId(section, page);
-        if (lesson_id) {
-          legacyData.push({
-            lesson_id,
-            is_completed: 1,
-            completed_at: null
-          });
-        }
-      }
-    }
-  }
-
-  if (legacyData.length > 0) {
-    localStorage.setItem('progressData', JSON.stringify(legacyData));
-    console.log(`Migrated ${legacyData.length} completed lessons`);
-
-    // 旧形式を削除
-    for (let section = 1; section <= 7; section++) {
-      localStorage.removeItem(`section${section}`);
-    }
-    console.log('Legacy section1-7 keys removed');
-  }
-}
-
 // 進捗を取得
 export async function GetProgress(): Promise<
   Array<{
@@ -129,9 +69,6 @@ export async function GetProgress(): Promise<
     completed_at: string | null;
   }> | null
 > {
-  // 旧形式からの移行を実行
-  migrateLegacyProgressData();
-
   const accessToken = localStorage.getItem('accessToken');
   const userId = localStorage.getItem('userId');
 

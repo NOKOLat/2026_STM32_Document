@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -205,7 +205,7 @@ HAL_Delay(100);
 
                 <p>次回はこれを重力加速度gに変換して、物理でやった分力の計算と逆の操作で角度を求めてみよう</p>
 
-            <ComplateButton section={5} page_number={1} />
+            <CompleteButton section={5} page_number={1} />
             <br />
             <FooterPageRoute prev="/Step4_03_ToF" next="/Step5_02_AngleFromAccel" />
             <Footer />
