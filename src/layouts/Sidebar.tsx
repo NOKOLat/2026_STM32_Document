@@ -127,6 +127,9 @@ export default function Sidebar() {
                                     style={{ width: `${(shinkantosaProgress.completed / shinkantosaProgress.total) * 100}%` }}
                                 ></div>
                             </div>
+                            <div className={styles.progressPercentage}>
+                                {Math.round((shinkantosaProgress.completed / shinkantosaProgress.total) * 100)}%
+                            </div>
 
                             <div className={styles.progressItem}>
                                 <span className={styles.progressItemLabel}>全体</span>
@@ -139,6 +142,9 @@ export default function Sidebar() {
                                     className={styles.progressBarFill}
                                     style={{ width: `${(totalProgress.completed / totalProgress.total) * 100}%` }}
                                 ></div>
+                            </div>
+                            <div className={styles.progressPercentage}>
+                                {Math.round((totalProgress.completed / totalProgress.total) * 100)}%
                             </div>
                         </>
                     )}

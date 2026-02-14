@@ -17,4 +17,5 @@
     margin-left: 85px;
     transition: margin-left 0.3s ease;
     overflow-x: auto;
+    overflow-y: auto;
 }
