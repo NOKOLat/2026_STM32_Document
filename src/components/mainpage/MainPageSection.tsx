@@ -1,44 +1,65 @@
 import { useEffect, useState } from 'react';
+import { getLessonId } from '../../utils/progressUtils';
+import type { ProgressItem } from '../../types/progress';
 import style from '../mainpage/MainPageSection.module.css';
 
 export default function MainPageSection({title, section_number, page_count, children}: {title: string, section_number?: number, page_count?: number, children?: React.ReactNode}) {
 	const [isComplete, setIsComplete] = useState(false);
 
 	useEffect(function effect() {
-
 		// section_number と page_count が両方与えられているときのみ進捗判定を行う
 		if (typeof section_number !== 'number' || typeof page_count !== 'number') {
-
 			setIsComplete(false);
 			return;
 		}
 
-		var complete_value = 0;
-		if (page_count > 0) {
+		function checkCompletion() {
+			try {
+				if (typeof section_number !== 'number' || typeof page_count !== 'number') {
+					setIsComplete(false);
+					return;
+				}
 
-			complete_value = Math.pow(2, page_count) - 1;
-		} 
-		else {
+				const raw = localStorage.getItem('progressData');
+				if (!raw) {
+					setIsComplete(false);
+					return;
+				}
 
-			complete_value = 0;
-		}
+				const progressData: ProgressItem[] = JSON.parse(raw);
 
-		function updateFromStorageValue(raw: string | null) {
+				// このセクションの全レッスンIDを生成
+				const requiredLessonIds: string[] = [];
+				for (let page = 1; page <= page_count; page++) {
+					const lesson_id = getLessonId(section_number, page);
+					if (lesson_id) {
+						requiredLessonIds.push(lesson_id);
+					}
+				}
 
-			var val = 0;
-			if (raw) {
+				// 全レッスンが完了しているかチェック
+				const allCompleted = requiredLessonIds.every(lesson_id => {
+					const lesson = progressData.find(item => item.lesson_id === lesson_id);
+					return lesson?.is_completed === 1;
+				});
 
-				val = parseInt(raw, 10);
-			} 
-			else {
-
-				val = 0;
+				setIsComplete(allCompleted);
+			} catch (e) {
+				console.error('Error checking section completion:', e);
+				setIsComplete(false);
 			}
-			setIsComplete(val === complete_value);
 		}
 
 		// 初回チェック
-		updateFromStorageValue(localStorage.getItem('section' + section_number));
+		checkCompletion();
+
+		// progressUpdated イベントをリッスン
+		const handler = () => checkCompletion();
+		window.addEventListener('progressUpdated', handler);
+
+		return () => {
+			window.removeEventListener('progressUpdated', handler);
+		};
 
 	}, [section_number, page_count]);
 
@@ -47,11 +68,9 @@ export default function MainPageSection({title, section_number, page_count, chil
 	// 完了しているかどうかで変える
 	var classes = style.sectionblock;
 	if (isComplete) {
-
 		classes = classes + ' ' + style.sectionActive;
-	} 
+	}
 	else {
-
 		classes = classes + '';
 	}
 

@@ -5,38 +5,33 @@ import ProgressBar from '../components/ProgressBar';
 import ProgressCircle from '../components/ProgressCircle';
 import {
   SECTIONS,
-  countCompletedLessons,
   ACTIVE_SECTIONS,
-  calculateCompletedLessons,
   getTotalLessonCount,
-  BEGINNER_COURSE_SECTIONS
+  BEGINNER_COURSE_SECTIONS,
+  countCompletedLessons,
+  calculateCompletedLessons
 } from '../utils';
+import type { ProgressItem } from '../types/progress';
 import style from './mypage.module.css';
 
-interface ProgressData {
-  section1?: number;
-  section2?: number;
-  section3?: number;
-  section4?: number;
-  section5?: number;
-  section6?: number;
-  [key: string]: number | undefined;
-}
-
 export default function MyPage() {
-  const [progressData, setProgressData] = useState<ProgressData>({});
+  const [progressData, setProgressData] = useState<ProgressItem[]>([]);
 
   useEffect(() => {
-    // localStorage から section1-6 のデータを読み込む
+    // localStorage から progressData を読み込む
     const loadProgress = () => {
-      const data: ProgressData = {};
-      for (let i = 1; i <= 6; i++) {
-        const sectionData = localStorage.getItem(`section${i}`);
-        if (sectionData) {
-          data[`section${i}`] = parseInt(sectionData, 10);
+      try {
+        const raw = localStorage.getItem('progressData');
+        if (raw) {
+          const data: ProgressItem[] = JSON.parse(raw);
+          setProgressData(data);
+        } else {
+          setProgressData([]);
         }
+      } catch (e) {
+        console.error('Failed to load progress data:', e);
+        setProgressData([]);
       }
-      setProgressData(data);
     };
 
     loadProgress();
@@ -50,8 +45,7 @@ export default function MyPage() {
   }, []);
 
   const getProgressValue = (sectionId: number): number => {
-    const bitmask = progressData[`section${sectionId}`] || 0;
-    return countCompletedLessons(bitmask);
+    return countCompletedLessons(progressData, sectionId);
   };
 
   // 全体の進捗を計算
@@ -71,7 +65,7 @@ export default function MyPage() {
   return (
     <div>
       <Topbar pageTitle='マイページ' />
-      
+
       <div className={style.container}>
 
         <h1 className={style.title}>マイページ</h1>

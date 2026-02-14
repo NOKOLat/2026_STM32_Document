@@ -8,27 +8,28 @@ import {
   BEGINNER_COURSE_SECTIONS,
   ACTIVE_SECTIONS
 } from '../utils';
+import type { ProgressItem } from '../types/progress';
 import styles from './Sidebar.module.css';
-
-interface ProgressData {
-    [key: string]: number | undefined;
-}
 
 export default function Sidebar() {
     const { isOpen, toggleSidebar } = useSidebar();
     const navigate = useNavigate();
-    const [progressData, setProgressData] = useState<ProgressData>({});
+    const [progressData, setProgressData] = useState<ProgressItem[]>([]);
 
     useEffect(() => {
         const loadProgress = () => {
-            const data: ProgressData = {};
-            for (let i = 1; i <= 6; i++) {
-                const sectionData = localStorage.getItem(`section${i}`);
-                if (sectionData) {
-                    data[`section${i}`] = parseInt(sectionData, 10);
+            try {
+                const raw = localStorage.getItem('progressData');
+                if (raw) {
+                    const data: ProgressItem[] = JSON.parse(raw);
+                    setProgressData(data);
+                } else {
+                    setProgressData([]);
                 }
+            } catch (e) {
+                console.error('Failed to load progress data:', e);
+                setProgressData([]);
             }
-            setProgressData(data);
         };
 
         loadProgress();
