@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -93,7 +93,7 @@ export default function Step3_05_AutodropDesign() {
 
                 <p>すべての条件を達成したらボタンを押してね</p>
 
-            <ComplateButton section={3} page_number={5} />
+            <CompleteButton section={3} page_number={5} />
             <br />
             <FooterPageRoute prev="/Step3_04_Infrared" next="/Step4_01_SensorCommunication" />
             <Footer />

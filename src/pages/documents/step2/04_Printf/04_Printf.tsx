@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -246,7 +246,7 @@ void loop(){
                 <p>無事に値が出力されたら完了ボタンを押してね</p>
 
 
-            <ComplateButton section={2} page_number={4} />
+            <CompleteButton section={2} page_number={4} />
 
             <br />
 

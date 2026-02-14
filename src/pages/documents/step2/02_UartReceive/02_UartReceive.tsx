@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -159,7 +159,7 @@ void loop(){
                 <p>5文字送った直後に同じ文字が返ってきたら成功</p>
 
 
-            <ComplateButton section={2} page_number={2} />
+            <CompleteButton section={2} page_number={2} />
 
             <br />
 

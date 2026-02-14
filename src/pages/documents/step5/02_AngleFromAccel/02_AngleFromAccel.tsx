@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -97,7 +97,7 @@ float angle_y = atan2f(-accel_x, sqrtf(accel_y * accel_y + accel_z * accel_z)) *
 
                 <p>次回は補足説明と簡単なキャリブレーションを実装してさらに精度をあげてみよう</p>
 
-            <ComplateButton section={5} page_number={2} />
+            <CompleteButton section={5} page_number={2} />
             <br />
             <FooterPageRoute prev="/Step5_01_GetAccel" next="/Step5_03_AngleFromAccel" />
             <Footer />

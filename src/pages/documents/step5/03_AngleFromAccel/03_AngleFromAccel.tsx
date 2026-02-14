@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -116,7 +116,7 @@ for (uint16_t i = 0; i < 1000; i++) {
 
                 <p>完了ボタンを押して次のステップに進もう</p>
 
-            <ComplateButton section={5} page_number={3} />
+            <CompleteButton section={5} page_number={3} />
             <br />
             <FooterPageRoute prev="/Step5_02_AngleFromAccel" next="/Step5_04_AngleFromGyro" />
             <Footer />

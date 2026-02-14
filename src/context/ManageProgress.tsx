@@ -1,128 +1,130 @@
+/* eslint-disable react-refresh/only-export-components */
 // ManageProgress.tsx
-// 進捗の取得・更新を行うユーティリティ
+// 進捗管理の実装
+// コース・進捗エンドポイント: https://stm32document.s241507v.workers.dev/
 
-// 注意: API_URL は AuthContext と同じエンドポイントを使用します
-const API_URL = "https://2026stm32document.aoi256jp.workers.dev/";
+import { RefreshToken } from './AuthContext';
+import { getLessonId } from '../utils/progressUtils';
 
-export async function UpDateProgress(section: number, page_number: number) {
+const COURSE_API_URL = 'https://stm32document.s241507v.workers.dev';
 
-    // token, username は localStorage から取得する
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
+// 進捗を更新
+export async function UpDateProgress(
+  section: number,
+  page_number: number
+): Promise<boolean> {
+  const accessToken = localStorage.getItem('accessToken');
 
-    if (!token || !username) {
-        console.warn("UpDateProgress: token or username not found in localStorage");
-        return null;
+  if (!accessToken) {
+    console.warn('No access token');
+    return false;
+  }
+
+  // lesson_id を取得
+  const lesson_id = getLessonId(section, page_number);
+
+  if (!lesson_id) {
+    console.error(
+      `Invalid lesson: section=${section}, page=${page_number}`
+    );
+    return false;
+  }
+
+  try {
+    const response = await fetch(`${COURSE_API_URL}/progress/complete`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`
+      },
+      body: JSON.stringify({ lesson_id })
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        // トークン期限切れ → 更新を試みる
+        const refreshed = await RefreshToken();
+        if (refreshed) {
+          // 再試行
+          return UpDateProgress(section, page_number);
+        }
+      }
+      console.warn('Progress update failed:', response.status);
+      return false;
     }
 
-    try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action: "update_progress", username, token, section, page_number }),
-        });
+    const data = await response.json();
+    console.log('Progress updated:', data);
+    return true;
+  } catch (error) {
+    console.error('UpDateProgress failed:', error);
+    return false;
+  }
+}
+// 進捗を取得
+export async function GetProgress(): Promise<
+  Array<{
+    lesson_id: string;
+    is_completed: number;
+    completed_at: string | null;
+  }> | null
+> {
+  const accessToken = localStorage.getItem('accessToken');
+  const userId = localStorage.getItem('userId');
 
-        if (!response.ok) {
-            console.warn("UpDateProgress: server responded with", response.status);
-            // サーバー更新に失敗した場合はローカルに保存しておく
-            const local = { section, page_number };
-            localStorage.setItem("progress_local", JSON.stringify(local));
-            return null;
+  if (!accessToken || !userId) {
+    console.warn('No access token or userId');
+    return null;
+  }
+
+  try {
+    const response = await fetch(`${COURSE_API_URL}/progress/${userId}`, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${accessToken}` }
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        const refreshed = await RefreshToken();
+        if (refreshed) {
+          return GetProgress(); // 再試行
         }
-
-        const data = await response.json();
-
-        // サーバーが新しい token を返す場合は更新する
-        if (data && data.token) {
-            localStorage.setItem("token", data.token);
-        }
-
-        // サーバーが更新済みの進捗データを返すなら localStorage に格納して返す
-        if (data && (data.result === "true" || data.result === true) && data.data) {
-            // レスポンス data の各キーを同名の localStorage キーに保存
-            try {
-                Object.entries(data.data).forEach(([k, v]) => {
-                    // 値は数値が想定されるので文字列に変換して保存
-                    localStorage.setItem(k, String(v));
-                });
-            } catch (e) {
-                console.error("Failed to save individual progress keys:", e);
-            }
-            
-            // 互換性のため、まとめた progress も保存しておく
-            localStorage.setItem("progress", JSON.stringify(data.data));
-            return data.data;
-        }
-
-        const local = { section, page_number };
-        return local;
-    } 
-    catch (error) {
-        
-        console.error("UpDateProgress failed:", error);
-        return null;
+      }
+      console.warn('GetProgress failed:', response.status);
+      return null;
     }
+
+    const data = await response.json();
+
+    // localStorage に進捗データを保存（新形式のみ）
+    localStorage.setItem('progressData', JSON.stringify(data));
+
+    return data;
+  } catch (error) {
+    console.error('GetProgress failed:', error);
+    return null;
+  }
 }
 
-// 進捗の取得
-export async function GetProgress() {
+// ユーティリティ: section + page_number からクリア状態を判定
+export function isLessonCompleted(
+  section: number,
+  page_number: number
+): boolean {
+  const lesson_id = getLessonId(section, page_number);
+  if (!lesson_id) return false;
 
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
+  const progressData = localStorage.getItem('progressData');
+  if (!progressData) return false;
 
-    if (!token || !username) {
-        console.warn("GetProgress: token or username not found in localStorage");
-        return null;
-    }
-
-    try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action: "get_progress", username, token }),
-        });
-
-        if (!response.ok) {
-            console.warn("GetProgress: server responded with", response.status);
-            return null;
-        }
-
-        const data = await response.json();
-
-        if (data && (data.result === "true" || data.result === true)) {
-            // サーバーが新しい token を返す場合は更新
-            if (data.token) {
-                localStorage.setItem("token", data.token);
-            }
-
-            // 取得データは data.data に入っている想定
-            if (data.data) {
-                // 個別キーを localStorage に保存
-                try {
-
-                    Object.entries(data.data).forEach(([k, v]) => {
-                        localStorage.setItem(k, String(v));
-                    });
-                } 
-                catch (e) {
-
-                    console.error("Failed to save individual progress keys:", e);
-                }
-                // username と token は念のため保存
-                localStorage.setItem("username", username);
-
-                // 互換性のためまとめた progress も保存
-                localStorage.setItem("progress", JSON.stringify(data.data));
-                return data.data;
-            }
-        }
-
-        console.warn("GetProgress: unexpected response", data);
-        return null;
-    } 
-    catch (error) {
-        console.error("GetProgress failed:", error);
-        return null;
-    }
-
+  try {
+    const data = JSON.parse(progressData);
+    const lesson = data.find(
+      (item: { lesson_id: string; is_completed: number }) =>
+        item.lesson_id === lesson_id
+    );
+    return lesson?.is_completed === 1;
+  } catch {
+    return false;
+  }
 }

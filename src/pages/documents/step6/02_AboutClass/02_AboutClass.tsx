@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -167,7 +167,7 @@ imu1.getAccelData(accel); `}></CppCodeRender>
 
                 <p>クラスを使うことで、複雑な処理を隠蔽して簡単に扱うことができるので少しずつ使いこなせるようになろう</p>
 
-            <ComplateButton section={6} page_number={2} />
+            <CompleteButton section={6} page_number={2} />
             <br />
             <FooterPageRoute prev="/Step6_01_AboutStruct" next="/Step6_03_IMU_Library" />
             <Footer />

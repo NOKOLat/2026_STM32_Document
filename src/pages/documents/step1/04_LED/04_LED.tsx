@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -190,7 +190,7 @@ void loop(){
                 <p>今回は点滅の速度が変わったことを確認しよう</p>
 
 
-                <ComplateButton section={1} page_number={4}/>
+                <CompleteButton section={1} page_number={4}/>
 
                 <br />
 

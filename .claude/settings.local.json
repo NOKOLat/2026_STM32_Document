@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 5 npm run dev)",
+      "Bash(find:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\n進捗管理のユーティリティ関数を抽出\n\n- src/utils/constants.ts: セクション設定を一元管理\n- src/utils/progressUtils.ts: ビットマスク処理とlesson_id変換ロジック\n- src/utils/index.ts: バレルエクスポート\n\nハードコードされた50行のlesson_idマッピングを計算式に置き換え、\n重複していたcountCompletedLessons関数を共通化。\n保守性と可読性を大幅に向上。\n\nCo-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)",
+      "Bash(git mv:*)"
+    ]
+  }
+}

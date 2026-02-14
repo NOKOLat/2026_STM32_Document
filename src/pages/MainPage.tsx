@@ -12,7 +12,8 @@ export default function MainPage() {
             <section>
 
                 <Topbar pageTitle='メインページ' />
-                
+
+                <div id="section1">
                 <MainPageSection title="Step 1 開発環境を用意しよう" section_number={1} page_count={4}>
 
                     <p>ファイルの自動生成や書き込みを行ってくれるSTM32CubeIDEと実行中に情報を受け取るためのTeraTermというアプリをインストールします</p>
@@ -23,8 +24,9 @@ export default function MainPage() {
                     <PageLinkButton section={1} number={4} link="/Step1_04_led" title="LEDをつけてみよう" />
 
                 </MainPageSection>
-                
+                </div>
 
+                <div id="section2">
                 <MainPageSection title="Step 2 PCと通信してみよう" section_number={2} page_count={4}>
 
                     <p>Processingなどと違って、PCとは別のところで実行するため結果を受け取るためにはPCとの通信が必要になります</p>
@@ -37,8 +39,9 @@ export default function MainPage() {
                     <PageLinkButton section={2} number={4} link="/Step2_04_Printf" title="便利なprintfを使いこなそう" />
 
                 </MainPageSection>
-                
+                </div>
 
+                <div id="section3">
                 <MainPageSection title="Step 3 自動投下装置を作ってみよう" section_number={3} page_count={5}>
 
                     <p>実際に大会で重要になる"自動投下装置"を作成してみよう</p>
@@ -50,7 +53,9 @@ export default function MainPage() {
                     <PageLinkButton section={3} number={5} link="/Step3_05_AutodropDesign" title="自動投下装置の設計" />
 
                 </MainPageSection>
+                </div>
 
+                <div id="section4">
                 <MainPageSection title="Step 4 センサーを使って距離を測ってみよう" section_number={4} page_count={3}>
 
                     <p>制御をするうえで、目標や床との距離を測ることはとても大切</p>
@@ -60,7 +65,9 @@ export default function MainPage() {
                     <PageLinkButton section={4} number={3} link="/Step4_03_ToF" title="ToFセンサーで距離を測ってみよう" />
 
                 </MainPageSection>
+                </div>
 
+                <div id="section5">
                 <MainPageSection title="Step 5 センサーを使って角度を測ってみよう" section_number={5} page_count={7}>
 
                     <p>機体が傾きすぎると墜落することになるので、水平に保つために角度を知る必要がある</p>
@@ -74,7 +81,9 @@ export default function MainPage() {
                     <PageLinkButton section={5} number={7} link="/Step5_07_Madgwick" title="Madgwickフィルター" />
 
                 </MainPageSection>
+                </div>
 
+                <div id="section6">
                 <MainPageSection title="Step 6 センサーのライブラリを自作してみよう" section_number={6} page_count={8}>
 
                     <PageLinkButton section={6} number={1} link="/Step6_01_AboutStruct" title="構造体でデータをまとめてみよう" />
@@ -87,7 +96,8 @@ export default function MainPage() {
                     <PageLinkButton section={6} number={8} link="/Step6_08_BM1422AGMV" title="BM1422AGMVのライブラリを作ろう" />
 
                 </MainPageSection>
-                
+                </div>
+
                 <Footer />
 
             </section>

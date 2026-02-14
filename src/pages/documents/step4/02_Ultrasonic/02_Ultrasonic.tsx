@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -292,7 +292,7 @@ float v = (331.3f + 0.606f * temp_c) / 10000;
 
             <p>無事に距離が測れたらボタンを押してね</p>
 
-            <ComplateButton section={4} page_number={2} />
+            <CompleteButton section={4} page_number={2} />
 
             <br />
 

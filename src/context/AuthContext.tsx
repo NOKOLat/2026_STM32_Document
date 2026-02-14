@@ -1,168 +1,160 @@
-
+/* eslint-disable react-refresh/only-export-components */
 // AuthContext.tsx
-// 認証機能の実装
+// JWT認証機能の実装
+// 認証エンドポイント: https://nokolatauth.s241507v.workers.dev/
 
-export async function Login({ username, password }: { username: string; password: string }){
+const AUTH_API_URL = "https://nokolatauth.s241507v.workers.dev";
 
-    // バックエンドへの問い合わせ
-    try {
-        const response = await fetch("https://2026stm32document.aoi256jp.workers.dev/", {
+// JWT トークンをデコードする関数
+function decodeJWT(token: string): {
+  user_id: string | number;
+  username: string;
+  iat: number;
+  exp: number;
+} {
+  const parts = token.split('.');
 
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json", // JSONを送るとき
-            },
-            body: JSON.stringify({
-                action: "login",
-                username: username,
-                password: password,
-            }),
-        });
+  if (parts.length !== 3) {
+    throw new Error('Invalid token format');
+  }
 
-        // レスポンスが返ってきた時の処理
-        if (response.ok) {
+  const payload = JSON.parse(
+    atob(parts[1].replace(/-/g, '+').replace(/_/g, '/'))
+  );
 
-            // レスポンスからデータを取得
-            const data = await response.json();
-
-            // resultが"true"なら成功
-            if(data.result === "true") {
-
-                // 返送されてきたトークンを保存
-                localStorage.setItem("token", data.token);
-
-                // ログインフラグを立てる
-                localStorage.setItem("isLoggedIn", "true");
-            
-                return true;
-            }
-
-            // resultが"false"なら失敗
-            else {
-
-                localStorage.removeItem("token");
-                console.error("Login failed:", data.message);
-                return false;
-            }
-        }
-    } 
-
-    // ネットワークエラーなどで通信に失敗した場合
-    catch (error) {
-        
-        console.error("Login failed:", error);
-    }
-
-    return false;
+  return payload;
 }
 
-export async function RegisterAccount({ username, password }: { username: string; password: string }){
+// ユーザーログイン
+export async function Login({
+  username,
+  password
+}: {
+  username: string;
+  password: string;
+}): Promise<boolean> {
+  try {
+    const response = await fetch(`${AUTH_API_URL}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
+    });
 
-
-    // バックエンドへの問い合わせ
-    try {
-        const response = await fetch("https://2026stm32document.aoi256jp.workers.dev/", {
-
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json", 
-            },
-            // jsonファイルの中身
-            body: JSON.stringify({
-                action: "register",
-                username: username,
-                password: password,
-            }),
-        });
-
-        // レスポンスが返ってきた時の処理
-        if (response.ok) {
-
-            // レスポンスからデータを取得
-            const data = await response.json();
-
-            // resultが"true"なら成功
-            if(data.result === "true") {
-
-                localStorage.setItem("token", data.token);
-
-                return true;
-            }
-
-            // resultが"false"なら失敗
-            else {
-
-                localStorage.removeItem("isLoggedIn");
-                console.error("Registration failed:", data.message);
-                return false;
-            }
-        }
+    if (!response.ok) {
+      console.error('Login failed:', response.status);
+      return false;
     }
 
-    // ネットワークエラーなどで通信に失敗した場合
-    catch (error) {
+    const data = await response.json();
 
-        console.error("Registration failed:", error);
-    }
+    // トークンをデコードして user_id を取得
+    const payload = decodeJWT(data.access_token);
 
-    return false;
-}
+    // localStorage に保存
+    localStorage.setItem('accessToken', data.access_token);
+    localStorage.setItem('refreshToken', data.refresh_token);
+    localStorage.setItem('userId', String(payload.user_id));
+    localStorage.setItem('username', payload.username);
+    localStorage.setItem('isLoggedIn', 'true');
 
-// トークンの有効期限を強制的に終了させる
-export function Logout() {
-
-    // ログアウト処理
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("token");
-    window.location.reload();
     return true;
+  } catch (error) {
+    console.error('Login failed:', error);
+    return false;
+  }
 }
 
-// トークンの有効性チェック(true:有効, false:無効)
-export async function isTokenValid() {
+// ユーザー登録
+export async function RegisterAccount({
+  username,
+  password,
+  discord_id
+}: {
+  username: string;
+  password: string;
+  discord_id: string;
+}): Promise<boolean> {
+  try {
+    const response = await fetch(`${AUTH_API_URL}/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username,
+        password,
+        discord_id
+      })
+    });
 
-
-    // バックエンドへの問い合わせ
-    try {
-        const response = await fetch("https://2026stm32document.aoi256jp.workers.dev/", {
-
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json", 
-            },
-            // jsonファイルの中身
-            body: JSON.stringify({
-                action: "verify_token",
-                token: localStorage.getItem("token"),
-            }),
-        });
-
-        // レスポンスが返ってきた時の処理
-        if (!response.ok) {
-            // サーバが 500 等のエラーを返した場合
-            console.error("verify_token request failed with status:", response.status);
-            return false;
-        }
-
-        // レスポンスからデータを取得
-        const data = await response.json();
-
-        // resultが"true"なら成功
-        if (data.result === "true") {
-
-            return true;
-        }
-
-        // resultが"false"なら失敗
-        alert("セッションの有効期限が切れました。再度ログインしてください。");
-        return false;
+    if (response.status === 201) {
+      return true;
+    } else if (response.status === 409) {
+      console.error('User or Discord ID already exists');
+      return false;
+    } else {
+      const error = await response.json();
+      console.error('Registration failed:', error);
+      return false;
     }
-
-    // ネットワークエラーなどで通信に失敗した場合
-    catch (error) {
-        console.error("Token verification failed:", error);
-        return false;
-    }
-
+  } catch (error) {
+    console.error('Registration failed:', error);
     return false;
+  }
+}
+
+// トークン更新
+export async function RefreshToken(): Promise<boolean> {
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  if (!refreshToken) {
+    console.warn('No refresh token available');
+    return false;
+  }
+
+  try {
+    const response = await fetch(`${AUTH_API_URL}/refresh`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: refreshToken })
+    });
+
+    if (!response.ok) {
+      // refresh_token も期限切れ → ログイン画面へ
+      if (response.status === 401) {
+        console.warn('Refresh token expired. Redirecting to login.');
+        localStorage.clear();
+        window.location.href = '/';
+      }
+      return false;
+    }
+
+    const data = await response.json();
+    localStorage.setItem('accessToken', data.access_token);
+    return true;
+  } catch (error) {
+    console.error('Token refresh failed:', error);
+    return false;
+  }
+}
+
+// ログアウト
+export async function Logout(): Promise<void> {
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  // サーバーで refresh_token を無効化
+  if (refreshToken) {
+    try {
+      await fetch(`${AUTH_API_URL}/logout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh_token: refreshToken })
+      });
+    } catch (error) {
+      console.error('Server logout error:', error);
+      // ローカルストレージはクリアする
+    }
+  }
+
+  // ローカルストレージをクリア
+  localStorage.clear();
+  window.location.href = '/';
 }
