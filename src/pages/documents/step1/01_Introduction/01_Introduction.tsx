@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';   
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -78,7 +78,7 @@ export default function Step1_Introduction() {
 
             <p>今回の説明の内容を読んだら、ボタンを押してください！</p>
 
-            <ComplateButton section={1} page_number={1} />
+            <CompleteButton section={1} page_number={1} />
 
             <br />
 

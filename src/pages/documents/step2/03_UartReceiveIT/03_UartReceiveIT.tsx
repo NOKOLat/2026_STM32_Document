@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -196,7 +196,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
                 <p>取りこぼしなく、10文字や20文字のデータを受信できたら完了ボタンを押してね</p>
 
 
-            <ComplateButton section={2} page_number={3} />
+            <CompleteButton section={2} page_number={3} />
 
             <br />
 

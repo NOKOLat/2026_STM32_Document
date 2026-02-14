@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -99,7 +99,7 @@ void BM1422AGMV::begin() {
 
                 <p>このようにデータシートを読み解きながらライブラリを作成できると、開発がどんどん進むのでこれからも頑張ってね</p>
 
-            <ComplateButton section={6} page_number={8} />
+            <CompleteButton section={6} page_number={8} />
             <br />
             <FooterPageRoute prev="/Step6_07_switch_i2c_spi" next="/mainpage" />
             <Footer />

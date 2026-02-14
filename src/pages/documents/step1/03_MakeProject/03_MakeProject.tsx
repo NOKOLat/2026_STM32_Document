@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -13,14 +13,24 @@ import Flie_image from './Flie.png';
 
 // InlineImage: small helper to allow per-image parameters directly in JSX
 // Usage example: <InlineImage src={setting_image} alt="..." width={420} color="#fafafa" radius={4} />
-const InlineImage = ({ src, alt, width, height, color, radius, style, ...rest }: any) => {
-    const wrapperStyle: any = {
+interface InlineImageProps {
+  src: string;
+  alt: string;
+  width?: number | string;
+  height?: number | string;
+  color?: string;
+  radius?: number;
+  style?: React.CSSProperties;
+}
+
+const InlineImage = ({ src, alt, width, height, color, radius, style }: InlineImageProps) => {
+    const wrapperStyle: React.CSSProperties = {
         display: 'inline-block',
         backgroundColor: color || 'transparent',
         padding: color ? '6px' : 0,
         borderRadius: radius ? `${radius}px` : undefined,
     };
-    const imgStyle: any = {
+    const imgStyle: React.CSSProperties = {
         width: width ?? '100%',
         height: height ?? 'auto',
         display: 'block',
@@ -30,7 +40,7 @@ const InlineImage = ({ src, alt, width, height, color, radius, style, ...rest }:
     return (
         <figure style={{ margin: '0 0 1rem 0' }}>
             <div style={wrapperStyle}>
-                <img src={src} alt={alt} style={imgStyle} {...rest} />
+                <img src={src} alt={alt} style={imgStyle} />
             </div>
         </figure>
     );
@@ -202,7 +212,7 @@ while (1)
 
                 <p>次回から意味のわかるコードや操作ばかりになるので安心してね</p>
 
-                <ComplateButton section={1} page_number={3} />
+                <CompleteButton section={1} page_number={3} />
 
             <br />
 

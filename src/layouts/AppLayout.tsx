@@ -17,6 +17,13 @@ export default function AppLayout() {
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
+    // 認証ページではTopbar/Sidebarを表示しない
+    const isAuthPage = location.pathname === '/' || location.pathname === '/register';
+
+    if (isAuthPage) {
+        return <AppRoutes />;
+    }
+
     return (
         <SidebarProvider>
             <div className={styles.appLayout}>

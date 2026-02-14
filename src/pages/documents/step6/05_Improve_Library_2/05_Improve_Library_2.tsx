@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -112,7 +112,7 @@ void GyroSetting(uint8_t fs, uint8_t odr){
                 
                 <p>センサー設定ができるようになったら、完了ボタンを押して次のステップに進もう</p>
 
-            <ComplateButton section={6} page_number={5} />
+            <CompleteButton section={6} page_number={5} />
             <br />
             <FooterPageRoute prev="/Step6_04_Improve_Library_1" next="/Step6_06_EnumClass" />
             <Footer />

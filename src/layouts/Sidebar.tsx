@@ -1,28 +1,35 @@
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '../context/SidebarContext';
 import { Logout } from '../context/AuthContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+import {
+  calculateCompletedLessons,
+  getTotalLessonCount,
+  BEGINNER_COURSE_SECTIONS,
+  ACTIVE_SECTIONS
+} from '../utils';
+import type { ProgressItem } from '../types/progress';
 import styles from './Sidebar.module.css';
-
-interface ProgressData {
-    [key: string]: number | undefined;
-}
 
 export default function Sidebar() {
     const { isOpen, toggleSidebar } = useSidebar();
     const navigate = useNavigate();
-    const [progressData, setProgressData] = useState<ProgressData>({});
+    const [progressData, setProgressData] = useState<ProgressItem[]>([]);
 
     useEffect(() => {
         const loadProgress = () => {
-            const data: ProgressData = {};
-            for (let i = 1; i <= 6; i++) {
-                const sectionData = localStorage.getItem(`section${i}`);
-                if (sectionData) {
-                    data[`section${i}`] = parseInt(sectionData, 10);
+            try {
+                const raw = localStorage.getItem('progressData');
+                if (raw) {
+                    const data: ProgressItem[] = JSON.parse(raw);
+                    setProgressData(data);
+                } else {
+                    setProgressData([]);
                 }
+            } catch (e) {
+                console.error('Failed to load progress data:', e);
+                setProgressData([]);
             }
-            setProgressData(data);
         };
 
         loadProgress();
@@ -33,37 +40,19 @@ export default function Sidebar() {
         };
     }, []);
 
-    const countCompletedLessons = (bitmask: number): number => {
-        let count = 0;
-        while (bitmask > 0) {
-            count += bitmask & 1;
-            bitmask >>= 1;
-        }
-        return count;
-    };
+    // 新歓講座（Step 1-3）の進捗（メモ化）
+    const shinkantosaProgress = useMemo(() => {
+        const completed = calculateCompletedLessons(progressData, 1, BEGINNER_COURSE_SECTIONS);
+        const total = getTotalLessonCount(BEGINNER_COURSE_SECTIONS);
+        return { completed, total };
+    }, [progressData]);
 
-    // 新歓講座（Step 1-3）の進捗
-    const getShinkantosaProgress = (): { completed: number; total: number } => {
-        let completed = 0;
-        const lessonCounts = [4, 4, 5]; // Step 1, 2, 3のレッスン数
-        for (let i = 1; i <= 3; i++) {
-            completed += countCompletedLessons(progressData[`section${i}`] || 0);
-        }
-        return { completed, total: lessonCounts.reduce((a, b) => a + b, 0) };
-    };
-
-    // 全体の進捗
-    const getTotalProgress = (): { completed: number; total: number } => {
-        let completed = 0;
-        const lessonCounts = [4, 4, 5, 3, 7, 8]; // 全Stepのレッスン数
-        for (let i = 1; i <= 6; i++) {
-            completed += countCompletedLessons(progressData[`section${i}`] || 0);
-        }
-        return { completed, total: lessonCounts.reduce((a, b) => a + b, 0) };
-    };
-
-    const shinkantosaProgress = getShinkantosaProgress();
-    const totalProgress = getTotalProgress();
+    // 全体の進捗（メモ化）
+    const totalProgress = useMemo(() => {
+        const completed = calculateCompletedLessons(progressData, 1, ACTIVE_SECTIONS);
+        const total = getTotalLessonCount(ACTIVE_SECTIONS);
+        return { completed, total };
+    }, [progressData]);
 
     const handleLogout = () => {
         Logout();

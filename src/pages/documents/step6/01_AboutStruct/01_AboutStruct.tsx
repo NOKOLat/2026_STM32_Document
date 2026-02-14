@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -159,7 +159,7 @@ ImuData imu; // ImuData型の変数imuを宣言（インスタンス化と言う
 
                 <p>構造体の概念がなんとなくわかったら完了ボタンを教えてね</p>
             
-            <ComplateButton section={6} page_number={1} />
+            <CompleteButton section={6} page_number={1} />
             <br />
             <FooterPageRoute prev="/Step5_07_Madgwick" next="/Step6_02_AboutClass" />
             <Footer />

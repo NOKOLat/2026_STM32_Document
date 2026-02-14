@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Topbar from '../../../../layouts/Topbar';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
@@ -227,7 +227,7 @@ void loop(){
 
                 <p>いろいろな距離を測定したらボタンを押してね</p>
 
-                <ComplateButton section={4} page_number={3} />
+                <CompleteButton section={4} page_number={3} />
             <br />
             <FooterPageRoute prev="/Step4_02_Ultrasonic" next="/Step5_01_GetAccel" />
             <Footer />

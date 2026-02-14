@@ -1,5 +1,5 @@
 import FooterPageRoute from '../../../../components/documents/FooterPageRoute';
-import ComplateButton from '../../../../components/documents/ComplateButton';
+import CompleteButton from '../../../../components/documents/CompleteButton';
 import Header from '../../../../layouts/Header';
 import Footer from '../../../../layouts/Footer';
 import Topbar from '../../../../layouts/Topbar';
@@ -84,7 +84,7 @@ void readRegister(uint8_t reg_addr, uint8_t* data, uint8_t len){
 
                 <p>2つの変更が無事に動いたらボタンを押してね</p>
                 
-            <ComplateButton section={6} page_number={4} />
+            <CompleteButton section={6} page_number={4} />
             <br />
             <FooterPageRoute prev="/Step6_03_IMU_Library" next="/Step6_05_Improve_Library_2" />
             <Footer />

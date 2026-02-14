@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { RegisterAccount } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
+import styles from './RegisterPage.module.css';
 
 export default function RegisterPage() {
 
@@ -44,7 +45,7 @@ export default function RegisterPage() {
             <div className="login-card">
                 <h1>アカウント登録</h1>
 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {error && <p className={styles.error}>{error}</p>}
 
                 <form className="login-form" onSubmit={handleRegister}>
                     <div className="login-field">
