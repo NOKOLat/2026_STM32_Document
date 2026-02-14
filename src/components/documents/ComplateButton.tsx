@@ -6,6 +6,7 @@ import styles from './ComplateButton.module.css';
 import { UpDateProgress, GetProgress, isLessonCompleted } from '../../context/ManageProgress';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Overlay from '../Overlay';
 
 export default function PageButton({
   section,
@@ -16,11 +17,12 @@ export default function PageButton({
 }) {
   const [loading, setLoading] = useState(false);
   const [complated, setComplated] = useState(false);
+  const [showSuccessOverlay, setShowSuccessOverlay] = useState(false);
   const navigate = useNavigate();
 
   async function handleClick() {
     // オーバーレイを表示
-    showOverlay('クリアおめでとう！！！ <br />メインページへ戻ります');
+    setShowSuccessOverlay(true);
 
     try {
       setLoading(true);
@@ -37,8 +39,11 @@ export default function PageButton({
       alert('送信に失敗しました。');
     } finally {
       setLoading(false);
-      hideOverlay();
-      navigate('/mainpage');
+      // 1秒後にオーバーレイを閉じてナビゲート
+      setTimeout(() => {
+        setShowSuccessOverlay(false);
+        navigate('/mainpage');
+      }, 1000);
     }
   }
 
@@ -52,36 +57,8 @@ export default function PageButton({
       setComplated(false);
     }
   }, [section, page_number]);
-    
 
-    // オーバーレイ表示関数（メッセージを引数で受け取る）
-    function showOverlay(message: string) {
-
-        const overlay = document.createElement('div');
-        overlay.id = 'complate-overlay';
-        overlay.style.position = 'fixed';
-        overlay.style.top = '0';
-        overlay.style.left = '0';
-        overlay.style.width = '100%';
-        overlay.style.height = '100%';
-        overlay.style.background = 'rgba(0,0,0,0.4)';
-        overlay.style.zIndex = '9999';
-        overlay.style.display = 'flex';
-        overlay.style.alignItems = 'center';
-        overlay.style.justifyContent = 'center';
-        overlay.innerHTML = `<div style="background:#fff;padding:20px;border-radius:8px;color:#000;">${message}</div>`;
-        document.body.appendChild(overlay);
-        return overlay;
-    }
-
-    // オーバーレイ非表示関数
-    function hideOverlay() {
-
-        const el = document.getElementById('complate-overlay');
-        if (el) document.body.removeChild(el);
-    }
-
-    // ログインしていない場合
+  // ログインしていない場合
     if(localStorage.getItem('isLoggedIn') !== 'true') {
 
         return (
@@ -109,7 +86,7 @@ export default function PageButton({
     }
     // ログインしているかつ、まだボタンが押されていない場合
     else{
-        
+
         return (
             <div>
                 <br />
@@ -117,6 +94,11 @@ export default function PageButton({
                     {loading ? '送信中...' : '終了報告を送信'}
                 </button>
 
+                {/* オーバーレイ（React Portal） */}
+                <Overlay isOpen={showSuccessOverlay}>
+                  <p>クリアおめでとう！！！</p>
+                  <p>メインページへ戻ります</p>
+                </Overlay>
             </div>
         )
 
