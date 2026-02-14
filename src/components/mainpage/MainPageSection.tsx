@@ -15,11 +15,6 @@ export default function MainPageSection({title, section_number, page_count, chil
 
 		function checkCompletion() {
 			try {
-				if (typeof section_number !== 'number' || typeof page_count !== 'number') {
-					setIsComplete(false);
-					return;
-				}
-
 				const raw = localStorage.getItem('progressData');
 				if (!raw) {
 					setIsComplete(false);
@@ -66,15 +61,7 @@ export default function MainPageSection({title, section_number, page_count, chil
 
 	// CSSクラスを組み立てる
 	// 完了しているかどうかで変える
-	var classes = style.sectionblock;
-	if (isComplete) {
-		classes = classes + ' ' + style.sectionActive;
-	}
-	else {
-		classes = classes + '';
-	}
-
-	classes = classes.trim();
+	const classes = `${style.sectionblock} ${isComplete ? style.sectionActive : ''}`.trim();
 
 	return (
 		<section className={classes}>
