@@ -125,7 +125,7 @@ export default function Step2_01_UartSend() {
 void init(){ 
 
     uint8_t str[13] = "Hello World\\n";
-    HAL_UART_Transmit(&huart2, str, 12, 100);//strの中身を送信
+    HAL_UART_Transmit(&huart2, str, 13, 100);//strの中身を送信
 }
 void loop(){
 
