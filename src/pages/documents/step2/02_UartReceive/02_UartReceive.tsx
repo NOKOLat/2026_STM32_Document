@@ -102,8 +102,8 @@ export default function Step2_02_UartReceive() {
 
 void init(){ 
 
-    uint8_t* str = "Start\\n";
-    HAL_UART_Transmit(&huart2, str, 6, 1000);//strの中身を送信
+    uint8_t str[7] = "Start\\n";
+    HAL_UART_Transmit(&huart2, str, 7, 1000);//strの中身を送信
 
 }
 void loop(){
@@ -117,7 +117,7 @@ void loop(){
         HAL_UART_Transmit(&huart2, &data, 1, 1000); //受け取ったデータをそのまま返送
     }
 
-    HAL_delay(500); //少し待機する
+    HAL_Delay(500); //少し待機する
 
 }`}></CppCodeRender>
             

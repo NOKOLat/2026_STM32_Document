@@ -146,13 +146,13 @@ export default function Step2_03_UartReceiveIT() {
 #include "usart.h"
 #include "gpio.h"
 
-// 受信したデータを保管する配列
-uint8_t data[1];
+// 受信したデータを保管変数
+uint8_t data;
 
 void init(){ 
 
-    uint8_t* str = "Hello World\\n";
-    HAL_UART_Transmit(&huart2, str, 12, 100);//strの中身を送信
+    uint8_t str[7] = "Hello\\n";
+    HAL_UART_Transmit(&huart2, str, 7, 100);//strの中身を送信
 
     // 最初の受信を待機
     HAL_UART_Receive_IT(&huart2, data, 1);
