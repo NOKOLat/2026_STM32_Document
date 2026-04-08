@@ -4,5 +4,8 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/2026_STM32_Document/', 
+  base: process.env.NODE_ENV === 'production' ? '/2026_STM32_Document/' : '/',
+  server: {
+    host: '0.0.0.0',
+  },
 })
