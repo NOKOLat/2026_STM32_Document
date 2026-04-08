@@ -71,7 +71,7 @@ export default function Step2_03_UartReceiveIT() {
 
                 <h3>1. UART割り込み受信関数</h3>
 
-                <CppCodeRender code={`HAL_UART_Transmit_IT(&huart, data, size);`}></CppCodeRender>
+                <CppCodeRender code={`HAL_UART_Receive_IT(&huart, Data, Len);`}></CppCodeRender>
 
                 <div className={style.note}>
 
@@ -94,12 +94,12 @@ export default function Step2_03_UartReceiveIT() {
                             <tr>
                                 <th>Data</th>
                                 <td>uint8_t*</td>
-                                <td>送信するデータのポインタ</td>
+                                <td>受信データのバッファポインタ</td>
                             </tr>
                             <tr>
                                 <th>Len</th>
                                 <td>uint16_t</td>
-                                <td>送信するデータ長</td>
+                                <td>受信するデータ長</td>
                             </tr>
                         </tbody>
                     </table>
@@ -155,7 +155,7 @@ void init(){
     HAL_UART_Transmit(&huart2, str, 7, 100);//strの中身を送信
 
     // 最初の受信を待機
-    HAL_UART_Receive_IT(&huart2, data, 1);
+    HAL_UART_Receive_IT(&huart2, &data, 1);
 }
 
 void loop(){
@@ -172,10 +172,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
     if(huart == &huart2){
         
         // 受信したデータをそのまま返送
-        HAL_UART_Transmit(&huart2, data, 1, 100);
+        HAL_UART_Transmit(&huart2, &data, 1, 100);
         
         // 受信を再開する
-        HAL_UART_Receive_IT(&huart2, data, 1);
+        HAL_UART_Receive_IT(&huart2, &data, 1);
     }
 
 }`}></CppCodeRender>
