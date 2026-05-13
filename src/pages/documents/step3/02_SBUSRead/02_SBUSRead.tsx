@@ -101,7 +101,7 @@ void SBUS_decode(uint8_t* raw_data, uint16_t* channel_data){
 
             <div className={style.title}>5. サンプルコード</div>
 
-                <p>以下のコードをmain.cに追加し、動作を確認してみよう</p>
+                <p>以下のコードをwrapper.cppに追加し、動作を確認してみよう</p>
 
                 <p>UART割り込みやprintfなどを使っているので、忘れてしまったら前の講座を確認しにいこう</p>
 
