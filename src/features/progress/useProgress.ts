@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import type { ProgressData } from '../types/progress';
-import { subscribeProgressUpdated } from './progressEvents';
-import { readProgressData } from './progressStorage';
+import type { ProgressData } from './types';
+import { subscribeProgressUpdated } from './events';
+import { readProgressData } from './storage';
 
 // 進捗データを取得するカスタムフック
 export function useProgress(): ProgressData {

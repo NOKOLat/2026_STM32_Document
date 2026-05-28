@@ -1,4 +1,4 @@
-import { ACTIVE_COURSE_SECTIONS, COURSE_SECTIONS } from '../course/courseData';
+import { ACTIVE_COURSE_SECTIONS, COURSE_SECTIONS } from '../features/course/courseData';
 
 export interface SectionConfig {
   id: number;

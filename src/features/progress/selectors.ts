@@ -1,4 +1,4 @@
-import type { ProgressItem } from '../types/progress';
+import type { ProgressItem } from './types';
 import { getSectionPageFromLessonId } from '../course/courseProgress';
 
 // 進捗データから完了したレッスンIDのリストを取得する関数

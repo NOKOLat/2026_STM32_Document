@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useSidebar } from '../../context/SidebarContext';
-import { Logout } from '../../api/authApi';
+import { useSidebar } from './SidebarContext';
+import { Logout } from '../../features/auth/api';
 import SidebarProgress from './SidebarProgress';
 import SidebarNav from './SidebarNav';
 import styles from './Sidebar.module.css';

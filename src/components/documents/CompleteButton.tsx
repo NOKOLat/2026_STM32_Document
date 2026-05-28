@@ -3,11 +3,11 @@
 // 進捗更新API をここで実装
 
 import styles from './CompleteButton.module.css';
-import { UpDateProgress, GetProgress, isLessonCompleted } from '../../api/progressApi';
+import { UpDateProgress, GetProgress, isLessonCompleted } from '../../features/progress/api';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Overlay from '../Overlay';
-import { notifyProgressUpdated } from '../../progress/progressEvents';
+import { notifyProgressUpdated } from '../../features/progress/events';
 
 export default function PageButton({
   section,

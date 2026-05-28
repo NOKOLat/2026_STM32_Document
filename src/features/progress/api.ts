@@ -1,10 +1,10 @@
 // 進捗API
 // コース・進捗エンドポイント: https://stm32document.s241507v.workers.dev/
 
-import { RefreshToken } from './authApi';
+import { RefreshToken } from '../auth/api';
 import { getLessonId } from '../course/courseProgress';
-import { isLessonCompletedById } from '../progress/progressSelectors';
-import { readProgressData, saveProgressData } from '../progress/progressStorage';
+import { isLessonCompletedById } from './selectors';
+import { readProgressData, saveProgressData } from './storage';
 
 const COURSE_API_URL = 'https://stm32document.s241507v.workers.dev';
 

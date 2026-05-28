@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import { useProgress } from '../../progress/useProgress';
+import { useProgress } from '../../features/progress/useProgress';
 import {
   getTotalLessonCount,
   BEGINNER_COURSE_SECTIONS,
   ACTIVE_SECTIONS
-} from '../../utils';
-import { calculateCompletedLessons } from '../../progress/progressSelectors';
+} from '../../shared/constants';
+import { calculateCompletedLessons } from '../../features/progress/selectors';
 import styles from './Sidebar.module.css';
 
 function getProgressPercent(completed: number, total: number): number {

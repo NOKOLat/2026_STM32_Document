@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { SidebarProvider } from '../context/SidebarContext';
-import Sidebar from './Sidebar';
-import TopbarWrapper from './TopbarWrapper';
-import AppRoutes from '../routes/AppRoutes';
+import { SidebarProvider } from '../layouts/Sidebar/SidebarContext';
+import Sidebar from '../layouts/Sidebar/Sidebar';
+import TopbarWrapper from '../layouts/TopbarWrapper';
+import AppRoutes from './AppRoutes';
 import styles from './AppLayout.module.css';
 
 export default function AppLayout() {

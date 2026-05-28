@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { RegisterAccount } from '../../api/authApi';
+import { RegisterAccount } from '../../features/auth/api';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import styles from './RegisterPage.module.css';

@@ -1,4 +1,4 @@
-import { ACTIVE_COURSE_SECTIONS } from '../../course/courseData';
+import { ACTIVE_COURSE_SECTIONS } from '../../features/course/courseData';
 import styles from './Sidebar.module.css';
 
 interface SidebarNavProps {

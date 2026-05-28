@@ -1,4 +1,4 @@
-import type { ProgressData } from '../types/progress';
+import type { ProgressData } from './types';
 
 const PROGRESS_STORAGE_KEY = 'progressData';
 

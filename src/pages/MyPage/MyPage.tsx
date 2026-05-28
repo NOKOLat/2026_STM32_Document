@@ -1,20 +1,20 @@
 import { useMemo, useCallback } from 'react';
-import Topbar from '../layouts/Topbar';
-import Footer from '../layouts/Footer';
-import ProgressBar from '../components/ProgressBar';
-import ProgressCircle from '../components/ProgressCircle';
-import { useProgress } from '../progress/useProgress';
+import Topbar from '../../layouts/Topbar';
+import Footer from '../../layouts/Footer';
+import ProgressBar from '../../components/ProgressBar';
+import ProgressCircle from '../../components/ProgressCircle';
+import { useProgress } from '../../features/progress/useProgress';
 import {
   SECTIONS,
   ACTIVE_SECTIONS,
   getTotalLessonCount,
   BEGINNER_COURSE_SECTIONS
-} from '../utils';
+} from '../../shared/constants';
 import {
   countCompletedLessons,
   calculateCompletedLessons
-} from '../progress/progressSelectors';
-import style from './mypage.module.css';
+} from '../../features/progress/selectors';
+import style from './MyPage.module.css';
 
 export default function MyPage() {
   const progressData = useProgress();

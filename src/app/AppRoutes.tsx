@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login/LoginPage';
 import RegisterPage from '../pages/Login/RegisterPage';
-import MyPage from '../pages/mypage';
+import MyPage from '../pages/MyPage/MyPage';
 import BugReport from '../pages/BugReport/BugReport';
 import NotFound from '../pages/NotFound/NotFound';
 import MainPage from '../pages/MainPage';
 import ProtectedRoute from './ProtectedRoute';
-import DocumentRoutes from './documentRoutes';
+import DocumentRoutes from '../features/course/documentRoutes';
 
 export default function AppRoutes() {
   return (

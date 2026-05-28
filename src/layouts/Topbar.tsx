@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Topbar.module.css';
-import { Logout } from '../api/authApi';
+import { Logout } from '../features/auth/api';
 import githubMark from '../assets/github-mark-white.png';
 
 export default function Topbar({ pageTitle = "" }: { pageTitle: string }) {

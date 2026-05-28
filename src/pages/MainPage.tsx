@@ -2,7 +2,7 @@ import PageLinkButton from '../components/mainpage/PageLinkButton';
 import Topbar from '../layouts/Topbar';
 import Footer from '../layouts/Footer';
 import MainPageSection from '../components/mainpage/MainPageSection';
-import { ACTIVE_COURSE_SECTIONS } from '../course/courseData';
+import { ACTIVE_COURSE_SECTIONS } from '../features/course/courseData';
 
 export default function MainPage() {
     return (

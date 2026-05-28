@@ -1,4 +1,4 @@
-import { SECTIONS } from '../utils/constants';
+import { SECTIONS } from '../../shared/constants';
 
 // レッスンIDからセクションとページ番号を取得する関数
 export function getSectionPageFromLessonId(
