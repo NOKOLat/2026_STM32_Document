@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '../context/SidebarContext';
-import { Logout } from '../context/AuthContext';
+import { Logout } from '../api/authApi';
 import { useEffect, useState, useMemo } from 'react';
 import {
   calculateCompletedLessons,

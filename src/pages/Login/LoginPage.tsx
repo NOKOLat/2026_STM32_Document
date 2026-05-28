@@ -1,7 +1,7 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Login } from '../../context/AuthContext';
-import { GetProgress } from '../../context/ManageProgress';
+import { Login } from '../../api/authApi';
+import { GetProgress } from '../../api/progressApi';
 
 export default function LoginPage() {
 

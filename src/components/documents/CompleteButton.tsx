@@ -3,7 +3,7 @@
 // 進捗更新API をここで実装
 
 import styles from './CompleteButton.module.css';
-import { UpDateProgress, GetProgress, isLessonCompleted } from '../../context/ManageProgress';
+import { UpDateProgress, GetProgress, isLessonCompleted } from '../../api/progressApi';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Overlay from '../Overlay';
