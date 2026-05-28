@@ -7,6 +7,7 @@ import { UpDateProgress, GetProgress, isLessonCompleted } from '../../api/progre
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Overlay from '../Overlay';
+import { notifyProgressUpdated } from '../../progress/progressEvents';
 
 export default function PageButton({
   section,
@@ -31,8 +32,7 @@ export default function PageButton({
       if (success) {
         await GetProgress();
         setComplated(true);
-        // UI 更新イベントを発火（PageLinkButton と mypage を更新）
-        window.dispatchEvent(new Event('progressUpdated'));
+        notifyProgressUpdated();
       }
     } catch (e) {
       console.error(e);

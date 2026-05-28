@@ -1,8 +1,9 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useMemo, useCallback } from 'react';
 import Topbar from '../layouts/Topbar';
 import Footer from '../layouts/Footer';
 import ProgressBar from '../components/ProgressBar';
 import ProgressCircle from '../components/ProgressCircle';
+import { useProgress } from '../progress/useProgress';
 import {
   SECTIONS,
   ACTIVE_SECTIONS,
@@ -11,38 +12,10 @@ import {
   countCompletedLessons,
   calculateCompletedLessons
 } from '../utils';
-import type { ProgressItem } from '../types/progress';
 import style from './mypage.module.css';
 
 export default function MyPage() {
-  const [progressData, setProgressData] = useState<ProgressItem[]>([]);
-
-  useEffect(() => {
-    // localStorage から progressData を読み込む
-    const loadProgress = () => {
-      try {
-        const raw = localStorage.getItem('progressData');
-        if (raw) {
-          const data: ProgressItem[] = JSON.parse(raw);
-          setProgressData(data);
-        } else {
-          setProgressData([]);
-        }
-      } catch (e) {
-        console.error('Failed to load progress data:', e);
-        setProgressData([]);
-      }
-    };
-
-    loadProgress();
-
-    // progressUpdated イベントをリッスンして更新
-    window.addEventListener('progressUpdated', loadProgress);
-
-    return () => {
-      window.removeEventListener('progressUpdated', loadProgress);
-    };
-  }, []);
+  const progressData = useProgress();
 
   // セクション単位の完了レッスン数を取得（メモ化）
   const getProgressValue = useCallback((sectionId: number): number => {

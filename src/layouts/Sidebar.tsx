@@ -1,44 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { useSidebar } from '../context/SidebarContext';
 import { Logout } from '../api/authApi';
-import { useEffect, useState, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useProgress } from '../progress/useProgress';
 import {
   calculateCompletedLessons,
   getTotalLessonCount,
   BEGINNER_COURSE_SECTIONS,
   ACTIVE_SECTIONS
 } from '../utils';
-import type { ProgressItem } from '../types/progress';
 import styles from './Sidebar.module.css';
 
 export default function Sidebar() {
     const { isOpen, toggleSidebar } = useSidebar();
     const navigate = useNavigate();
-    const [progressData, setProgressData] = useState<ProgressItem[]>([]);
-
-    useEffect(() => {
-        const loadProgress = () => {
-            try {
-                const raw = localStorage.getItem('progressData');
-                if (raw) {
-                    const data: ProgressItem[] = JSON.parse(raw);
-                    setProgressData(data);
-                } else {
-                    setProgressData([]);
-                }
-            } catch (e) {
-                console.error('Failed to load progress data:', e);
-                setProgressData([]);
-            }
-        };
-
-        loadProgress();
-
-        window.addEventListener('progressUpdated', loadProgress);
-        return () => {
-            window.removeEventListener('progressUpdated', loadProgress);
-        };
-    }, []);
+    const progressData = useProgress();
 
     // 新歓講座（Step 1-3）の進捗（メモ化）
     const shinkantosaProgress = useMemo(() => {

@@ -2,7 +2,8 @@
 // コース・進捗エンドポイント: https://stm32document.s241507v.workers.dev/
 
 import { RefreshToken } from './authApi';
-import { getLessonId } from '../utils/progressUtils';
+import { getLessonId, isLessonCompletedById } from '../utils/progressUtils';
+import { readProgressData, saveProgressData } from '../progress/progressStorage';
 
 const COURSE_API_URL = 'https://stm32document.s241507v.workers.dev';
 
@@ -99,7 +100,7 @@ export async function GetProgress(): Promise<
     }
 
     const data = await response.json();
-    localStorage.setItem('progressData', JSON.stringify(data));
+    saveProgressData(data);
 
     return data;
   } catch (error) {
@@ -116,17 +117,5 @@ export function isLessonCompleted(
   const lesson_id = getLessonId(section, page_number);
   if (!lesson_id) return false;
 
-  const progressData = localStorage.getItem('progressData');
-  if (!progressData) return false;
-
-  try {
-    const data = JSON.parse(progressData);
-    const lesson = data.find(
-      (item: { lesson_id: string; is_completed: number }) =>
-        item.lesson_id === lesson_id
-    );
-    return lesson?.is_completed === 1;
-  } catch {
-    return false;
-  }
+  return isLessonCompletedById(readProgressData(), lesson_id);
 }
