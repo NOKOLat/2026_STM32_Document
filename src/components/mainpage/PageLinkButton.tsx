@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
 import { useProgress } from '../../progress/useProgress';
-import { getLessonId, isLessonCompletedById } from '../../utils/progressUtils';
+import { getLessonId } from '../../course/courseProgress';
+import { isLessonCompletedById } from '../../progress/progressSelectors';
 import style from './PageLinkButton.module.css';
 
 export default function PageLinkButton({section, number, link, title}: {section: number, number: number, link: string, title: string}) {

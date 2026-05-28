@@ -1,6 +1,7 @@
 import { useMemo, type ReactNode } from 'react';
 import { useProgress } from '../../progress/useProgress';
-import { getLessonId, isLessonCompletedById } from '../../utils/progressUtils';
+import { getLessonId } from '../../course/courseProgress';
+import { isLessonCompletedById } from '../../progress/progressSelectors';
 import style from '../mainpage/MainPageSection.module.css';
 
 export default function MainPageSection({title, section_number, page_count, children}: {title: string, section_number?: number, page_count?: number, children?: ReactNode}) {

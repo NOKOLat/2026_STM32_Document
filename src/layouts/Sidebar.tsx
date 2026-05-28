@@ -4,11 +4,11 @@ import { Logout } from '../api/authApi';
 import { useMemo } from 'react';
 import { useProgress } from '../progress/useProgress';
 import {
-  calculateCompletedLessons,
   getTotalLessonCount,
   BEGINNER_COURSE_SECTIONS,
   ACTIVE_SECTIONS
 } from '../utils';
+import { calculateCompletedLessons } from '../progress/progressSelectors';
 import styles from './Sidebar.module.css';
 
 export default function Sidebar() {

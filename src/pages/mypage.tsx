@@ -8,10 +8,12 @@ import {
   SECTIONS,
   ACTIVE_SECTIONS,
   getTotalLessonCount,
-  BEGINNER_COURSE_SECTIONS,
+  BEGINNER_COURSE_SECTIONS
+} from '../utils';
+import {
   countCompletedLessons,
   calculateCompletedLessons
-} from '../utils';
+} from '../progress/progressSelectors';
 import style from './mypage.module.css';
 
 export default function MyPage() {
