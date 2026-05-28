@@ -9,6 +9,7 @@ import {
   ACTIVE_SECTIONS
 } from '../utils';
 import { calculateCompletedLessons } from '../progress/progressSelectors';
+import { ACTIVE_COURSE_SECTIONS } from '../course/courseData';
 import styles from './Sidebar.module.css';
 
 export default function Sidebar() {
@@ -54,14 +55,7 @@ export default function Sidebar() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    const sections = [
-        { number: 1, label: 'Step 1' },
-        { number: 2, label: 'Step 2' },
-        { number: 3, label: 'Step 3' },
-        { number: 4, label: 'Step 4' },
-        { number: 5, label: 'Step 5' },
-        { number: 6, label: 'Step 6' },
-    ];
+    const sections = ACTIVE_COURSE_SECTIONS;
 
     return (
         <aside className={`${styles.sidebar} ${isOpen ? styles.open : styles.closed}`}>
@@ -119,9 +113,9 @@ export default function Sidebar() {
                     <h3 className={styles.sectionTitle}>講座</h3>
                     <ul className={styles.navList}>
                         {sections.map((section) => (
-                            <li key={section.number}>
+                            <li key={section.id}>
                                 <button
-                                    onClick={() => handleSectionClick(section.number)}
+                                    onClick={() => handleSectionClick(section.id)}
                                     className={styles.navLink}
                                     title={section.label}
                                 >
