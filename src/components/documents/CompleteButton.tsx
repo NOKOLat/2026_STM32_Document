@@ -3,10 +3,11 @@
 // 進捗更新API をここで実装
 
 import styles from './CompleteButton.module.css';
-import { UpDateProgress, GetProgress, isLessonCompleted } from '../../context/ManageProgress';
+import { UpDateProgress, GetProgress, isLessonCompleted } from '../../features/progress/api';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Overlay from '../Overlay';
+import { notifyProgressUpdated } from '../../features/progress/events';
 
 export default function PageButton({
   section,
@@ -31,8 +32,7 @@ export default function PageButton({
       if (success) {
         await GetProgress();
         setComplated(true);
-        // UI 更新イベントを発火（PageLinkButton と mypage を更新）
-        window.dispatchEvent(new Event('progressUpdated'));
+        notifyProgressUpdated();
       }
     } catch (e) {
       console.error(e);

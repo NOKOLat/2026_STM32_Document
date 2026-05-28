@@ -1,0 +1,40 @@
+import { useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { SidebarProvider } from '../layouts/Sidebar/SidebarContext';
+import Sidebar from '../layouts/Sidebar/Sidebar';
+import TopbarWrapper from '../layouts/TopbarWrapper';
+import AppRoutes from './AppRoutes';
+import styles from './AppLayout.module.css';
+
+export default function AppLayout() {
+    const mainContentRef = useRef<HTMLDivElement>(null);
+    const location = useLocation();
+
+    useEffect(() => {
+        if (mainContentRef.current) {
+            mainContentRef.current.scrollTop = 0;
+        }
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
+    // 認証ページではTopbar/Sidebarを表示しない
+    const isAuthPage = location.pathname === '/' || location.pathname === '/register';
+
+    if (isAuthPage) {
+        return <AppRoutes />;
+    }
+
+    return (
+        <SidebarProvider>
+            <div className={styles.appLayout}>
+                <TopbarWrapper />
+                <div className={styles.sidebarAndContent}>
+                    <Sidebar />
+                    <main className={styles.mainContent} ref={mainContentRef}>
+                        <AppRoutes />
+                    </main>
+                </div>
+            </div>
+        </SidebarProvider>
+    );
+}
