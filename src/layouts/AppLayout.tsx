@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { SidebarProvider } from '../context/SidebarContext';
 import Sidebar from './Sidebar';
 import TopbarWrapper from './TopbarWrapper';
-import AppRoutes from '../routes/Route';
+import AppRoutes from '../routes/AppRoutes';
 import styles from './AppLayout.module.css';
 
 export default function AppLayout() {
