@@ -13,7 +13,8 @@ const COURSE_API_URL = 'https://stm32document.s241507v.workers.dev';
 // page_number: セクション内のページ番号（例: 1, 2, 3...）
 export async function UpDateProgress(
   section: number,
-  page_number: number
+  page_number: number,
+  retryCount = 0
 ): Promise<boolean> {
   const accessToken = localStorage.getItem('accessToken');
 
@@ -47,9 +48,9 @@ export async function UpDateProgress(
 
         const refreshed = await RefreshToken();
 
-        if (refreshed) {
+        if (refreshed && retryCount < 1) {
 
-          return UpDateProgress(section, page_number);
+          return UpDateProgress(section, page_number, retryCount + 1);
         }
       }
       console.warn('Progress update failed:', response.status);
@@ -68,7 +69,7 @@ export async function UpDateProgress(
 
 // 進捗データの取得
 // 戻り値の型は、lesson_id（例: "1-2"）とis_completed（0または1）を含むオブジェクトの配列
-export async function GetProgress(): Promise<
+export async function GetProgress(retryCount = 0): Promise<
   Array<{
     lesson_id: string;
     is_completed: number;
@@ -92,8 +93,8 @@ export async function GetProgress(): Promise<
     if (!response.ok) {
       if (response.status === 401) {
         const refreshed = await RefreshToken();
-        if (refreshed) {
-          return GetProgress();
+        if (refreshed && retryCount < 1) {
+          return GetProgress(retryCount + 1);
         }
       }
       console.warn('GetProgress failed:', response.status);
